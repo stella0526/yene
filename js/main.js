@@ -27,7 +27,7 @@ navLinks.forEach((link) => {
   link.addEventListener("click", (event) => {
     const submenuItem = link.closest(".has-submenu");
 
-    if (submenuItem && link.parentElement === submenuItem && mobileMenuQuery.matches) {
+    if (submenuItem && link.parentElement === submenuItem) {
       event.preventDefault();
 
       navSubmenuItems.forEach((item) => {
@@ -51,6 +51,16 @@ navLinks.forEach((link) => {
     });
     menuToggle?.setAttribute("aria-label", "메뉴 열기");
   });
+});
+
+// 데스크탑에서 서브메뉴 외부 클릭 시 닫기
+document.addEventListener("click", (event) => {
+  if (!mobileMenuQuery.matches && !event.target.closest(".has-submenu")) {
+    navSubmenuItems.forEach((item) => {
+      item.classList.remove("is-submenu-open");
+      item.querySelector(":scope > a")?.setAttribute("aria-expanded", "false");
+    });
+  }
 });
 
 navSubmenuItems.forEach((item) => {

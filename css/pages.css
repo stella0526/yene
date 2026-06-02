@@ -2039,15 +2039,15 @@
   transition: background 0.15s, color 0.15s;
 }
 
-.cs-sidebar-nav a:hover { background: var(--soft); color: var(--blue); }
+.cs-sidebar-nav a:hover { background: var(--soft); color: var(--navy); }
 
 .cs-sidebar-nav a.is-active {
-  background: var(--navy);
-  color: var(--white);
+  background: var(--soft);
+  color: var(--navy);
   font-weight: 600;
 }
 
-.cs-sidebar-nav a.is-active .nav-arrow { color: var(--white); }
+.cs-sidebar-nav a.is-active .nav-arrow { color: var(--muted); }
 .cs-sidebar-nav .nav-arrow { font-size: 14px; color: var(--muted); }
 
 /* 검색바 */

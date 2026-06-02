@@ -228,6 +228,8 @@ b {
   padding: 24px 0 22px;
   font-size: 16px;
   font-weight: 600;
+  color: var(--navy);
+  transition: color 0.2s ease;
 }
 
 .gnb a::after {
@@ -237,10 +239,16 @@ b {
   left: 0;
   height: 3px;
   content: "";
-  
+  background: var(--yellow);
   opacity: 0;
-  transform: scaleX(0.5);
-  transition: 0.22s ease;
+  transform: scaleX(0.4);
+  transform-origin: center;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.gnb a:hover,
+.gnb a:focus-visible {
+  color: var(--blue);
 }
 
 .gnb a:hover::after,
@@ -248,6 +256,10 @@ b {
 .gnb a.is-active::after {
   opacity: 1;
   transform: scaleX(1);
+}
+
+.gnb a.is-active {
+  color: var(--blue);
 }
 
 .gnb .sub-menu {
@@ -666,9 +678,16 @@ b {
 }
 
 .product-featured a {
-  padding: 0;
+  padding: 0 18px;
+  min-height: 38px;
   color: var(--white);
-  border: 0;
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 4px;
+  transition: background 0.18s ease;
+}
+
+.product-featured a:hover {
+  background: rgba(255,255,255,0.15);
 }
 
 .badge {

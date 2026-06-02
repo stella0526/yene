@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이용약관 | 고객센터 | Yene</title>
+  <link rel="preload" href="./font/Paperlogy-4Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="./font/Paperlogy-7Bold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/pages.css">
+  <style>
+    /* ── Policy Hero ── */
+    .policy-hero {
+      background: linear-gradient(135deg, #eef2f9 0%, #f5f7fc 60%, #e8edf6 100%);
+      height: 210px;
+      position: relative;
+      overflow: hidden;
+    }
+    .policy-hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 100%;
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 20px;
+      align-items: center;
+    }
+    .policy-hero-text h1 {
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 0 0 12px;
+      line-height: 1.15;
+    }
+    .policy-hero-text p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0;
+      word-break: keep-all;
+    }
+    .policy-hero-img {
+      position: absolute;
+      right: 0; top: 0;
+      height: 100%; width: 50%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .policy-hero-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center left;
+    }
+    .policy-hero-img::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0;
+      width: 160px; height: 100%;
+      background: linear-gradient(90deg, #eef2f9, transparent);
+      z-index: 1;
+    }
+
+    /* ── 3-Tab Page Nav ── */
+    .policy-page-tabs {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+    }
+    .policy-page-tabs-inner {
+      display: flex;
+      max-width: 1220px;
+      margin: 0 auto;
+    }
+    .policy-page-tab {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 58px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--muted);
+      border: none;
+      background: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.2s, background 0.2s, border-color 0.2s;
+      font-family: var(--font-main);
+    }
+    .policy-page-tab.is-active {
+      color: var(--navy);
+      font-weight: 700;
+      border-bottom-color: var(--navy);
+      background: var(--soft);
+    }
+    .policy-page-tab:hover:not(.is-active) {
+      color: var(--navy);
+      background: #f8f9fc;
+    }
+    .policy-page-tab .material-symbols-rounded { font-size: 20px; }
+
+    /* ── Policy Content ── */
+    .policy-content { padding: 48px 0 80px; }
+    .policy-layout {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 36px;
+      align-items: start;
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* TOC box */
+    .toc-box {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 28px;
+    }
+    .toc-box-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 0 0 16px;
+    }
+    .toc-box-title .material-symbols-rounded { font-size: 20px; color: var(--blue); }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 32px;
+    }
+    .toc-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text);
+      text-decoration: none;
+      padding: 5px 0;
+      transition: color 0.15s;
+    }
+    .toc-item:hover { color: var(--blue); }
+    .toc-num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue);
+      min-width: 20px;
+    }
+
+    /* Section accordion */
+    .terms-section {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .terms-section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 22px;
+      cursor: pointer;
+      background: var(--white);
+      transition: background 0.15s;
+      user-select: none;
+    }
+    .terms-section-header:hover { background: var(--soft); }
+    .terms-section.is-open .terms-section-header { background: var(--soft); }
+    .terms-section-num {
+      width: 32px; height: 32px;
+      border-radius: 6px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 13px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .terms-section-title {
+      font-size: 16px; font-weight: 600; color: var(--navy); flex: 1; margin: 0;
+    }
+    .terms-preview {
+      font-size: 13px; color: var(--muted); flex: 2;
+      word-break: keep-all;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .terms-chevron {
+      font-size: 22px; color: var(--muted);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    .terms-section.is-open .terms-chevron {
+      transform: rotate(180deg);
+      color: var(--blue);
+    }
+    .terms-section-body {
+      display: none;
+      padding: 20px 24px 24px;
+      border-top: 1px solid var(--line);
+      background: #fafbfd;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.9;
+    }
+    .terms-section.is-open .terms-section-body { display: block; }
+    .terms-section-body p { margin: 0 0 12px; word-break: keep-all; }
+    .terms-section-body p:last-child { margin-bottom: 0; }
+    .terms-section-body ul, .terms-section-body ol { padding-left: 20px; margin: 8px 0; }
+    .terms-section-body li { margin-bottom: 6px; }
+    .terms-section-body strong { color: var(--navy); }
+
+    /* Quick nav sidebar */
+    .policy-quick-nav {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      position: sticky;
+      top: 84px;
+    }
+    .quick-nav-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--navy);
+      color: var(--white);
+      padding: 14px 18px;
+      font-size: 14px; font-weight: 600; margin: 0;
+    }
+    .quick-nav-title .material-symbols-rounded { font-size: 18px; }
+    .quick-nav-list {
+      list-style: none; padding: 0; margin: 0;
+    }
+    .quick-nav-list li { border-bottom: 1px solid var(--line); }
+    .quick-nav-list li:last-child { border-bottom: none; }
+    .quick-nav-list a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 18px;
+      font-size: 13px; color: var(--text);
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .quick-nav-list a:hover { background: var(--soft); color: var(--blue); }
+    .quick-nav-list .nav-arrow { font-size: 13px; color: var(--muted); }
+    .quick-nav-top-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin: 14px;
+      padding: 10px;
+      background: var(--soft);
+      border-radius: 6px;
+      font-size: 13px; font-weight: 500; color: var(--navy);
+      cursor: pointer; text-decoration: none; border: 1px solid var(--line);
+      transition: background 0.15s;
+      font-family: var(--font-main);
+    }
+    .quick-nav-top-btn:hover { background: var(--line); }
+    .quick-nav-top-btn .material-symbols-rounded { font-size: 16px; }
+
+    @media (max-width: 960px) {
+      .policy-layout { grid-template-columns: 1fr; }
+      .policy-quick-nav { position: static; display: none; }
+      .policy-hero-img { display: none; }
+      .policy-hero-inner { grid-template-columns: 1fr; }
+      .toc-grid { grid-template-columns: 1fr; }
+      .terms-preview { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="brand">
+        <a href="./index.html" aria-label="Yene 홈">
+          <img src="./image/logo.png" alt="Yene">
+          <span>(주)예네</span>
+        </a>
+      </h1>
+      <nav class="gnb" aria-label="주요 메뉴">
+        <ul>
+          <li class="has-submenu">
+            <a href="./company-greeting.html">회사소개</a>
+            <ul class="sub-menu">
+              <li><a href="./company-greeting.html">인삿말</a></li>
+              <li><a href="./company-org.html">조직도</a></li>
+              <li><a href="./company-patent.html">특허 및 증서</a></li>
+              <li><a href="./company-location.html">오시는 길</a></li>
+              <li><a href="./company-dealer.html">대리점 현황</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="#">제품소개</a>
+            <ul class="sub-menu">
+              <li><a href="./product-ceiling.html">천장형 전기온풍기</a></li>
+              <li><a href="./product-heater.html">히터</a></li>
+              <li><a href="./product-slim.html">슬림형 전기온풍기</a></li>
+              <li><a href="./product-general.html">일반전기용품</a></li>
+            </ul>
+          </li>
+          <li><a href="./case.html">시공사례</a></li>
+          <li class="has-submenu">
+            <a href="./customer-notice.html" class="is-active">고객센터</a>
+            <ul class="sub-menu">
+              <li><a href="./customer-notice.html">공지사항</a></li>
+              <li><a href="./customer-library.html">자료실</a></li>
+              <li><a href="./customer-video.html">동영상 갤러리</a></li>
+              <li><a href="./customer-faq.html">자주묻는 질문</a></li>
+              <li><a href="./customer-press.html">보도자료</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="mobile-member-menu">
+          <a href="./login.html"><span class="material-symbols-rounded">login</span>로그인</a>
+          <a href="./signup.html"><span class="material-symbols-rounded">person_add</span>회원가입</a>
+          <a href="./cart.html"><span class="material-symbols-rounded">shopping_bag</span>장바구니</a>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <a href="./login.html" class="icon-button" aria-label="로그인"><img src="./image/header_SignIn.png" alt=""></a>
+        <a href="./signup.html" class="icon-button" aria-label="회원가입"><img src="./image/header_User.png" alt=""></a>
+        <a href="./cart.html" class="icon-button" aria-label="장바구니"><img src="./image/header_Basket.png" alt=""></a>
+        <button type="button" class="menu-toggle" aria-label="메뉴 열기" aria-expanded="false">
+          <span class="material-symbols-rounded">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page-top">
+
+    <!-- Policy Hero -->
+    <div class="policy-hero">
+      <div class="policy-hero-inner">
+        <div class="policy-hero-text">
+          <h1>이용약관</h1>
+          <p>예네 홈페이지 및 관련 서비스 이용에 필요한<br>이용약관 및 정책 내용을 안내해 드립니다.</p>
+        </div>
+      </div>
+      <div class="policy-hero-img">
+        <img src="./image/sec04_1.png" alt="">
+      </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="경로">
+      <div class="breadcrumb-inner">
+        <a href="./index.html" class="bc-home" aria-label="홈">
+          <span class="material-symbols-rounded" style="font-size:18px">home</span>
+        </a>
+        <span class="bc-sep">›</span>
+        <a href="./customer-notice.html">고객센터</a>
+        <span class="bc-sep">›</span>
+        <a href="./customer-guide.html">이용안내</a>
+        <span class="bc-sep">›</span>
+        <span class="bc-active">이용약관</span>
+      </div>
+    </nav>
+
+    <!-- 3-Tab Page Nav -->
+    <div class="policy-page-tabs">
+      <div class="policy-page-tabs-inner">
+        <a href="./customer-guide.html" class="policy-page-tab">
+          <span class="material-symbols-rounded">info</span>이용안내
+        </a>
+        <a href="./customer-terms.html" class="policy-page-tab is-active">
+          <span class="material-symbols-rounded">description</span>이용약관
+        </a>
+        <a href="./customer-privacy.html" class="policy-page-tab">
+          <span class="material-symbols-rounded">shield</span>개인정보처리방침
+        </a>
+      </div>
+    </div>
+
+    <!-- Policy Content -->
+    <div class="policy-content">
+      <div class="policy-layout">
+
+        <!-- Main Content -->
+        <div>
+          <!-- TOC Box -->
+          <div class="toc-box">
+            <p class="toc-box-title">
+              <span class="material-symbols-rounded">toc</span>약관 목차
+            </p>
+            <div class="toc-grid">
+              <a href="#terms-01" class="toc-item"><span class="toc-num">01</span>제1조 목적</a>
+              <a href="#terms-06" class="toc-item"><span class="toc-num">06</span>제6조 회원의 의무</a>
+              <a href="#terms-02" class="toc-item"><span class="toc-num">02</span>제2조 정의</a>
+              <a href="#terms-07" class="toc-item"><span class="toc-num">07</span>제7조 서비스 이용 제한</a>
+              <a href="#terms-03" class="toc-item"><span class="toc-num">03</span>제3조 약관의 효력과 변경</a>
+              <a href="#terms-08" class="toc-item"><span class="toc-num">08</span>제8조 책임의 제한</a>
+              <a href="#terms-04" class="toc-item"><span class="toc-num">04</span>제4조 서비스의 제공 및 변경</a>
+              <a href="#terms-09" class="toc-item"><span class="toc-num">09</span>제9조 분쟁 해결</a>
+              <a href="#terms-05" class="toc-item"><span class="toc-num">05</span>제5조 회원가입 및 계정 관리</a>
+              <a href="#terms-10" class="toc-item"><span class="toc-num">10</span>제10조 기타</a>
+            </div>
+          </div>
+
+          <!-- Section 01 -->
+          <div class="terms-section is-open" id="terms-01">
+            <div class="terms-section-header" onclick="toggleSection(this)">
+              <span class="terms-section-num">01</span>
+              <h3 class="terms-section-title">제1조 목적</h3>
+              <span class="terms-preview">이 약관은 주식회사 예네(이하 "회사"라 합니다)가 제공하는 서비스...</span>
+              <span class="material-symbols-rounded terms-chevron">expand_more</span>
+            </div>
+            <div class="terms-section-body">
+              <p>이 약관은 주식회사 예네(이하 "회사"라 합니다)가 제공하는 홈페이지 및 관련 서비스(이하 "서비스"라 합니다)의 이용과 관련하여 회사와 회원 간의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.</p>
+            </div>
+          </div>
+
+          <!-- Section 02 -->
+          <div class="terms-section" id="terms-02">
+            <div class="terms-section-header" onclick="toggleSection(this)">
+              <span class="terms-section-num">02</span>
+              <h3 class="terms-section-title">제2조 정의</h3>
+              <span class="terms-preview">이 약관에서 사용하는 용어의 정의는 다음과 같습니다.</span>
+              <span class="material-symbols-rounded terms-chevron">expand_more</span>
+            </div>
+            <div class="terms-section-body">
+              <p>이 약관에서 사용하는 용어의 정의는 다음과 같습니다.</p>
+              <ul>
+                <li><strong>회원</strong> : 회사의 서비스에 접속하여 이 약관에 동의하고, 회원가입을 하여 회사가 제공하는 서비스를 이용하는 자</li>
+                <li><strong>아이디(ID)</strong> : 회원의 식별과 서비스 이용을 위하여 회원이 선정하고 회사가 승인하는 문자와 숫자의 조합</li>
+                <li><strong>비밀번호</strong> : 회원이 부여받은 아이디와 일치된 회원임을 확인하고, 회원의 개인정보를 보호하기 위해 회원이 설정한 문자와 숫자의 조합</li>
+                <li><strong>서비스</strong> : 회사가 홈페이지 및 관련 플랫폼을 통해 제공하는 모든 서비스</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Section 03 -->
+          <div class="terms-section" id="terms-03">
+            <div class="terms-section-header" onclick="toggleSection(this)">
+              <span class="terms-section-num">03</span>
+              <h3 class="terms-section-title">제3조 약관의 효력과 변경</h3>
+              <span class="terms-preview">이 약관은 서비스 화면에 게시하거나 기타의 방법으로 공지함으로써 효력이 발생합니다.</span>
+              <span class="material-symbols-rounded terms-chevron">expand_more</span>
+            </div>
+            <div class="terms-section-body">
+              <p>이 약관은 서비스 화면에 게시하거나 기타의 방법으로 공지함으로써 효력이 발생합니다.</p>
+              <p>회사는 합리적인 사유가 있는 경우 관련 법령에 위배되지 않는 범위에서 이 약관을 변경할 수 있으며, 변경된 약관은 적용일자 및 변경사유를 명시하여 현행 약관과 함께 서비스 초기화면에 그 적용일자 7일 이전부터 공지합니다.</p>
+              <p>회원이 변경된 약관에 동의하지 않는 경우 서비스 이용을 중단하고 회원 탈퇴를 요청할 수 있습니다. 변경된 약관의 적용일자 이후에도 서비스를 계속 이용하는 경우 약관의 변경에 동의한 것으로 봅니다.</p>
+            </div>
+          </div>
+
+          <!-- Section 04 -->
+          <div class="terms-section" id="terms-04">
+            <div class="terms-section-header" onclick="toggleSection(this)">
+              <span class="terms-section-num">04</span>
+              <h3 class="terms-section-title">제4조 서비스의 제공 및 변경</h3>
+              <span class="terms-preview">회사는 다음과 같은 서비스를 제공합니다.</span>
+              <span class="material-symbols-rounded terms-chevron">expand_more</span>
+            </div>
+            <div class="terms-section-body">
+              <p>회사는 다음과 같은 서비스를 제공합니다.</p>
+              <ul>
+                <li>제품 정보 제공 및 온라인 구매 서비스</li>
+                <li>고객 지원 및 AS 접수 서비스</li>
+                <li>공지사항, 자료실 등 정보 제공 서비스</li>
+                <li>기타 회사가 정하는 서비스</li>
+              </ul>
+              <p>회사는 서비스의 내용, 이용 방법 등을 변경할 수 있으며, 이 경우 변경된 서비스의 내용 및 제공 일자를 서비스 내에 게시합니다.</p>
+            </div>
+          </div>
+
+          <!-- Section 05 -->
+          <div class="terms-section" id="terms-05">
+            <div class="terms-section-header" onclick="toggleSection(this)">
+              <span class="terms-section-num">05</span>
+              <h3 class="terms-section-title">제5조 회원가입 및 계정 관리</h3>
+              <span class="terms-preview">회원가입은 이용자가 약관에 동의하고 회사가 정한 절차에 따라 진행됩니다.</span>
+              <span class="material-symbols-rounded terms-chevron">expand_more</span>
+            </div>
+            <div class="terms-section-body">
+              <p>회원가입은 이용자가 약관에 동의하고 회사가 정한 절차에 따라 진행됩니다.</p>
+              <p>회원은 가입 시 등록한 정보에 변경사항이 발생한 경우, 즉시 해당 내용을 수정해야 합니다. 수정하지 않아 발생하는 불이익에 대한 책임은 회원에게 있습니다.</p>
+              <p>회원의 아이디와 비밀번호에 관한 관리 책임은 회원에게 있으며, 제3자에게 양도하거나 대여할 수 없습니다.</p>
+            </div>
+          </div>
+
+          <!-- Section 06 -->
+          <div class="terms-section" id="terms-06">
+            <div class="terms-section-header" onclick="toggleSection(this)">
+              <span class="terms-section-num">06</span>
+              <h3 class="terms-section-title">제6조 회원의 의무</h3>
+              <span class="terms-preview">회원은 서비스를 이용하면서 다음 각 호의 행위를 하여서는 안 됩니다.</span>
+              <span class="material-symbols-rounded terms-chevron">expand_more</span>
+            </div>
+            <div class="terms-section-body">
+              <p>회원은 서비스를 이용하면서 다음 각 호의 행위를 하여서는 안 됩니다.</p>
+              <ul>
+                <li>타인의 정보를 도용하거나 허위 정보를 등록하는 행위</li>
+                <li>회사의 서비스를 방해하거나 지장을 주는 행위</li>
+                <li>관련 법령이나 이 약관에서 금지하는 행위</li>
+                <li>회사의 지적재산권 등 회사 및 타인의 권리를 침해하는 행위</li>
+                <li>서비스를 이용하여 불법적이거나 부적절한 콘텐츠를 게시하는 행위</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Section 07 -->
+          <div class="terms-section" id="terms-07">
+            <div class="terms-section-header" onclick="toggleSection(this)">
+              <span class="terms-section-num">07</span>
+              <h3 class="terms-section-title">제7조 서비스 이용 제한</h3>
+              <span class="terms-preview">회사는 회원이 이 약관의 의무를 위반하거나 서비스의 정상적인 운영을 방해한 경우 서비스 이용을 제한할 수 있습니다.</span>
+              <span class="material-symbols-rounded terms-chevron">expand_more</span>
+            </div>
+            <div class="terms-section-body">
+              <p>회사는 회원이 이 약관의 의무를 위반하거나 서비스의 정상적인 운영을 방해한 경우 서비스 이용을 제한할 수 있습니다.</p>
+              <p>회사는 서비스 이용 제한의 경우 해당 회원에게 그 사유, 일시 및 기간 등을 사전 또는 사후에 통지합니다. 단, 긴급한 조치가 필요한 경우 사후 통지를 할 수 있습니다.</p>
+            </div>
+          </div>
+
+          <!-- Section 08 -->
+          <div class="terms-section" id="terms-08">
+            <div class="terms-section-header" onclick="toggleSection(this)">
+              <span class="terms-section-num">08</span>
+              <h3 class="terms-section-title">제8조 책임의 제한</h3>
+              <span class="terms-preview">회사는 천재지변, 전쟁, 기간통신사업자의 서비스 중지 등 불가항력적인 사유로 서비스를 제공할 수 없는 경우 책임이 면제됩니다.</span>
+              <span class="material-symbols-rounded terms-chevron">expand_more</span>
+            </div>
+            <div class="terms-section-body">
+              <p>회사는 천재지변, 전쟁, 기간통신사업자의 서비스 중지 등 불가항력적인 사유로 서비스를 제공할 수 없는 경우 책임이 면제됩니다.</p>
+              <p>회사는 회원의 귀책사유로 인한 서비스 이용의 장애에 대하여는 책임을 지지 않습니다.</p>
+              <p>회사는 회원이 서비스를 이용하여 기대하는 수익을 상실한 것에 대하여 책임을 지지 않으며, 기타 서비스를 통하여 얻은 정보로 인한 손해에 관하여도 책임이 없습니다.</p>
+            </div>
+          </div>
+
+          <!-- Section 09 -->
+          <div class="terms-section" id="terms-09">
+            <div class="terms-section-header" onclick="toggleSection(this)">
+              <span class="terms-section-num">09</span>
+              <h3 class="terms-section-title">제9조 분쟁 해결</h3>
+              <span class="terms-preview">회사는 회원으로부터 제출되는 불만사항 및 의견을 신속하게 처리합니다.</span>
+              <span class="material-symbols-rounded terms-chevron">expand_more</span>
+            </div>
+            <div class="terms-section-body">
+              <p>회사는 회원으로부터 제출되는 불만사항 및 의견을 신속하게 처리합니다. 다만, 신속한 처리가 곤란한 경우에는 회원에게 그 사유와 처리 일정을 통보합니다.</p>
+              <p>이 약관은 대한민국 법률에 의해 규율되며, 서비스와 관련하여 분쟁이 발생할 경우 관할 법원은 민사소송법의 관련 규정에 따릅니다.</p>
+            </div>
+          </div>
+
+          <!-- Section 10 -->
+          <div class="terms-section" id="terms-10">
+            <div class="terms-section-header" onclick="toggleSection(this)">
+              <span class="terms-section-num">10</span>
+              <h3 class="terms-section-title">제10조 기타</h3>
+              <span class="terms-preview">이 약관에서 정하지 않은 사항과 이 약관의 해석에 관하여는 관련 법령 또는 상관례에 따릅니다.</span>
+              <span class="material-symbols-rounded terms-chevron">expand_more</span>
+            </div>
+            <div class="terms-section-body">
+              <p>이 약관에서 정하지 않은 사항과 이 약관의 해석에 관하여는 관련 법령 또는 상관례에 따릅니다.</p>
+              <p>본 약관은 2015년 1월 1일부터 적용됩니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Nav Sidebar -->
+        <aside class="policy-quick-nav" aria-label="빠른 이동">
+          <p class="quick-nav-title">
+            <span class="material-symbols-rounded">bolt</span>빠른 이동
+          </p>
+          <ul class="quick-nav-list">
+            <li><a href="#terms-01">제1조 목적 <span class="nav-arrow">›</span></a></li>
+            <li><a href="#terms-02">제2조 정의 <span class="nav-arrow">›</span></a></li>
+            <li><a href="#terms-03">제3조 약관의 효력과 변경 <span class="nav-arrow">›</span></a></li>
+            <li><a href="#terms-04">제4조 서비스의 제공 및 변경 <span class="nav-arrow">›</span></a></li>
+            <li><a href="#terms-05">제5조 회원가입 및 계정 관리 <span class="nav-arrow">›</span></a></li>
+            <li><a href="#terms-06">제6조 회원의 의무 <span class="nav-arrow">›</span></a></li>
+            <li><a href="#terms-07">제7조 서비스 이용 제한 <span class="nav-arrow">›</span></a></li>
+            <li><a href="#terms-08">제8조 책임의 제한 <span class="nav-arrow">›</span></a></li>
+            <li><a href="#terms-09">제9조 분쟁 해결 <span class="nav-arrow">›</span></a></li>
+            <li><a href="#terms-10">제10조 기타 <span class="nav-arrow">›</span></a></li>
+          </ul>
+          <a href="#" class="quick-nav-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+            <span class="material-symbols-rounded">keyboard_arrow_up</span>맨 위로
+          </a>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <a class="footer-brand" href="./index.html"><img src="./image/logo.png" alt="Yene"><strong>(주) 예네</strong></a>
+      <nav aria-label="하단 메뉴">
+        <ul>
+          <li><a href="./company-greeting.html">회사소개</a></li>
+          <li><a href="./customer-guide.html">이용안내</a></li>
+          <li><a href="./customer-terms.html">이용약관</a></li>
+          <li><a href="./customer-privacy.html">개인정보처리방침</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <address>
+        상호: 주식회사 예네  |  대표: 양순식  |  이메일: yene-3@live.co.kr  |  전화: 031-767-2266<br>
+        주소: 경기도 광주시 초월읍 도곡말로 59-18번길  |  사업자등록번호: 215-66-50868<br>
+        COPYRIGHT(c) 2015 Yene. All right reserved.
+      </address>
+      <img class="footer-marks" src="./image/footer_1.png" alt="인증 및 제휴 마크">
+    </div>
+  </footer>
+
+  <script src="./js/main.js"></script>
+  <script>
+    function toggleSection(header) {
+      const section = header.closest('.terms-section');
+      section.classList.toggle('is-open');
+    }
+  </script>
+</body>
+</html>

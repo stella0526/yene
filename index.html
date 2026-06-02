@@ -305,9 +305,9 @@
       <nav aria-label="하단 메뉴">
         <ul>
           <li><a href="./company-greeting.html">회사소개</a></li>
-          <li><a href="#">이용안내</a></li>
-          <li><a href="#">이용약관</a></li>
-          <li><a href="#">개인정보처리방침</a></li>
+          <li><a href="./customer-guide.html">이용안내</a></li>
+          <li><a href="./customer-terms.html">이용약관</a></li>
+          <li><a href="./customer-privacy.html">개인정보처리방침</a></li>
         </ul>
       </nav>
     </div>
@@ -323,6 +323,109 @@
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="./js/main.js"></script>
+
+
+  <style>
+    /* ── Scroll Reveal Animation ── */
+    .reveal {
+      opacity: 0;
+      transform: translateX(-65px);
+      transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: opacity, transform;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal.exit-right {
+      opacity: 0;
+      transform: translateX(65px);
+      transition: opacity 0.45s cubic-bezier(0.55, 0.06, 0.68, 0.19),
+                  transform 0.45s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+    }
+    /* Stagger delays (enter only) */
+    .reveal.d1 { transition-delay: 0.08s; }
+    .reveal.d2 { transition-delay: 0.16s; }
+    .reveal.d3 { transition-delay: 0.24s; }
+    .reveal.d4 { transition-delay: 0.32s; }
+    /* Exit: no delay */
+    .reveal.exit-right { transition-delay: 0s !important; }
+  </style>
+
+  <script>
+    (function () {
+      // 애니메이션 적용할 요소 목록 (selector, stagger index)
+      var targets = [
+        // 제품 섹션
+        ['.product-section .section-heading', 0],
+        ['.product-section .product-featured', 1],
+        ['.product-section .product-card:not(.product-featured)', 2],
+        // 시공 사례 섹션
+        ['.case-section .case-copy', 0],
+        ['.case-section .case-visual', 1],
+        // 딜러 네트워크 섹션
+        ['.network-section .network-copy', 0],
+        ['.network-section .network-map', 1],
+        // 공지/문의 섹션
+        ['.notice-section .notice-board', 0],
+        ['.notice-section .contact-card', 1],
+      ];
+
+      var delayClasses = ['', 'd1', 'd2', 'd3', 'd4'];
+
+      targets.forEach(function (item) {
+        var sel = item[0], di = item[1];
+        document.querySelectorAll(sel).forEach(function (el, i) {
+          el.classList.add('reveal');
+          var d = di + i;
+          if (d > 0) el.classList.add(delayClasses[Math.min(d, 4)]);
+        });
+      });
+
+      // exit 후 초기 상태(왼쪽 숨김)로 리셋하기 위한 타이머 맵
+      var timers = typeof WeakMap !== 'undefined' ? new WeakMap() : null;
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var el = entry.target;
+
+          // 기존 리셋 타이머 취소
+          if (timers && timers.has(el)) {
+            clearTimeout(timers.get(el));
+            timers.delete(el);
+          }
+
+          if (entry.isIntersecting) {
+            // 뷰포트 진입 → 왼쪽에서 슬라이드인
+            el.classList.remove('exit-right');
+            void el.offsetWidth; // reflow for re-trigger
+            el.classList.add('is-visible');
+          } else {
+            // 뷰포트 이탈 → 오른쪽으로 슬라이드아웃
+            el.classList.remove('is-visible');
+            el.classList.add('exit-right');
+
+            // exit 애니메이션 완료 후 초기 상태(왼쪽)로 복귀
+            var t = setTimeout(function () {
+              if (!el.classList.contains('is-visible')) {
+                el.classList.remove('exit-right');
+                // 초기 상태: opacity 0, translateX(-65px)
+              }
+              if (timers) timers.delete(el);
+            }, 500);
+            if (timers) timers.set(el, t);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        io.observe(el);
+      });
+    })();
+  </script>
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
