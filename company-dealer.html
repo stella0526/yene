@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>대리점 현황 | 회사소개 | Yene</title>
+  <link rel="preload" href="./font/Paperlogy-4Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="./font/Paperlogy-7Bold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/pages.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="brand">
+        <a href="./index.html" aria-label="Yene 홈">
+          <img src="./image/logo.png" alt="Yene">
+          <span>(주)예네</span>
+        </a>
+      </h1>
+      <nav class="gnb" aria-label="주요 메뉴">
+        <ul>
+          <li class="has-submenu">
+            <a href="./company-greeting.html" class="is-active">회사소개</a>
+            <ul class="sub-menu">
+              <li><a href="./company-greeting.html">인삿말</a></li>
+              <li><a href="./company-org.html">조직도</a></li>
+              <li><a href="./company-patent.html">특허 및 증서</a></li>
+              <li><a href="./company-service.html">서비스센터</a></li>
+              <li><a href="./company-location.html">오시는 길</a></li>
+              <li><a href="./company-dealer.html">대리점 현황</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="#">제품소개</a>
+            <ul class="sub-menu">
+              <li><a href="./product-ceiling.html">천장형 전기온풍기</a></li>
+              <li><a href="./product-heater.html">히터</a></li>
+              <li><a href="./product-slim.html">슬림형 전기온풍기</a></li>
+              <li><a href="./product-general.html">일반전기용품</a></li>
+            </ul>
+          </li>
+          <li><a href="./case.html">시공사례</a></li>
+          <li class="has-submenu">
+            <a href="#">고객센터</a>
+            <ul class="sub-menu">
+              <li><a href="./customer-notice.html">공지사항</a></li>
+              <li><a href="./customer-library.html">자료실</a></li>
+              <li><a href="./customer-video.html">동영상 갤러리</a></li>
+              <li><a href="./customer-faq.html">자주묻는 질문</a></li>
+              <li><a href="./customer-press.html">보도자료</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="mobile-member-menu">
+          <a href="./login.html"><span class="material-symbols-rounded">login</span>로그인</a>
+          <a href="./signup.html"><span class="material-symbols-rounded">person_add</span>회원가입</a>
+          <a href="./cart.html"><span class="material-symbols-rounded">shopping_bag</span>장바구니</a>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <a href="./login.html" class="icon-button" aria-label="로그인"><img src="./image/header_SignIn.png" alt=""></a>
+        <a href="./signup.html" class="icon-button" aria-label="회원가입"><img src="./image/header_User.png" alt=""></a>
+        <a href="./cart.html" class="icon-button" aria-label="장바구니"><img src="./image/header_Basket.png" alt=""></a>
+        <button type="button" class="menu-toggle" aria-label="메뉴 열기" aria-expanded="false">
+          <span class="material-symbols-rounded">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page-top">
+    <!-- Page hero -->
+    <div class="page-hero" aria-label="회사소개 배너">
+      <div class="page-hero-inner">
+        <div class="page-hero-text">
+          <p class="page-hero-kicker">Company</p>
+          <h1>회사소개</h1>
+          <p>Yene의 기술과 신뢰를 소개합니다.</p>
+        </div>
+      </div>
+      <div class="page-hero-img" aria-hidden="true">
+        <img src="./image/sec04_2.png" alt="">
+      </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="경로">
+      <div class="breadcrumb-inner">
+        <a href="./index.html" class="bc-home" aria-label="홈">
+          <span class="material-symbols-rounded" style="font-size:18px">home</span>
+        </a>
+        <span class="bc-sep">›</span>
+        <a href="./company-greeting.html">회사소개</a>
+        <span class="bc-sep">›</span>
+        <span class="bc-active">대리점 현황</span>
+      </div>
+    </nav>
+
+    <!-- Inner content -->
+    <div class="inner-content">
+      <div class="inner-layout">
+        <!-- Sidebar -->
+        <aside class="page-sidebar" aria-label="회사소개 메뉴">
+          <h2 class="sidebar-title">회사소개</h2>
+          <ul class="sidebar-nav">
+            <li><a href="./company-greeting.html">인삿말 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./company-org.html">조직도 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./company-patent.html">특허 및 증서 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./company-service.html">서비스센터 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./company-location.html">오시는 길 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./company-dealer.html" class="is-active">대리점 현황 <span class="nav-arrow">›</span></a></li>
+          </ul>
+        </aside>
+
+        <!-- Main content -->
+        <section aria-labelledby="dealer-title">
+          <!-- 헤더 + 한국 지도 일러스트 -->
+          <div class="dealer-header-row">
+            <div class="dealer-header-text">
+              <h2 class="content-title" id="dealer-title">대리점 현황</h2>
+              <p class="content-subtitle">전국 Yene 공식 대리점 정보를 확인해보세요.</p>
+            </div>
+            <!-- 한국 지도 SVG 일러스트 -->
+            <div class="dealer-map-illus" aria-hidden="true">
+              <svg viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+                <path d="M 75,12 L 90,7 L 108,9 L 128,14 L 148,24 L 163,38 L 170,56 L 172,78
+                         L 170,100 L 166,122 L 163,142 L 158,162 L 152,180 L 145,196
+                         L 136,212 L 126,228 L 112,244 L 98,252 L 85,254 L 72,250
+                         L 57,238 L 44,222 L 33,204 L 24,184 L 19,162 L 18,140
+                         L 20,118 L 24,96 L 30,76 L 38,58 L 50,40 L 62,26 Z"
+                  fill="#e8ecf5" stroke="#bcc8dc" stroke-width="1.5" stroke-linejoin="round"/>
+                <ellipse cx="82" cy="266" rx="13" ry="7" fill="#e8ecf5" stroke="#bcc8dc" stroke-width="1.2"/>
+                <g stroke="#4a7fe0" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.6">
+                  <line x1="108" y1="88" x2="86" y2="95"/>
+                  <line x1="108" y1="88" x2="97" y2="148"/>
+                  <line x1="97" y1="148" x2="68" y2="198"/>
+                  <line x1="97" y1="148" x2="132" y2="172"/>
+                  <line x1="132" y1="172" x2="148" y2="212"/>
+                  <line x1="68" y1="198" x2="82" y2="266"/>
+                </g>
+                <g transform="translate(108,88)">
+                  <circle r="7" fill="#0f223d" opacity="0.9"/>
+                  <circle r="3.5" fill="white"/>
+                </g>
+                <g transform="translate(86,95)">
+                  <circle r="6" fill="#214da3" opacity="0.85"/>
+                  <circle r="3" fill="white"/>
+                </g>
+                <g transform="translate(97,148)">
+                  <circle r="6" fill="#214da3" opacity="0.85"/>
+                  <circle r="3" fill="white"/>
+                </g>
+                <g transform="translate(68,198)">
+                  <circle r="6" fill="#214da3" opacity="0.85"/>
+                  <circle r="3" fill="white"/>
+                </g>
+                <g transform="translate(132,172)">
+                  <circle r="6" fill="#214da3" opacity="0.85"/>
+                  <circle r="3" fill="white"/>
+                </g>
+                <g transform="translate(148,212)">
+                  <circle r="6" fill="#214da3" opacity="0.85"/>
+                  <circle r="3" fill="white"/>
+                </g>
+                <g transform="translate(82,266)">
+                  <circle r="5" fill="#214da3" opacity="0.75"/>
+                  <circle r="2.5" fill="white"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 검색 -->
+          <div class="dealer-search-row" role="search">
+            <select class="dealer-region-select" id="regionSelect" aria-label="지역 선택">
+              <option value="">지역 선택</option>
+              <option value="서울·경기">서울·경기</option>
+              <option value="인천">인천</option>
+              <option value="강원">강원</option>
+              <option value="대전·충청">대전·충청</option>
+              <option value="광주·전라">광주·전라</option>
+              <option value="대구·경북">대구·경북</option>
+              <option value="부산·경남">부산·경남</option>
+              <option value="제주">제주</option>
+            </select>
+            <input class="dealer-search-input" type="search" id="dealerSearch"
+              placeholder="대리점명 또는 지역명 검색" aria-label="대리점 검색">
+            <button type="button" class="btn-dealer-search" onclick="filterDealers()">검색</button>
+          </div>
+
+          <p class="dealer-count" id="dealerCount">
+            전국 <strong>12개</strong> 대리점 운영 중
+          </p>
+
+          <!-- 대리점 테이블 -->
+          <table class="dealer-table" id="dealerTable" aria-label="대리점 목록">
+            <thead>
+              <tr>
+                <th style="width:110px">지역</th>
+                <th style="width:160px">대리점명</th>
+                <th>주소</th>
+                <th style="width:140px">연락처</th>
+                <th style="width:120px">상세정보</th>
+              </tr>
+            </thead>
+            <tbody id="dealerBody">
+              <!-- Page 1 (6개) -->
+              <tr>
+                <td><span class="region-badge region-seoul">서울·경기</span></td>
+                <td class="td-name">Yene 서울지점</td>
+                <td class="td-addr">경기도 광주시 초월읍 도곡말길 59-18번길</td>
+                <td>031-767-2266</td>
+                <td><a href="./company-location.html" class="btn-dealer-detail">자세히 보기 →</a></td>
+              </tr>
+              <tr>
+                <td><span class="region-badge region-incheon">인천</span></td>
+                <td class="td-name">Yene 인천지점</td>
+                <td class="td-addr">인천광역시 남동구 남동대로 215번길 30</td>
+                <td>032-466-1234</td>
+                <td><a href="#" class="btn-dealer-detail">자세히 보기 →</a></td>
+              </tr>
+              <tr>
+                <td><span class="region-badge region-daejeon">대전·충청</span></td>
+                <td class="td-name">Yene 대전지점</td>
+                <td class="td-addr">대전광역시 유성구 테크노4로 17, 401호</td>
+                <td>042-862-5678</td>
+                <td><a href="#" class="btn-dealer-detail">자세히 보기 →</a></td>
+              </tr>
+              <tr>
+                <td><span class="region-badge region-gwangju">광주·전라</span></td>
+                <td class="td-name">Yene 광주지점</td>
+                <td class="td-addr">광주광역시 북구 첨단연신로 97번길 20</td>
+                <td>062-973-4321</td>
+                <td><a href="#" class="btn-dealer-detail">자세히 보기 →</a></td>
+              </tr>
+              <tr>
+                <td><span class="region-badge region-daegu">대구·경북</span></td>
+                <td class="td-name">Yene 대구지점</td>
+                <td class="td-addr">대구광역시 달서구 성서공단로 217, 3층</td>
+                <td>053-593-7788</td>
+                <td><a href="#" class="btn-dealer-detail">자세히 보기 →</a></td>
+              </tr>
+              <tr>
+                <td><span class="region-badge region-busan">부산·경남</span></td>
+                <td class="td-name">Yene 부산지점</td>
+                <td class="td-addr">부산광역시 강서구 녹산산단335로 58</td>
+                <td>051-973-1122</td>
+                <td><a href="#" class="btn-dealer-detail">자세히 보기 →</a></td>
+              </tr>
+              <!-- Page 2 (hidden) -->
+              <tr class="page-2" hidden>
+                <td><span class="region-badge region-gangwon">강원</span></td>
+                <td class="td-name">Yene 강원지점</td>
+                <td class="td-addr">강원특별자치도 원주시 혁신로 60번길 12</td>
+                <td>033-742-5566</td>
+                <td><a href="#" class="btn-dealer-detail">자세히 보기 →</a></td>
+              </tr>
+              <tr class="page-2" hidden>
+                <td><span class="region-badge region-daejeon">충북</span></td>
+                <td class="td-name">Yene 청주지점</td>
+                <td class="td-addr">충청북도 청주시 흥덕구 2순환로 1236번길</td>
+                <td>043-277-8899</td>
+                <td><a href="#" class="btn-dealer-detail">자세히 보기 →</a></td>
+              </tr>
+              <tr class="page-2" hidden>
+                <td><span class="region-badge region-gwangju">전북</span></td>
+                <td class="td-name">Yene 전주지점</td>
+                <td class="td-addr">전북특별자치도 전주시 덕진구 팔복로 109</td>
+                <td>063-255-6677</td>
+                <td><a href="#" class="btn-dealer-detail">자세히 보기 →</a></td>
+              </tr>
+              <tr class="page-2" hidden>
+                <td><span class="region-badge region-daegu">경북</span></td>
+                <td class="td-name">Yene 포항지점</td>
+                <td class="td-addr">경상북도 포항시 남구 산업로 55번길 18</td>
+                <td>054-284-3344</td>
+                <td><a href="#" class="btn-dealer-detail">자세히 보기 →</a></td>
+              </tr>
+              <tr class="page-2" hidden>
+                <td><span class="region-badge region-busan">경남</span></td>
+                <td class="td-name">Yene 창원지점</td>
+                <td class="td-addr">경상남도 창원시 성산구 공단로 172번길 24</td>
+                <td>055-288-4455</td>
+                <td><a href="#" class="btn-dealer-detail">자세히 보기 →</a></td>
+              </tr>
+              <!-- Page 3 (hidden) -->
+              <tr class="page-3" hidden>
+                <td><span class="region-badge region-jeju">제주</span></td>
+                <td class="td-name">Yene 제주지점</td>
+                <td class="td-addr">제주특별자치도 제주시 첨단로 213번길 30</td>
+                <td>064-741-2266</td>
+                <td><a href="#" class="btn-dealer-detail">자세히 보기 →</a></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- 페이지네이션 -->
+          <nav class="pagination" aria-label="페이지 이동" id="pagination">
+            <button type="button" class="page-btn" id="prevBtn" onclick="changePage(-1)" aria-label="이전 페이지">‹</button>
+            <button type="button" class="page-btn is-active" data-page="1" onclick="goPage(1)">1</button>
+            <button type="button" class="page-btn" data-page="2" onclick="goPage(2)">2</button>
+            <button type="button" class="page-btn" data-page="3" onclick="goPage(3)">3</button>
+            <button type="button" class="page-btn" id="nextBtn" onclick="changePage(1)" aria-label="다음 페이지">›</button>
+          </nav>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <a class="footer-brand" href="./index.html">
+        <img src="./image/logo.png" alt="Yene">
+        <strong>(주) 예네</strong>
+      </a>
+      <nav aria-label="하단 메뉴">
+        <ul>
+          <li><a href="./company-greeting.html">회사소개</a></li>
+          <li><a href="#">이용안내</a></li>
+          <li><a href="#">이용약관</a></li>
+          <li><a href="#">개인정보처리방침</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <address>
+        상호: 주식회사 예네  |  대표: 양순식  |  이메일: yene-3@live.co.kr  |  전화: 031-767-2266<br>
+        주소: 경기도 성남시 오포읍 양벌리 105-6  |  사업자등록번호: 215-66-50868<br>
+        COPYRIGHT(c) 2015 Yene. All right reserved.
+      </address>
+      <img class="footer-marks" src="./image/footer_1.png" alt="인증 및 제휴 마크">
+    </div>
+  </footer>
+
+  <script src="./js/main.js"></script>
+  <script>
+    let currentPage = 1;
+    const totalPages = 3;
+
+    function goPage(page) {
+      currentPage = page;
+      renderPage();
+    }
+
+    function changePage(delta) {
+      const next = currentPage + delta;
+      if (next < 1 || next > totalPages) return;
+      goPage(next);
+    }
+
+    function renderPage() {
+      // 페이지 버튼 활성화
+      document.querySelectorAll('.page-btn[data-page]').forEach(btn => {
+        btn.classList.toggle('is-active', Number(btn.dataset.page) === currentPage);
+      });
+
+      // 행 표시/숨김
+      const allRows = document.querySelectorAll('#dealerBody tr');
+      allRows.forEach(row => {
+        row.hidden = true;
+        const pg = row.dataset.page || '1';
+        if (Number(pg) === currentPage) row.hidden = false;
+      });
+
+      // page-2, page-3 class 처리
+      document.querySelectorAll('#dealerBody tr.page-2').forEach(r => {
+        r.hidden = currentPage !== 2;
+      });
+      document.querySelectorAll('#dealerBody tr.page-3').forEach(r => {
+        r.hidden = currentPage !== 3;
+      });
+      // page-1 (no class)
+      document.querySelectorAll('#dealerBody tr:not(.page-2):not(.page-3)').forEach(r => {
+        r.hidden = currentPage !== 1;
+      });
+    }
+
+    function filterDealers() {
+      const region = document.getElementById('regionSelect').value;
+      const keyword = document.getElementById('dealerSearch').value.trim().toLowerCase();
+      const rows = document.querySelectorAll('#dealerBody tr');
+      let count = 0;
+
+      rows.forEach(row => {
+        const regionText = row.querySelector('.region-badge')?.textContent || '';
+        const nameText = row.querySelector('.td-name')?.textContent || '';
+        const addrText = row.querySelector('.td-addr')?.textContent || '';
+        const combined = (regionText + nameText + addrText).toLowerCase();
+        const regionMatch = !region || regionText.includes(region);
+        const keywordMatch = !keyword || combined.includes(keyword);
+        const show = regionMatch && keywordMatch;
+        row.hidden = !show;
+        if (show) count++;
+      });
+
+      document.getElementById('dealerCount').innerHTML =
+        `전국 <strong>${count}개</strong> 대리점 ${region || keyword ? '검색 결과' : '운영 중'}`;
+      document.getElementById('pagination').style.display = (region || keyword) ? 'none' : 'flex';
+    }
+
+    // 초기 렌더
+    renderPage();
+  </script>
+</body>
+</html>

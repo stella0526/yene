@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>시공사례 | Yene</title>
+  <link rel="preload" href="./font/Paperlogy-4Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="./font/Paperlogy-7Bold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/pages.css">
+  <style>
+    /* ── 모달 ── */
+    .case-modal-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,20,40,0.82);
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .case-modal-bg.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .case-modal {
+      background: var(--white);
+      border-radius: 10px;
+      max-width: 860px;
+      width: 100%;
+      max-height: 90vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(20px);
+      transition: transform 0.25s ease;
+      position: relative;
+    }
+    .case-modal-bg.is-open .case-modal {
+      transform: translateY(0);
+    }
+    .case-modal-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      background: var(--soft);
+    }
+    .case-modal-body {
+      padding: 20px 24px 24px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .case-modal-info { flex: 1; }
+    .case-modal-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      background: #e8ecf5;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .case-modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 0 0 4px;
+    }
+    .case-modal-date {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .case-modal-close {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: var(--soft);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .case-modal-close:hover { background: var(--line); }
+    .case-modal-close .material-symbols-rounded { font-size: 20px; color: var(--navy); }
+
+    /* 이전/다음 버튼 */
+    .case-modal-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.92);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: var(--navy);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+      transition: background 0.15s;
+      z-index: 1;
+    }
+    .case-modal-nav:hover { background: #fff; }
+    .case-modal-prev { left: 12px; }
+    .case-modal-next { right: 12px; }
+
+    /* 더보기 버튼 */
+    .case-more-wrap {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .btn-case-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 48px;
+      padding: 0 32px;
+      background: var(--white);
+      color: var(--navy);
+      border: 2px solid var(--navy);
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-main);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-case-more:hover { background: var(--navy); color: #fff; }
+    .btn-case-more .material-symbols-rounded { font-size: 20px; }
+
+    /* 카드 클릭 커서 */
+    .case-card { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="brand">
+        <a href="./index.html" aria-label="Yene 홈">
+          <img src="./image/logo.png" alt="Yene">
+          <span>(주)예네</span>
+        </a>
+      </h1>
+      <nav class="gnb" aria-label="주요 메뉴">
+        <ul>
+          <li class="has-submenu">
+            <a href="./company-greeting.html">회사소개</a>
+            <ul class="sub-menu">
+              <li><a href="./company-greeting.html">인삿말</a></li>
+              <li><a href="./company-org.html">조직도</a></li>
+              <li><a href="./company-patent.html">특허 및 증서</a></li>
+              <li><a href="./company-service.html">서비스센터</a></li>
+              <li><a href="./company-location.html">오시는 길</a></li>
+              <li><a href="./company-dealer.html">대리점 현황</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="#">제품소개</a>
+            <ul class="sub-menu">
+              <li><a href="./product-ceiling.html">천장형 전기온풍기</a></li>
+              <li><a href="./product-heater.html">히터</a></li>
+              <li><a href="./product-slim.html">슬림형 전기온풍기</a></li>
+              <li><a href="./product-general.html">일반전기용품</a></li>
+            </ul>
+          </li>
+          <li><a href="./case.html" class="is-active">시공사례</a></li>
+          <li class="has-submenu">
+            <a href="./customer-notice.html">고객센터</a>
+            <ul class="sub-menu">
+              <li><a href="./customer-notice.html">공지사항</a></li>
+              <li><a href="./customer-library.html">자료실</a></li>
+              <li><a href="./customer-video.html">동영상 갤러리</a></li>
+              <li><a href="./customer-faq.html">자주묻는 질문</a></li>
+              <li><a href="./customer-press.html">보도자료</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="mobile-member-menu">
+          <a href="./login.html"><span class="material-symbols-rounded">login</span>로그인</a>
+          <a href="./signup.html"><span class="material-symbols-rounded">person_add</span>회원가입</a>
+          <a href="./cart.html"><span class="material-symbols-rounded">shopping_bag</span>장바구니</a>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <a href="./login.html" class="icon-button" aria-label="로그인"><img src="./image/header_SignIn.png" alt=""></a>
+        <a href="./signup.html" class="icon-button" aria-label="회원가입"><img src="./image/header_User.png" alt=""></a>
+        <a href="./cart.html" class="icon-button" aria-label="장바구니"><img src="./image/header_Basket.png" alt=""></a>
+        <button type="button" class="menu-toggle" aria-label="메뉴 열기" aria-expanded="false">
+          <span class="material-symbols-rounded">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page-top">
+    <div class="page-hero" aria-label="시공사례 배너">
+      <div class="page-hero-inner">
+        <div class="page-hero-text">
+          <p class="page-hero-kicker">Construction Case</p>
+          <h1>시공사례</h1>
+          <p>전국 다양한 공간에 설치된 Yene의 시공 현장을 소개합니다.</p>
+        </div>
+      </div>
+      <div class="page-hero-img" aria-hidden="true">
+        <img src="./image/sec04_2.png" alt="">
+      </div>
+    </div>
+
+    <nav class="breadcrumb" aria-label="경로">
+      <div class="breadcrumb-inner">
+        <a href="./index.html" class="bc-home" aria-label="홈">
+          <span class="material-symbols-rounded" style="font-size:18px">home</span>
+        </a>
+        <span class="bc-sep">›</span>
+        <span class="bc-active">시공사례</span>
+      </div>
+    </nav>
+
+    <div class="inner-content">
+      <div class="inner-layout">
+        <!-- Sidebar -->
+        <aside class="page-sidebar" aria-label="시공사례 메뉴">
+          <h2 class="sidebar-title">시공사례</h2>
+          <ul class="sidebar-nav">
+            <li><a href="#" class="is-active sidebar-filter" data-filter="all">전체보기 <span class="nav-arrow">›</span></a></li>
+            <li><a href="#" class="sidebar-filter" data-filter="education">교육시설 <span class="nav-arrow">›</span></a></li>
+            <li><a href="#" class="sidebar-filter" data-filter="public">관공서 <span class="nav-arrow">›</span></a></li>
+            <li><a href="#" class="sidebar-filter" data-filter="industry">산업시설 <span class="nav-arrow">›</span></a></li>
+            <li><a href="#" class="sidebar-filter" data-filter="etc">기타 <span class="nav-arrow">›</span></a></li>
+          </ul>
+        </aside>
+
+        <!-- Main content -->
+        <section aria-labelledby="case-title">
+          <h2 class="content-title" id="case-title">시공사례</h2>
+          <p class="content-subtitle">Yene 제품이 설치된 전국의 다양한 현장을 확인해보세요.</p>
+
+          <div class="tab-bar" role="tablist" id="caseTabBar">
+            <button type="button" class="tab-btn is-active" data-filter="all">전체</button>
+            <button type="button" class="tab-btn" data-filter="education">교육시설</button>
+            <button type="button" class="tab-btn" data-filter="public">관공서</button>
+            <button type="button" class="tab-btn" data-filter="industry">산업시설</button>
+            <button type="button" class="tab-btn" data-filter="etc">기타</button>
+          </div>
+
+          <div class="case-grid" id="caseGrid"></div>
+
+          <div class="case-more-wrap" id="moreWrap">
+            <button type="button" class="btn-case-more" id="btnMore">
+              <span class="material-symbols-rounded">expand_more</span>더 많은 시공사례 보기
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- 모달 -->
+  <div class="case-modal-bg" id="caseModal" role="dialog" aria-modal="true" aria-label="시공사례 상세보기">
+    <div class="case-modal">
+      <button type="button" class="case-modal-nav case-modal-prev" id="modalPrev" aria-label="이전">‹</button>
+      <button type="button" class="case-modal-nav case-modal-next" id="modalNext" aria-label="다음">›</button>
+      <img class="case-modal-img" id="modalImg" src="" alt="">
+      <div class="case-modal-body">
+        <div class="case-modal-info">
+          <span class="case-modal-badge" id="modalBadge"></span>
+          <p class="case-modal-title" id="modalTitle"></p>
+          <p class="case-modal-date" id="modalDate"></p>
+        </div>
+        <button type="button" class="case-modal-close" id="modalClose" aria-label="닫기">
+          <span class="material-symbols-rounded">close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <a class="footer-brand" href="./index.html">
+        <img src="./image/logo.png" alt="Yene">
+        <strong>(주) 예네</strong>
+      </a>
+      <nav aria-label="하단 메뉴">
+        <ul>
+          <li><a href="./company-greeting.html">회사소개</a></li>
+          <li><a href="#">이용안내</a></li>
+          <li><a href="#">이용약관</a></li>
+          <li><a href="#">개인정보처리방침</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <address>
+        상호: 주식회사 예네  |  대표: 양순식  |  이메일: yene-3@live.co.kr  |  전화: 031-767-2266<br>
+        주소: 경기도 광주시 초월읍 도곡말길 59-18번길  |  사업자등록번호: 215-66-50868<br>
+        COPYRIGHT(c) 2015 Yene. All right reserved.
+      </address>
+      <img class="footer-marks" src="./image/footer_1.png" alt="인증 및 제휴 마크">
+    </div>
+  </footer>
+
+  <script src="./js/main.js"></script>
+  <script>
+  // ── 시공사례 데이터 (yene.co.kr gallery_3 전체 크롤링 - 8페이지 153건) ──
+  const CASES = [
+    // ── 1페이지 (2020) ──
+    { id:296, cat:'public',    date:'2020.12.28', img:'gallery_3_296_0_1609139650.jpg', title:'광주광역시교육청' },
+    { id:295, cat:'education', date:'2020.12.28', img:'gallery_3_295_0_1609139541.jpg', title:'부흥중학교(부천시)' },
+    { id:294, cat:'education', date:'2020.12.28', img:'gallery_3_294_0_1609139496.jpg', title:'파평중학교(파주시)' },
+    { id:293, cat:'education', date:'2020.12.28', img:'gallery_3_293_0_1609139425.jpg', title:'서울청원중학교' },
+    { id:292, cat:'education', date:'2020.12.28', img:'gallery_3_292_0_1609138997.jpg', title:'공주생명과학고등학교' },
+    { id:291, cat:'industry',  date:'2020.12.16', img:'gallery_3_291_0_1608082016.jpg', title:'한국보안정보연구원' },
+    { id:290, cat:'public',    date:'2020.12.16', img:'gallery_3_290_0_1608081780.jpg', title:'용인청년공간(용인시청)' },
+    { id:289, cat:'industry',  date:'2020.12.16', img:'gallery_3_289_0_1608081644.jpg', title:'안산고잔병설유치원(경기도)' },
+    { id:288, cat:'education', date:'2020.12.16', img:'gallery_3_288_0_1608081531.jpg', title:'서울일본인학교' },
+    { id:287, cat:'education', date:'2020.12.16', img:'gallery_3_287_0_1608081146.jpg', title:'경복여자고등학교(서울시)' },
+    { id:286, cat:'education', date:'2020.12.16', img:'gallery_3_286_0_1608080803.jpg', title:'양곡고등학교(김포)' },
+    { id:285, cat:'public',    date:'2020.11.26', img:'gallery_3_285_0_1606372581.jpg', title:'안양만안경찰서 (초소)' },
+    { id:284, cat:'education', date:'2020.11.26', img:'gallery_3_284_0_1606372479.jpg', title:'회룡중학교 (의정부)' },
+    { id:283, cat:'industry',  date:'2020.11.26', img:'gallery_3_283_0_1606372425.jpg', title:'마이우스' },
+    { id:282, cat:'education', date:'2020.11.26', img:'gallery_3_282_0_1606372341.jpg', title:'도마산초등학교 (파주시)' },
+    { id:281, cat:'etc',       date:'2020.11.26', img:'gallery_3_281_0_1606372278.jpg', title:'도담삼봉 (단양시)' },
+    { id:280, cat:'industry',  date:'2020.11.26', img:'gallery_3_280_0_1606372200.jpg', title:'삼성병원 (강북구)' },
+    { id:279, cat:'public',    date:'2020.11.12', img:'gallery_3_279_0_1605170440.jpg', title:'용인수지구청(공중화장실)' },
+    { id:278, cat:'etc',       date:'2020.11.12', img:'gallery_3_278_0_1605170297.jpg', title:'부평 상가화장실' },
+    { id:277, cat:'public',    date:'2020.11.12', img:'gallery_3_277_0_1605170093.jpg', title:'종로발달장애인평생교육원(종로)' },
+    // ── 2페이지 (2020) ──
+    { id:276, cat:'education', date:'2020.11.12', img:'gallery_3_276_0_1605169988.jpg', title:'신능초등학교 체육관 (고양시)' },
+    { id:275, cat:'public',    date:'2020.11.12', img:'gallery_3_275_0_1605169082.jpg', title:'안양 교도소' },
+    { id:274, cat:'etc',       date:'2020.11.12', img:'gallery_3_274_0_1605168995.jpg', title:'에이스포휴타워(가산동)' },
+    { id:273, cat:'education', date:'2020.11.12', img:'gallery_3_273_0_1605168818.jpg', title:'도심초등학교(경기도 남양주시)' },
+    { id:272, cat:'public',    date:'2020.10.19', img:'gallery_3_272_0_1603071983.jpg', title:'송지호해수욕장(강원도 고성군)' },
+    { id:271, cat:'education', date:'2020.09.17', img:'gallery_3_271_0_1600322667.jpg', title:'갈현초등학교 (파주시)' },
+    { id:270, cat:'public',    date:'2020.09.11', img:'gallery_3_270_0_1599805765.jpg', title:'동광지식산업센터(별내동)' },
+    { id:269, cat:'industry',  date:'2020.08.21', img:'gallery_3_269_0_1597976462.jpg', title:'서울송파 에이치빌딩' },
+    { id:268, cat:'industry',  date:'2020.08.21', img:'gallery_3_268_0_1597976037.jpg', title:'워커힐포도빌관리실(구리시)' },
+    { id:265, cat:'etc',       date:'2020.05.29', img:'gallery_3_265_0_1590717757.jpg', title:'영등포 우림라이온스밸리' },
+    { id:263, cat:'education', date:'2020.03.05', img:'gallery_3_263_0_1583388974.jpg', title:'양주 고암중학교' },
+    { id:262, cat:'etc',       date:'2020.02.25', img:'gallery_3_262_0_1582591290.jpg', title:'강남구 조선내화' },
+    { id:261, cat:'public',    date:'2020.02.25', img:'gallery_3_261_0_1582591176.jpg', title:'잠실역 지하상가 화장실' },
+    { id:259, cat:'public',    date:'2020.02.25', img:'gallery_3_259_0_1582591001.jpg', title:'용인수지구가정집' },
+    { id:258, cat:'industry',  date:'2020.02.25', img:'gallery_3_258_0_1582590841.jpg', title:'수원SK스카이뷰아파트' },
+    { id:257, cat:'etc',       date:'2020.02.25', img:'gallery_3_257_0_1582590213.jpg', title:'종로 두양보타니' },
+    { id:256, cat:'education', date:'2020.02.25', img:'gallery_3_256_0_1582590109.jpg', title:'동두천 이담초등학교' },
+    { id:255, cat:'education', date:'2020.02.25', img:'gallery_3_255_0_1582589859.jpg', title:'동국대학교사범대부속영석고등학교' },
+    { id:254, cat:'education', date:'2020.02.25', img:'gallery_3_254_0_1582589647.jpg', title:'교남학교' },
+    { id:253, cat:'industry',  date:'2020.02.25', img:'gallery_3_253_0_1582589469.jpg', title:'KCC건설 안성물류센터' },
+    // ── 3페이지 (2019~2018) ──
+    { id:250, cat:'etc',       date:'2019.10.11', img:'gallery_3_250_0_1570779548.jpg', title:'롯데백화점 본점' },
+    { id:249, cat:'education', date:'2019.10.11', img:'gallery_3_249_0_1570779368.jpg', title:'한국외국어대학교' },
+    { id:248, cat:'education', date:'2019.10.11', img:'gallery_3_248_0_1570779258.jpg', title:'포천송우중학교' },
+    { id:247, cat:'education', date:'2019.10.02', img:'gallery_3_247_0_1569993113.jpg', title:'V모델 전기온풍난방 환기 LED조명 욕실건조 헤어드라이어 기능 가정집 화장실 욕실 설치사진' },
+    { id:229, cat:'education', date:'2019.03.15', img:'gallery_3_229_0_1552627039.jpg', title:'제천 청풍문화재단지' },
+    { id:227, cat:'education', date:'2019.03.15', img:'gallery_3_227_0_1552626627.jpg', title:'파주초등학교' },
+    { id:216, cat:'education', date:'2018.06.07', img:'gallery_3_216_0_1528350389.jpg', title:'장성 삼계중학교' },
+    { id:214, cat:'education', date:'2018.04.04', img:'gallery_3_214_0_1522825478.jpg', title:'광주 비아초등학교' },
+    { id:213, cat:'etc',       date:'2018.03.30', img:'gallery_3_213_0_1522375885.jpg', title:'서초구 빌딩 화장실' },
+    { id:212, cat:'education', date:'2018.03.28', img:'gallery_3_212_0_1522209681.jpg', title:'영진전문대학교' },
+    { id:211, cat:'public',    date:'2018.03.20', img:'gallery_3_211_0_1521533157.jpg', title:'원주 소금산 화장실' },
+    { id:210, cat:'public',    date:'2018.03.20', img:'gallery_3_210_0_1521532978.jpg', title:'대학교 화장실' },
+    { id:209, cat:'education', date:'2018.02.26', img:'gallery_3_209_0_1519629853.jpg', title:'중학교 급식실' },
+    { id:208, cat:'public',    date:'2018.02.26', img:'gallery_3_208_0_1519629729.jpg', title:'평택한광여고' },
+    { id:205, cat:'public',    date:'2018.01.30', img:'gallery_3_205_0_1517290169.jpg', title:'안산 중앙오피스텔(1, 2차 설치)' },
+    { id:204, cat:'etc',       date:'2018.01.30', img:'gallery_3_204_0_1517289889.jpg', title:'수원 세차장' },
+    { id:203, cat:'etc',       date:'2018.01.26', img:'gallery_3_203_0_1516941373.jpg', title:'제주 한라산' },
+    { id:202, cat:'education', date:'2018.01.26', img:'gallery_3_202_0_1516941219.JPG', title:'대구효성초등학교' },
+    { id:198, cat:'public',    date:'2018.01.19', img:'gallery_3_198_0_1516328255.jpg', title:'인천논현유치원' },
+    { id:197, cat:'etc',       date:'2018.01.19', img:'gallery_3_197_0_1516328152.jpg', title:'남한산성' },
+    // ── 4페이지 (2018~2017) ──
+    { id:196, cat:'public',    date:'2018.01.15', img:'gallery_3_196_0_1515983951.JPG', title:'동두천 노인복지관' },
+    { id:195, cat:'education', date:'2018.01.15', img:'gallery_3_195_0_1515983695.jpg', title:'포천추산초등학교' },
+    { id:194, cat:'etc',       date:'2018.01.15', img:'gallery_3_194_0_1515983610.jpg', title:'강변역' },
+    { id:193, cat:'etc',       date:'2018.01.03', img:'gallery_3_193_0_1514953856.jpg', title:'강북구 호텔' },
+    { id:192, cat:'etc',       date:'2018.01.03', img:'gallery_3_192_0_1514953769.jpg', title:'성남 티스테이션' },
+    { id:191, cat:'etc',       date:'2018.01.03', img:'gallery_3_191_0_1514953654.jpg', title:'분당 삼정타운하우스' },
+    { id:190, cat:'education', date:'2018.01.03', img:'gallery_3_190_0_1514953587.jpg', title:'용인 칼빈대학교' },
+    { id:187, cat:'education', date:'2017.12.21', img:'gallery_3_187_0_1513841734.jpg', title:'한양공업고등학교' },
+    { id:186, cat:'public',    date:'2017.12.21', img:'gallery_3_186_0_1513841633.jpg', title:'수도권매립지관리공사 화장실' },
+    { id:185, cat:'public',    date:'2017.12.21', img:'gallery_3_185_0_1513841493.jpg', title:'충주 호암공원 화장실' },
+    { id:184, cat:'public',    date:'2017.12.21', img:'gallery_3_184_0_1513841422.jpg', title:'충주 용산시민공원 화장실' },
+    { id:183, cat:'public',    date:'2017.12.15', img:'gallery_3_183_0_1513311024.jpg', title:'광주 태전동 화장실' },
+    { id:182, cat:'public',    date:'2017.12.15', img:'gallery_3_182_0_1513310818.jpg', title:'충주 만리공원' },
+    { id:181, cat:'public',    date:'2017.12.15', img:'gallery_3_181_0_1513310732.jpg', title:'양재동빌딩' },
+    { id:180, cat:'etc',       date:'2017.12.15', img:'gallery_3_180_0_1513310385.jpg', title:'평창 레스토랑' },
+    { id:179, cat:'education', date:'2017.11.22', img:'gallery_3_179_0_1511340716.jpg', title:'금릉중학교' },
+    { id:178, cat:'public',    date:'2017.11.22', img:'gallery_3_178_0_1511340618.jpg', title:'동해휴게소' },
+    { id:177, cat:'public',    date:'2017.11.22', img:'gallery_3_177_0_1511340550.jpg', title:'인애복지재단' },
+    { id:176, cat:'public',    date:'2017.11.22', img:'gallery_3_176_0_1511340369.jpg', title:'횡성현장' },
+    { id:173, cat:'etc',       date:'2017.11.08', img:'gallery_3_173_0_1510104846.jpg', title:'청계산쉼터' },
+    // ── 5페이지 (2017~2016) ──
+    { id:172, cat:'education', date:'2017.09.25', img:'gallery_3_172_0_1506300212.jpg', title:'연천중고등학교' },
+    { id:169, cat:'education', date:'2017.08.14', img:'gallery_3_169_0_1502693385.jpg', title:'일산 파밀리에APT 욕실' },
+    { id:168, cat:'industry',  date:'2017.08.01', img:'gallery_3_168_0_1501567635.jpg', title:'영등포 두암기계상가' },
+    { id:167, cat:'etc',       date:'2017.07.28', img:'gallery_3_167_0_1501224725.jpg', title:'태안읍 보건의료원' },
+    { id:166, cat:'education', date:'2017.07.28', img:'gallery_3_166_0_1501224787.jpg', title:'경기도 의정부 오동초등학교' },
+    { id:165, cat:'etc',       date:'2017.07.18', img:'gallery_3_165_0_1500358794.jpg', title:'증평 좌구산 자연휴양림' },
+    { id:162, cat:'etc',       date:'2017.05.04', img:'gallery_3_162_0_1493864951.jpg', title:'경남 거창휴게소' },
+    { id:161, cat:'education', date:'2017.05.04', img:'gallery_3_161_0_1493864742.jpg', title:'남양주 송라초등학교' },
+    { id:160, cat:'industry',  date:'2017.03.03', img:'gallery_3_160_0_1488523709.jpg', title:'대구 덕산빌딩' },
+    { id:159, cat:'education', date:'2017.01.31', img:'gallery_3_159_0_1485822587.jpg', title:'금촌2동 주민센터' },
+    { id:153, cat:'education', date:'2017.01.06', img:'gallery_3_153_0_1483687142.jpg', title:'온양한올고등학교' },
+    { id:151, cat:'public',    date:'2016.12.29', img:'gallery_3_151_0_1482993925.jpg', title:'경기도 광주사무실' },
+    { id:143, cat:'education', date:'2016.12.20', img:'gallery_3_143_0_1482222279.jpg', title:'청주교육대학교 현장' },
+    { id:142, cat:'education', date:'2016.12.02', img:'gallery_3_142_0_1480660634.jpg', title:'파주 연풍초등학교' },
+    { id:140, cat:'etc',       date:'2016.11.30', img:'gallery_3_140_0_1481085656.jpg', title:'화성휴게소 (하행)' },
+    { id:139, cat:'industry',  date:'2016.11.30', img:'gallery_3_139_0_1480486346.jpg', title:'인천 S-OIL 주유소' },
+    { id:134, cat:'industry',  date:'2016.07.26', img:'gallery_3_134_0_1469512876.jpg', title:'일산주엽공원' },
+    { id:133, cat:'etc',       date:'2016.07.26', img:'gallery_3_133_0_1469505809.jpg', title:'익산원예농협 화장실' },
+    { id:129, cat:'industry',  date:'2016.05.19', img:'gallery_3_129_0_1469511199.jpg', title:'수원시장애인 수영장' },
+    { id:128, cat:'education', date:'2016.05.19', img:'gallery_3_128_0_1463644340.jpg', title:'고양시 숯고개공원화장실' },
+    // ── 6페이지 (2016~2015) ──
+    { id:127, cat:'public',    date:'2016.05.19', img:'gallery_3_127_0_1463644193.jpg', title:'경기도 평택 공원화장실' },
+    { id:126, cat:'public',    date:'2016.05.19', img:'gallery_3_126_0_1463644074.jpg', title:'상암동 난지연못공원화장실' },
+    { id:61,  cat:'education', date:'2015.12.02', img:'gallery_3_61_0_1449025403.jpg',  title:'광양시 마동중학교' },
+    { id:60,  cat:'education', date:'2015.12.02', img:'gallery_3_60_0_1449025346.jpg',  title:'의정부 충의중학교' },
+    { id:59,  cat:'etc',       date:'2015.12.02', img:'gallery_3_59_0_1449025278.jpg',  title:'화성시 의류매장' },
+    { id:58,  cat:'education', date:'2015.12.02', img:'gallery_3_58_0_1449025235.jpg',  title:'홍성 청운대학교' },
+    { id:57,  cat:'etc',       date:'2015.12.02', img:'gallery_3_57_0_1449025177.jpg',  title:'미용실 리모델링' },
+    { id:56,  cat:'education', date:'2015.12.02', img:'gallery_3_56_0_1449024555.jpg',  title:'항공고등학교 기숙사' },
+    { id:55,  cat:'etc',       date:'2015.12.02', img:'gallery_3_55_0_1449022448.jpg',  title:'하남시 산곡별장' },
+    { id:54,  cat:'etc',       date:'2015.12.02', img:'gallery_3_54_0_1449022153.jpg',  title:'하남시 동부교회' },
+    { id:53,  cat:'public',    date:'2015.12.02', img:'gallery_3_53_0_1449022104.jpg',  title:'청북근린공원 화장실(평택)' },
+    { id:52,  cat:'education', date:'2015.12.02', img:'gallery_3_52_0_1449021941.jpg',  title:'파주 파평초등학교' },
+    { id:51,  cat:'education', date:'2015.12.02', img:'gallery_3_51_0_1449021871.jpg',  title:'파주 선유초등학교' },
+    { id:50,  cat:'etc',       date:'2015.12.02', img:'gallery_3_50_0_1449021761.jpg',  title:'태안 학암포주차장 화장실' },
+    { id:49,  cat:'etc',       date:'2015.12.02', img:'gallery_3_49_0_1449021542.jpg',  title:'태안 학암포 국립공원' },
+    { id:48,  cat:'industry',  date:'2015.12.02', img:'gallery_3_48_0_1449021188.jpg',  title:'충주 펜션건물' },
+    { id:47,  cat:'etc',       date:'2015.12.02', img:'gallery_3_47_0_1449021064.jpg',  title:'충북음성 일진다이아몬드' },
+    { id:45,  cat:'public',    date:'2015.12.02', img:'gallery_3_45_0_1449020784.jpg',  title:'충북 봉황자연휴향림' },
+    { id:44,  cat:'public',    date:'2015.12.02', img:'gallery_3_44_0_1449020718.jpg',  title:'청담동 시계전시장' },
+    { id:43,  cat:'etc',       date:'2015.12.02', img:'gallery_3_43_0_1449020657.jpg',  title:'회현동 화장실건물' },
+    // ── 7페이지 (2015) ──
+    { id:42,  cat:'industry',  date:'2015.12.02', img:'gallery_3_42_0_1449020578.jpg',  title:'정읍 펜션욕실' },
+    { id:41,  cat:'public',    date:'2015.12.02', img:'gallery_3_41_0_1449020490.jpg',  title:'경남입곡군립공원 화장실' },
+    { id:40,  cat:'industry',  date:'2015.12.02', img:'gallery_3_40_0_1449019869.jpg',  title:'일산 신축건물' },
+    { id:39,  cat:'etc',       date:'2015.12.02', img:'gallery_3_39_0_1449019771.jpg',  title:'일산 공원화장실' },
+    { id:38,  cat:'industry',  date:'2015.12.02', img:'gallery_3_38_0_1449019711.jpg',  title:'인천 삼성생명사옥' },
+    { id:37,  cat:'etc',       date:'2015.12.02', img:'gallery_3_37_0_1449019636.jpg',  title:'의왕시 공중화장실' },
+    { id:36,  cat:'etc',       date:'2015.12.02', img:'gallery_3_36_0_1449019581.jpg',  title:'우림 라이온스아파트형공장' },
+    { id:35,  cat:'etc',       date:'2015.12.02', img:'gallery_3_35_0_1449019078.jpg',  title:'대웅제약연구소 경영관(용인)' },
+    { id:34,  cat:'etc',       date:'2015.12.02', img:'gallery_3_34_0_1449019007.jpg',  title:'대웅제약연구소(용인)' },
+    { id:33,  cat:'education', date:'2015.12.02', img:'gallery_3_33_0_1449018930.gif',  title:'세명대학교' },
+    { id:32,  cat:'education', date:'2015.12.02', img:'gallery_3_32_0_1449018856.jpg',  title:'서울 이화여자대학교(약학과)' },
+    { id:31,  cat:'public',    date:'2015.12.02', img:'gallery_3_31_0_1449018774.jpg',  title:'서울 성모병원' },
+    { id:30,  cat:'industry',  date:'2015.12.02', img:'gallery_3_30_0_1449018722.jpg',  title:'서울 마장동건물' },
+    { id:29,  cat:'etc',       date:'2015.12.02', img:'gallery_3_29_0_1449018636.jpg',  title:'서울 남산도서관 화장실' },
+    { id:28,  cat:'etc',       date:'2015.12.02', img:'gallery_3_28_0_1449018525.jpg',  title:'서울 남산공원 화장실' },
+    { id:27,  cat:'industry',  date:'2015.12.02', img:'gallery_3_27_0_1449018439.jpg',  title:'서울 효자동건물' },
+    { id:26,  cat:'public',    date:'2015.12.01', img:'gallery_3_26_0_1448958747.jpg',  title:'서울 오금동 공중화장실' },
+    { id:25,  cat:'industry',  date:'2015.12.01', img:'gallery_3_25_0_1448958624.jpg',  title:'서울 오금동 가정집(욕실)' },
+    { id:24,  cat:'education', date:'2015.12.01', img:'gallery_3_24_0_1448958501.jpg',  title:'사벌초등학교 화장실' },
+    { id:23,  cat:'public',    date:'2015.12.01', img:'gallery_3_23_0_1448958276.jpg',  title:'분당구 어린이공원 화장실' },
+    // ── 8페이지 (2015) ──
+    { id:22,  cat:'education', date:'2015.12.01', img:'gallery_3_22_0_1448958169.jpg',  title:'분당구 수내중학교' },
+    { id:21,  cat:'etc',       date:'2015.12.01', img:'gallery_3_21_0_1448957436.jpg',  title:'분당 서현동아파트(욕실)' },
+    { id:20,  cat:'industry',  date:'2015.12.01', img:'gallery_3_20_0_1448957352.jpg',  title:'분당 BMW' },
+    { id:19,  cat:'industry',  date:'2015.12.01', img:'gallery_3_19_0_1448955704.jpg',  title:'북부 노인병원' },
+    { id:18,  cat:'education', date:'2015.12.01', img:'gallery_3_18_0_1448955600.jpg',  title:'부천초등학교 화장실' },
+    { id:17,  cat:'etc',       date:'2015.12.01', img:'gallery_3_17_0_1448955459.jpg',  title:'방화동 사회복지관 시설' },
+    { id:16,  cat:'etc',       date:'2015.12.01', img:'gallery_3_16_0_1448955377.jpg',  title:'바리스타 까페' },
+    { id:15,  cat:'etc',       date:'2015.12.01', img:'gallery_3_15_0_1448954743.jpg',  title:'김포 공설운동장' },
+    { id:14,  cat:'industry',  date:'2015.12.01', img:'gallery_3_14_0_1448954669.jpg',  title:'광진구 미용실' },
+    { id:12,  cat:'education', date:'2015.12.01', img:'gallery_3_12_0_1448954319.jpg',  title:'광명 하안중학교' },
+    { id:11,  cat:'industry',  date:'2015.12.01', img:'gallery_3_11_0_1448953885.jpg',  title:'공릉동 사임당산후조리원' },
+    { id:10,  cat:'industry',  date:'2015.12.01', img:'gallery_3_10_0_1448953762.jpg',  title:'강원도 원주상지대' },
+    { id:9,   cat:'industry',  date:'2015.12.01', img:'gallery_3_9_0_1448953593.jpg',   title:'강남구 고속버스터미널' },
+  ];
+
+  const BADGE_LABEL = { education:'교육시설', public:'관공서', industry:'산업시설', etc:'기타' };
+  const IMG_BASE = 'https://yene.co.kr/board/_data/gallery_3/';
+  const PAGE_SIZE = 20;
+
+  // title 자동 생성 (카테고리 기반)
+  let caseCounter = { education:0, public:0, industry:0, etc:0 };
+  CASES.forEach(c => { caseCounter[c.cat]++; if (!c.title) c.title = BADGE_LABEL[c.cat] + ' 시공사례'; });
+
+  let currentFilter = 'all';
+  let modalIdx = 0;          // index in filteredCases
+  let filteredCases = [...CASES];
+  let visibleAll = false;    // 더보기 눌렸는지
+
+  const grid      = document.getElementById('caseGrid');
+  const moreWrap  = document.getElementById('moreWrap');
+  const modal     = document.getElementById('caseModal');
+  const modalImg  = document.getElementById('modalImg');
+  const modalBadge = document.getElementById('modalBadge');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDate  = document.getElementById('modalDate');
+
+  function imgUrl(c) {
+    return IMG_BASE + c.id + '//' + c.img;
+  }
+
+  function renderGrid() {
+    filteredCases = currentFilter === 'all'
+      ? [...CASES]
+      : CASES.filter(c => c.cat === currentFilter);
+
+    const toShow = visibleAll ? filteredCases : filteredCases.slice(0, PAGE_SIZE);
+    const hasMore = filteredCases.length > PAGE_SIZE && !visibleAll;
+
+    grid.innerHTML = toShow.map((c, i) => `
+      <div class="case-card" data-idx="${i}" tabindex="0" role="button" aria-label="${c.title} 시공사례 보기">
+        <div class="case-card-img">
+          <img src="${imgUrl(c)}" alt="${c.title}" loading="lazy">
+          <span class="case-card-badge">${BADGE_LABEL[c.cat]}</span>
+        </div>
+        <p class="case-card-title">${c.title}</p>
+        <p class="case-card-date">${c.date}</p>
+      </div>
+    `).join('');
+
+    moreWrap.style.display = hasMore ? 'block' : 'none';
+
+    // 카드 클릭
+    grid.querySelectorAll('.case-card').forEach(el => {
+      el.addEventListener('click', () => openModal(Number(el.dataset.idx)));
+      el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openModal(Number(el.dataset.idx)); });
+    });
+  }
+
+  // 탭/사이드바 필터
+  function applyFilter(filter) {
+    currentFilter = filter;
+    visibleAll = false;
+    // 탭
+    document.querySelectorAll('[data-filter]').forEach(el => {
+      el.classList.toggle('is-active', el.dataset.filter === filter);
+    });
+    renderGrid();
+  }
+
+  document.querySelectorAll('.tab-btn').forEach(btn =>
+    btn.addEventListener('click', () => applyFilter(btn.dataset.filter))
+  );
+  document.querySelectorAll('.sidebar-filter').forEach(a => {
+    a.addEventListener('click', e => { e.preventDefault(); applyFilter(a.dataset.filter); });
+  });
+
+  // 더보기
+  document.getElementById('btnMore').addEventListener('click', () => {
+    visibleAll = true;
+    renderGrid();
+  });
+
+  // ── 모달 ──
+  function openModal(idx) {
+    modalIdx = idx;
+    updateModal();
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  function updateModal() {
+    const c = filteredCases[modalIdx];
+    if (!c) return;
+    modalImg.src   = imgUrl(c);
+    modalImg.alt   = c.title;
+    modalBadge.textContent = BADGE_LABEL[c.cat];
+    modalTitle.textContent = c.title;
+    modalDate.textContent  = c.date;
+    document.getElementById('modalPrev').disabled = modalIdx === 0;
+    document.getElementById('modalNext').disabled = modalIdx === filteredCases.length - 1;
+  }
+
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.getElementById('modalPrev').addEventListener('click', () => { if (modalIdx > 0) { modalIdx--; updateModal(); } });
+  document.getElementById('modalNext').addEventListener('click', () => { if (modalIdx < filteredCases.length - 1) { modalIdx++; updateModal(); } });
+
+  // 키보드
+  document.addEventListener('keydown', e => {
+    if (!modal.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft')  { if (modalIdx > 0) { modalIdx--; updateModal(); } }
+    if (e.key === 'ArrowRight') { if (modalIdx < filteredCases.length - 1) { modalIdx++; updateModal(); } }
+  });
+
+  // 최초 렌더
+  renderGrid();
+  </script>
+</body>
+</html>

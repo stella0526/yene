@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Yene 제품 이미지 다운로더</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 20px; background: #f5f5f5; }
+    h1 { color: #1a2d5a; }
+    .btn { background: #1a2d5a; color: white; border: none; padding: 14px 28px; font-size: 16px; border-radius: 6px; cursor: pointer; margin: 8px 4px; }
+    .btn:hover { background: #2a4d8a; }
+    .btn:disabled { background: #aaa; cursor: not-allowed; }
+    #log { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 16px; height: 300px; overflow-y: auto; font-size: 13px; font-family: monospace; margin-top: 16px; }
+    .ok { color: #2a7a2a; }
+    .err { color: #c00; }
+    .info { color: #555; }
+    #progress { margin: 10px 0; font-size: 14px; color: #333; }
+    progress { width: 100%; height: 20px; }
+  </style>
+</head>
+<body>
+  <h1>🗂 Yene 제품 이미지 다운로더</h1>
+  <p>총 <strong>69개</strong> 이미지를 <code>image/products/</code> 폴더에 직접 저장합니다.</p>
+  <p>① 아래 버튼 클릭 → ② <b>yene-main\image\products</b> 폴더 선택 → ③ 자동 다운로드</p>
+
+  <button class="btn" id="btnStart">📁 폴더 선택 후 다운로드 시작</button>
+  <button class="btn" id="btnClear" style="background:#888">로그 지우기</button>
+
+  <div id="progress"></div>
+  <progress id="bar" value="0" max="1" style="display:none"></progress>
+  <div id="log"></div>
+
+  <script>
+  const IMAGES = [
+    // ── 천장형 전기온풍기 ──
+    ['https://yene.co.kr/_data/product/201901/31/a31a984fe2c85fe7beeecaf371f16aee.jpg','a31a984fe2c85fe7beeecaf371f16aee.jpg'],
+    ['https://yene.co.kr/_data/product/201902/07/3108419929baf69a536580731a3aa04d.jpg','3108419929baf69a536580731a3aa04d.jpg'],
+    ['https://yene.co.kr/_data/product/201902/07/32a77d0cec0d62ff6df1b1bb54edb303.jpg','32a77d0cec0d62ff6df1b1bb54edb303.jpg'],
+    ['https://yene.co.kr/_data/product/201902/07/eebf50129bade6c8bb8a15f13c07004d.jpg','eebf50129bade6c8bb8a15f13c07004d.jpg'],
+    ['https://yene.co.kr/_data/product/201902/07/1d0881a32b95758d2554e4a79c90b0ef.jpg','1d0881a32b95758d2554e4a79c90b0ef.jpg'],
+    ['https://yene.co.kr/_data/product/201902/07/bf421cd93c4d91666c70baa17ab375b1.jpg','bf421cd93c4d91666c70baa17ab375b1.jpg'],
+    ['https://yene.co.kr/_data/product/201902/07/9d773768e5c3d195408f2823597f6332.jpg','9d773768e5c3d195408f2823597f6332.jpg'],
+    ['https://yene.co.kr/_data/product/201908/13/0cd2519f5ecefa57005205a536f353a3.jpg','0cd2519f5ecefa57005205a536f353a3.jpg'],
+    ['https://yene.co.kr/_data/product/201908/13/f4da7aa25a6e8122a9e6d9cb3ad33915.jpg','f4da7aa25a6e8122a9e6d9cb3ad33915.jpg'],
+    ['https://yene.co.kr/_data/product/201904/22/bb89ec717c5d5046a11ddc45848c9c7a.jpg','bb89ec717c5d5046a11ddc45848c9c7a.jpg'],
+    ['https://yene.co.kr/_data/product/201904/23/480062951d98f9eeb0acea1c292ad62a.jpg','480062951d98f9eeb0acea1c292ad62a.jpg'],
+    ['https://yene.co.kr/_data/product/201904/25/12010d7be302effdfbbe13ae6a910df8.jpg','12010d7be302effdfbbe13ae6a910df8.jpg'],
+    ['https://yene.co.kr/_data/product/201907/29/b3151e1744c2cc4f759af55293677ad5.jpg','b3151e1744c2cc4f759af55293677ad5.jpg'],
+    ['https://yene.co.kr/_data/product/201907/29/141888d9e2a30c375f4641af4f6c0cdb.jpg','141888d9e2a30c375f4641af4f6c0cdb.jpg'],
+    ['https://yene.co.kr/_data/product/201907/29/50c069d9eb87199534019360308939ca.jpg','50c069d9eb87199534019360308939ca.jpg'],
+    ['https://yene.co.kr/_data/product/201904/24/3224bdd974dc186696fe6b7c4e748b51.jpg','3224bdd974dc186696fe6b7c4e748b51.jpg'],
+    ['https://yene.co.kr/_data/product/201904/25/5f095d9b9e2a303f67e14732780f3fce.jpg','5f095d9b9e2a303f67e14732780f3fce.jpg'],
+    ['https://yene.co.kr/_data/product/201904/25/e9289e050ea617c7154966adaedb4635.jpg','e9289e050ea617c7154966adaedb4635.jpg'],
+    ['https://yene.co.kr/_data/product/201904/25/16e761d6e23a887bb728e7f488063124.jpg','16e761d6e23a887bb728e7f488063124.jpg'],
+    ['https://yene.co.kr/_data/product/201904/25/e0fae02e076cda864df8a34c06b98443.jpg','e0fae02e076cda864df8a34c06b98443.jpg'],
+    ['https://yene.co.kr/_data/product/201904/23/c66c4b5f70ada3073849a5dffb591f40.jpg','c66c4b5f70ada3073849a5dffb591f40.jpg'],
+    ['https://yene.co.kr/_data/product/201904/23/86df9d6239bde5f64b7588caffc1d43f.png','86df9d6239bde5f64b7588caffc1d43f.png'],
+    ['https://yene.co.kr/_data/product/201904/23/2c0258013b25272a553cf0a8ba83de06.png','2c0258013b25272a553cf0a8ba83de06.png'],
+    ['https://yene.co.kr/_data/product/202103/31/81534f3d95c5fa886e5ff96ad62a162d.jpg','81534f3d95c5fa886e5ff96ad62a162d.jpg'],
+    // ── 히터 (NET) ──
+    ['https://yene.co.kr/_data/product/202211/01/c940d7ef43e67ffdbacb8913e8c19e60.jpg','c940d7ef43e67ffdbacb8913e8c19e60.jpg'],
+    ['https://yene.co.kr/_data/product/202211/01/adf0570f5094efeca9d3f21d58fdd2b4.jpg','adf0570f5094efeca9d3f21d58fdd2b4.jpg'],
+    ['https://yene.co.kr/_data/product/202211/01/9f01fffde25c6572714ed7862307acf4.jpg','9f01fffde25c6572714ed7862307acf4.jpg'],
+    ['https://yene.co.kr/_data/product/202211/01/e3432398ef3b8a72e77c5366cf0033de.jpg','e3432398ef3b8a72e77c5366cf0033de.jpg'],
+    ['https://yene.co.kr/_data/product/202211/01/5ead4eed8b57ae7d8c248f6d262f6c98.jpg','5ead4eed8b57ae7d8c248f6d262f6c98.jpg'],
+    ['https://yene.co.kr/_data/product/201512/01/b248e029e0704d305e9d5f56dfe11eb1.jpg','b248e029e0704d305e9d5f56dfe11eb1.jpg'],
+    ['https://yene.co.kr/_data/product/201512/01/c672e9d628e4247641b495e8b05e48f8.jpg','c672e9d628e4247641b495e8b05e48f8.jpg'],
+    // ── 히터 (FC 포시즌) ──
+    ['https://yene.co.kr/_data/product/202009/23/14875ea586cd4356aca2c0dd3b00d2eb.jpg','14875ea586cd4356aca2c0dd3b00d2eb.jpg'],
+    ['https://yene.co.kr/_data/product/202009/23/770021c9d46922ff2f8b5c604f778eac.jpg','770021c9d46922ff2f8b5c604f778eac.jpg'],
+    ['https://yene.co.kr/_data/product/202009/23/7bbe6df05dbd79ebde6052d187596d8a.jpg','7bbe6df05dbd79ebde6052d187596d8a.jpg'],
+    ['https://yene.co.kr/_data/product/202009/23/31694cb41a728bbefd7ea7bb9e36c2d3.jpg','31694cb41a728bbefd7ea7bb9e36c2d3.jpg'],
+    // ── 히터 (FKR 후지카) ──
+    ['https://yene.co.kr/_data/product/202210/27/ceb6c21e7d31b62f415c46604a071afb.jpg','ceb6c21e7d31b62f415c46604a071afb.jpg'],
+    ['https://yene.co.kr/_data/product/202210/27/ba8896d65b88a52b2a85ea756601880a.jpg','ba8896d65b88a52b2a85ea756601880a.jpg'],
+    ['https://yene.co.kr/_data/product/202210/27/b4a204868fb3c6160218aa739c74179f.jpg','b4a204868fb3c6160218aa739c74179f.jpg'],
+    ['https://yene.co.kr/_data/product/202210/27/114c34b2559477bfc22f128e2ecb88e2.jpg','114c34b2559477bfc22f128e2ecb88e2.jpg'],
+    // ── 슬림형 전기온풍기 ──
+    ['https://yene.co.kr/_data/product/201512/09/9d1d26928ae8319621b473f26f9f2c88.jpg','9d1d26928ae8319621b473f26f9f2c88.jpg'],
+    ['https://yene.co.kr/_data/product/201512/10/52a5e126e6c2d87a356980aa443b808e.jpg','52a5e126e6c2d87a356980aa443b808e.jpg'],
+    ['https://yene.co.kr/_data/product/201512/09/1adc19551473acaaae87819b47b13ba8.jpg','1adc19551473acaaae87819b47b13ba8.jpg'],
+    ['https://yene.co.kr/_data/product/201512/10/70555005d301bd2501a49698c0798689.jpg','70555005d301bd2501a49698c0798689.jpg'],
+    ['https://yene.co.kr/_data/product/201512/10/047b6637e71430593eb33927e09366a8.jpg','047b6637e71430593eb33927e09366a8.jpg'],
+    ['https://yene.co.kr/_data/product/201601/06/7af8f06a14b6459270d94de3240d3c72.jpg','7af8f06a14b6459270d94de3240d3c72.jpg'],
+    ['https://yene.co.kr/_data/product/201512/10/ebcf9f794aabf23a1e1483934428dfd9.jpg','ebcf9f794aabf23a1e1483934428dfd9.jpg'],
+    ['https://yene.co.kr/_data/product/201512/10/82b86748e7dd37201f500de2c4c64c31.jpg','82b86748e7dd37201f500de2c4c64c31.jpg'],
+    ['https://yene.co.kr/_data/product/201512/10/2b3089cabc48627f9cd34d9917725810.jpg','2b3089cabc48627f9cd34d9917725810.jpg'],
+    ['https://yene.co.kr/_data/product/201512/10/b0a036b080cd411360bdeabc622191a2.jpg','b0a036b080cd411360bdeabc622191a2.jpg'],
+    ['https://yene.co.kr/_data/product/201512/10/1ce77e94d8dcad974381421241c5cb22.jpg','1ce77e94d8dcad974381421241c5cb22.jpg'],
+    ['https://yene.co.kr/_data/product/201512/10/4cea803626a4703869c643f531134c64.jpg','4cea803626a4703869c643f531134c64.jpg'],
+    ['https://yene.co.kr/_data/product/201512/10/a13512952dbc87891505459eb9922a6c.jpg','a13512952dbc87891505459eb9922a6c.jpg'],
+    ['https://yene.co.kr/_data/product/201512/10/5d49c97dfde4da1697eea1a528464419.jpg','5d49c97dfde4da1697eea1a528464419.jpg'],
+    // ── 일반전기용품 (NED 제습기) ──
+    ['https://yene.co.kr/_data/product/202109/01/c447e845e488995bebd0b76c8fe01870.jpg','c447e845e488995bebd0b76c8fe01870.jpg'],
+    ['https://yene.co.kr/_data/product/201511/27/10e059a091e606c6fce5be8aeced36a2.jpg','10e059a091e606c6fce5be8aeced36a2.jpg'],
+    ['https://yene.co.kr/_data/product/201511/27/324de3a92567b4b798f2c62f7bb41590.jpg','324de3a92567b4b798f2c62f7bb41590.jpg'],
+    ['https://yene.co.kr/_data/product/202109/01/88fa19ea9e3da976d3c23eaa2894337c.jpg','88fa19ea9e3da976d3c23eaa2894337c.jpg'],
+    ['https://yene.co.kr/_data/product/202109/01/2c756c50823b318aafafde9d5e3dc3a5.jpg','2c756c50823b318aafafde9d5e3dc3a5.jpg'],
+    ['https://yene.co.kr/_data/product/202109/03/9df1cdc61f55e6fe479eeaa7058c9d6b.jpg','9df1cdc61f55e6fe479eeaa7058c9d6b.jpg'],
+    ['https://yene.co.kr/_data/product/202109/03/e1bbc9de08bd9e103cf99524054fede9.jpg','e1bbc9de08bd9e103cf99524054fede9.jpg'],
+    ['https://yene.co.kr/_data/product/202109/03/a66465ee9bafd090c54ea724c4898814.jpg','a66465ee9bafd090c54ea724c4898814.jpg'],
+    ['https://yene.co.kr/_data/product/202109/03/79819afbd7abb2d86843a0a77d133579.jpg','79819afbd7abb2d86843a0a77d133579.jpg'],
+    ['https://yene.co.kr/_data/product/202109/03/f7a77927909c8679b9f0eafb6a45d4a8.jpg','f7a77927909c8679b9f0eafb6a45d4a8.jpg'],
+    ['https://yene.co.kr/_data/product/202109/03/0a813535368d984dcd68ad437110262c.jpg','0a813535368d984dcd68ad437110262c.jpg'],
+    ['https://yene.co.kr/_data/product/201511/27/01375fc329a157c9b0e6825a80912c5f.jpg','01375fc329a157c9b0e6825a80912c5f.jpg'],
+    ['https://yene.co.kr/_data/product/201511/27/44f5a2b397a722f01ec7d32be998135f.jpg','44f5a2b397a722f01ec7d32be998135f.jpg'],
+    // ── 일반전기용품 (NEAC 공기청정기) ──
+    ['https://yene.co.kr/_data/product/202203/04/f5664cf85a321bbdb4cb9f9d366ede3e.jpg','f5664cf85a321bbdb4cb9f9d366ede3e.jpg'],
+    ['https://yene.co.kr/_data/product/202203/04/7323ad0a9a1b162d0095160c1f4d35fd.jpg','7323ad0a9a1b162d0095160c1f4d35fd.jpg'],
+    ['https://yene.co.kr/_data/product/202203/04/51e8026471ef87ea3074ebc146eaea6f.jpg','51e8026471ef87ea3074ebc146eaea6f.jpg'],
+  ];
+
+  const log = document.getElementById('log');
+  const bar = document.getElementById('bar');
+  const prog = document.getElementById('progress');
+
+  function addLog(msg, cls='info') {
+    const d = document.createElement('div');
+    d.className = cls;
+    d.textContent = msg;
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  document.getElementById('btnClear').onclick = () => { log.innerHTML = ''; };
+
+  document.getElementById('btnStart').onclick = async () => {
+    const btn = document.getElementById('btnStart');
+    btn.disabled = true;
+    btn.textContent = '⏳ 진행 중...';
+
+    let dirHandle;
+    try {
+      dirHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
+    } catch(e) {
+      addLog('폴더 선택 취소됨', 'err');
+      btn.disabled = false;
+      btn.textContent = '📁 폴더 선택 후 다운로드 시작';
+      return;
+    }
+
+    bar.style.display = 'block';
+    bar.max = IMAGES.length;
+    let ok = 0, fail = 0;
+
+    for (let i = 0; i < IMAGES.length; i++) {
+      const [url, fname] = IMAGES[i];
+      bar.value = i + 1;
+      prog.textContent = `진행: ${i+1} / ${IMAGES.length} (성공: ${ok}, 실패: ${fail})`;
+
+      try {
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const blob = await resp.blob();
+        const fh = await dirHandle.getFileHandle(fname, { create: true });
+        const writable = await fh.createWritable();
+        await writable.write(blob);
+        await writable.close();
+        ok++;
+        addLog(`✓ ${fname}`, 'ok');
+      } catch(e) {
+        fail++;
+        addLog(`✗ ${fname} — ${e.message}`, 'err');
+      }
+    }
+
+    prog.textContent = `🎉 완료! 성공 ${ok} / 실패 ${fail} / 총 ${IMAGES.length}`;
+    btn.textContent = '✅ 완료';
+    addLog(`\n완료: 성공 ${ok}, 실패 ${fail}`, ok > 0 ? 'ok' : 'err');
+  };
+  </script>
+</body>
+</html>
