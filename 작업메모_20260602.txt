@@ -1,0 +1,22 @@
+[2026-06-02 작업 내역]
+
+■ 신규 파일 3개
+- customer-guide.html : 이용안내 (주문/결제/배송/교환반품/환불 5탭)
+- customer-terms.html : 이용약관 (제1~10조 아코디언 + 빠른이동 사이드바)
+- customer-privacy.html : 개인정보처리방침 (정책요약 + 01~07조 + 빠른이동 사이드바)
+- 전체 HTML 22개 푸터 링크 href="#" → 실제 경로 업데이트
+
+■ 기존 파일 수정
+- product-ceiling.html : 리모컨 소모품 4종 추가 (총 24개), 잘린 파일 복구
+- product-heater.html : FC 4종 + FKR 4종 + NET-25000 추가 (6→15개), 잘린 파일 복구
+- css/pages.css : 고객센터 사이드바 active 색상 통일
+- css/style.css : GNB 호버 효과 (노란 밑줄 + 파란 텍스트)
+- index.html : 스크롤 애니메이션 (하강=왼쪽 슬라이드인, 상승=오른쪽 퇴장)
+
+■ 내일 할 것
+1. git add -A → commit → push (Windows 터미널에서)
+2. 브라우저에서 신규 3페이지 탭/내용/레이아웃 확인
+3. 천장형(24개)·히터(15개) 제품 페이지 점검
+4. 메인 스크롤 애니메이션 동작 테스트
+
+■ GitHub: https://github.com/stella0526/yene.git (branch: main)

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>공지사항 | Yene</title>
+  <link rel="preload" href="./font/Paperlogy-4Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="./font/Paperlogy-7Bold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/pages.css">
+  <style>
+    .board-view { border-top: 2px solid var(--navy); }
+    .bv-head { padding: 24px 20px; border-bottom: 1px solid var(--line); }
+    .bv-head h3 { margin: 0; font-size: 20px; color: var(--navy); font-weight: 700; line-height: 1.5; }
+    .bv-meta { margin-top: 10px; font-size: 13px; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; }
+    .bv-sep { color: var(--line); }
+    .bv-attach { padding: 14px 20px; background: var(--soft); border-bottom: 1px solid var(--line); font-size: 13px; flex-direction: column; gap: 6px; }
+    .bv-attach a { display: inline-flex; align-items: center; gap: 6px; color: var(--text); text-decoration: none; word-break: break-all; }
+    .bv-attach a:hover { color: var(--blue); text-decoration: underline; }
+    .bv-attach .material-symbols-rounded { font-size: 16px; color: var(--blue); flex-shrink: 0; }
+    .bv-body { padding: 36px 20px; font-size: 14px; line-height: 1.9; color: var(--text); border-bottom: 1px solid var(--line); min-height: 160px; }
+    .bv-body p { margin: 0 0 14px; }
+    .bv-body img { max-width: 100%; height: auto; margin: 8px 0; }
+    .bv-video { position: relative; padding-top: 56.25%; margin: 8px 0 20px; background: #000; }
+    .bv-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .bv-empty { padding: 24px; background: var(--soft); border-radius: 6px; font-size: 13px; color: var(--muted); text-align: center; line-height: 1.8; }
+    .bv-empty a { color: var(--blue); }
+    .bv-nav a { display: flex; gap: 16px; padding: 14px 20px; font-size: 13px; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .bv-nav a:hover .bv-nav-title { color: var(--blue); }
+    .bv-nav .lbl { color: var(--muted); flex-shrink: 0; width: 48px; }
+    .bv-nav .bv-nav-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .bv-btns { display: flex; justify-content: center; margin: 28px 0 8px; }
+    .bv-btn-list { padding: 12px 44px; background: var(--navy); color: #fff; border-radius: 4px; font-size: 14px; text-decoration: none; }
+    .bv-btn-list:hover { opacity: .9; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="brand">
+        <a href="./index.html" aria-label="Yene 홈">
+          <img src="./image/logo.png" alt="Yene">
+          <span>(주)예네</span>
+        </a>
+      </h1>
+      <nav class="gnb" aria-label="주요 메뉴">
+        <ul>
+          <li class="has-submenu">
+            <a href="./company-greeting.html">회사소개</a>
+            <ul class="sub-menu">
+              <li><a href="./company-greeting.html">인삿말</a></li>
+              <li><a href="./company-org.html">조직도</a></li>
+              <li><a href="./company-patent.html">특허 및 증서</a></li>
+              <li><a href="./company-location.html">오시는 길</a></li>
+              <li><a href="./company-dealer.html">대리점 현황</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="#">제품소개</a>
+            <ul class="sub-menu">
+              <li><a href="./product-ceiling.html">천장형 전기온풍기</a></li>
+              <li><a href="./product-heater.html">히터</a></li>
+              <li><a href="./product-slim.html">슬림형 전기온풍기</a></li>
+              <li><a href="./product-general.html">일반전기용품</a></li>
+            </ul>
+          </li>
+          <li><a href="./case.html">시공사례</a></li>
+          <li class="has-submenu">
+            <a href="./customer-notice.html" class="is-active">고객센터</a>
+            <ul class="sub-menu">
+              <li><a href="./customer-notice.html">공지사항</a></li>
+              <li><a href="./customer-library.html">자료실</a></li>
+              <li><a href="./customer-video.html">동영상 갤러리</a></li>
+              <li><a href="./customer-faq.html">자주묻는 질문</a></li>
+              <li><a href="./customer-press.html">보도자료</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="mobile-member-menu">
+          <a href="./login.html"><span class="material-symbols-rounded">login</span>로그인</a>
+          <a href="./signup.html"><span class="material-symbols-rounded">person_add</span>회원가입</a>
+          <a href="./cart.html"><span class="material-symbols-rounded">shopping_bag</span>장바구니</a>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <a href="./login.html" class="icon-button" aria-label="로그인"><img src="./image/header_SignIn.png" alt=""></a>
+        <a href="./signup.html" class="icon-button" aria-label="회원가입"><img src="./image/header_User.png" alt=""></a>
+        <a href="./cart.html" class="icon-button" aria-label="장바구니"><img src="./image/header_Basket.png" alt=""></a>
+        <button type="button" class="menu-toggle" aria-label="메뉴 열기" aria-expanded="false">
+          <span class="material-symbols-rounded">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page-top">
+    <!-- CS Hero -->
+    <div class="cs-hero" aria-label="고객센터 배너">
+      <div class="cs-hero-bg"></div>
+      <div class="cs-hero-inner">
+        <p class="cs-hero-kicker">Customer Center</p>
+        <h1>고객의 믿음이 자라는 공간</h1>
+        <p class="cs-hero-sub">Yene 고객센터는 언제나 고객 곁에서 함께합니다.</p>
+      </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="경로">
+      <div class="breadcrumb-inner">
+        <a href="./index.html" class="bc-home" aria-label="홈">
+          <span class="material-symbols-rounded" style="font-size:18px">home</span>
+        </a>
+        <span class="bc-sep">›</span>
+        <a href="./customer-notice.html">고객센터</a>
+        <span class="bc-sep">›</span>
+        <a href="./customer-notice.html">공지사항</a>
+        <span class="bc-sep">›</span>
+        <span class="bc-active">상세보기</span>
+      </div>
+    </nav>
+
+    <!-- Inner content -->
+    <div class="inner-content">
+      <div class="inner-layout">
+        <!-- Sidebar -->
+        <aside class="cs-sidebar page-sidebar" aria-label="고객센터 메뉴">
+          <h2 class="cs-sidebar-title">고객센터</h2>
+          <ul class="cs-sidebar-nav">
+            <li><a href="./customer-notice.html" class="is-active">공지사항 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./customer-library.html">자료실 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./customer-video.html">동영상 갤러리 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./customer-faq.html">자주 묻는 질문 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./customer-press.html">보도자료 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./company-service.html">서비스센터 <span class="nav-arrow">›</span></a></li>
+          </ul>
+        </aside>
+
+        <!-- Main content -->
+        <section aria-labelledby="view-title">
+          <h2 class="content-title" id="view-title">공지사항</h2>
+
+          <article class="board-view">
+            <div class="bv-head">
+              <h3 id="bvTitle">게시글을 불러오는 중...</h3>
+              <div class="bv-meta">
+                <span>작성자 관리자</span><span class="bv-sep">|</span>
+                <span id="bvDate"></span><span class="bv-sep">|</span>
+                <span>조회 <span id="bvViews"></span></span>
+              </div>
+            </div>
+            <div class="bv-attach" id="bvAttach" style="display:none"></div>
+            <div class="bv-body" id="bvBody"></div>
+            <nav class="bv-nav" id="bvNav" aria-label="이전글 다음글"></nav>
+            <div class="bv-btns"><a href="./customer-notice.html" class="bv-btn-list">목록으로</a></div>
+          </article>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <a class="footer-brand" href="./index.html">
+        <img src="./image/logo.png" alt="Yene">
+        <strong>(주) 예네</strong>
+      </a>
+      <nav aria-label="하단 메뉴">
+        <ul>
+          <li><a href="./company-greeting.html">회사소개</a></li>
+          <li><a href="./customer-guide.html">이용안내</a></li>
+          <li><a href="./customer-terms.html">이용약관</a></li>
+          <li><a href="./customer-privacy.html">개인정보처리방침</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <address>
+        상호: 주식회사 예네  |  대표: 양순식  |  이메일: yene-3@live.co.kr  |  전화: 031-767-2266<br>
+        주소: 경기도 광주시 초월읍 도곡말길 59-18번길  |  사업자등록번호: 215-66-50868<br>
+        COPYRIGHT(c) 2015 Yene. All right reserved.
+      </address>
+      <img class="footer-marks" src="./image/footer_1.png" alt="인증 및 제휴 마크">
+    </div>
+  </footer>
+
+  <script src="./js/main.js"></script>
+  <script src="./js/cart.js"></script>
+  <script>
+    (function () {
+      var POSTS = {"326": {"title": "2026년 설연휴 휴무 및 배송안내", "date": "2026-02-10", "views": "87", "paras": ["귀사의 무궁한 발전을 기원합니다.", "항상 변함없는 성원과 사랑에 깊이 감사드리며 설을 맞이하여 가정에 항상 여유와 풍성함이 가득하시길 기원합니다.", "- - 다 음 - -", "(주)예네 본사는 2026년 2월 16일(월) - 2월 18일(수) 까지 설 연휴로 휴무합니다.", "2월 19일(목)부터 정상업무 합니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "* 설 연휴 화물/택배 배송안내 *", "대신화물/택배 : 제품출고는 2026년 02월 13일(금) 오후 15시 이후 주문 건은 2026년 02월 19일(목)부터 정상배송됩니다.", "(택배사 물량에 따라 배송지연될 수 있는 점 양해부탁드립니다.)"], "imgs": [], "attach": []}, "317": {"title": "(주)예네 업무시간 변경 안내", "date": "2025-03-07", "views": "795", "paras": ["귀사의 무궁한 발전을 기원합니다.", "당사에 항상 변함없는 성원과 관심 주심을 진심으로 감사드리며 다음과 같이 변경사항을 알려드립니다.", "** 다 음 **", "* 시행일자: 2025년 03월 10일", "1. 업무시간 : 변경전 09:00-18:00 → 변경후 08:30-17:00", "2. 점심시간 : 변경전 13:00-14:00 → 변경후 12:30-13:00"], "imgs": [], "attach": []}, "324": {"title": "2025년 추석 휴무 및 배송 안내", "date": "2025-09-30", "views": "264", "paras": ["귀사의 무궁한 발전을 기원합니다.", "항상 변함없는 성원과 사랑에 깊이 감사드리며 추석을 맞이하여 가정에 항상 여유와 풍성함이 가득하시길 기원합니다.", "- - 다 음 - -", "(주)예네 본사는 2025년 10월 3일(금) - 10월 12일(일) 까지 추석 연휴로 휴무합니다.", "10월 13일(월)부터 정상업무 합니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "* 추석 연휴 화물/택배 배송안내 *", "대신화물/택배 : 제품출고는 2025년 09월 02일(목) 오후 12시 이후 주문건은 2025년 10월 13일(월)부터 순차배송됩니다.", "(택배사 물량에 따라 배송지연될 수 있는 점 양해부탁드립니다.)"], "imgs": [], "attach": []}, "321": {"title": "2025년 하계휴가 휴무 및 택배/화물 배송일정 안내", "date": "2025-07-17", "views": "481", "paras": ["2025년 예네 하계휴가 휴무 및 택배/화물 배송안내 (07.30.~08.06)", "귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "당사의 2025년 하계휴가 일정을 안내해 드립니다.", "- - 다 음 - -", "1) 2025년 07월 30일(수) ~ 2025년 08월 06일(수)", "2) 2025년 08월 07일(목)부터 정상 업무 합니다.", "휴가 전 7/29일(화) 오후 3시 이전 주문완료건까지 당일 출고 가능합니다.", "휴가 기간에 주문해주신 상품의 출고는 8월 7일(목)부터 가능합니다.", "무더운 여름 건강하고 즐겁게 보내시길 바랍니다.", "감사합니다."], "imgs": [], "attach": []}, "319": {"title": "2025년 5월 (주)예네 본사 휴무일 및 택배/화물배송 안내", "date": "2025-04-28", "views": "524", "paras": ["2025년 5월 (주)예네 본사 휴무일 및 택배/화물배송 안내", "귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "1) 5월 1일(목) 근로자의 날 휴무", "2) 5월 2일(금) (주)예네 본사 워크숍 휴무", "3) 5월 5일(월) 부처님오신날/어린이날 휴무", "4) 5월 6일(화) 대체공휴일 휴무", "5) 5월 7일(수)부터 정상업무합니다.", "휴무 전 4월 30일(수) 오후 3시 택배/화물 배송마감, 이후 주문 건부터 5월 7일(수) 순차배송됩니다.", "각 업체담당자님께서는 업무에 참고하시기 바랍니다.", "감사합니다."], "imgs": [], "attach": []}, "315": {"title": "2025년도 삼일절 대체공휴일 휴무/배송 안내", "date": "2025-02-27", "views": "255", "paras": ["귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "2025년 3월 3일(월요일)은 삼일절 대체공휴일 휴무로 업무를 진행하지 않습니다.", "- - 다 음 - -", "(주)예네 본사는 2025년 03월 03일(월) 삼일절 대체공휴일 휴무합니다.", "휴무일에는 제품 상담 및 배송이 중단되므로 미리 양해를 부탁드립니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "2025년 03월 04일(화)부터 정상 업무 합니다.", "감사합니다."], "imgs": [], "attach": []}, "313": {"title": "2025년 설연휴 휴무 및 배송안내", "date": "2025-01-20", "views": "456", "paras": ["귀사의 무궁한 발전을 기원합니다.", "한해 동안 베풀어주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "2025년 을사년 설을 맞이하여 사랑 가득하고 넉넉한 마음으로 즐거운 명절 보내시길 기원합니다.", "- - 다 음 - -", "(주)예네 본사는 2025년 01월 25일 ~ 2025년 01월 30일 까지 설 연휴로 휴무합니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "* 설 연휴 화물/택배 배송안내 *", "대신화물/택배 : 제품출고는 2025년 01월 24일(금) 오후 02:00 에 마감됩니다.", "2025년 01월 31일(금) 부터는 정상 출고됩니다."], "imgs": [], "attach": [{"name": "설연휴배송안내(2025년).jpg", "url": "https://yene.co.kr/board/_data/basic_1/313/basic_1_313_0_1737360995.jpg"}]}, "312": {"title": "2024년 연말 배송휴무 안내", "date": "2024-12-30", "views": "362", "paras": ["귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "2024년 12월 31일(화요일)은 택배사 휴무로 배송업무를 진행하지 않습니다.", "- - 다 음 - -", "택배사 휴무로 배송이 중단되므로 미리 양해를 부탁드립니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "2025년 01월 02일(목) 부터 정상 업무 합니다.", "감사합니다."], "imgs": [], "attach": []}, "310": {"title": "2024년 추석 휴무 및 배송 안내", "date": "2024-09-10", "views": "418", "paras": ["귀사의 무궁한 발전을 기원합니다.", "항상 변함없는 성원과 사랑에 깊이 감사드리며 추석을 맞이하여 가정에 항상 여유와 풍성함이 가득하시길 기원합니다.", "- - 다 음 - -", "(주)예네 본사는 2024년 9월 16일(월) - 9월 18일(수) 까지 추석 연휴로 휴무합니다.", "9월 19일(목)부터 정상업무 합니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "* 추석 연휴 화물/택배 배송안내 *", "대신화물/택배 : 제품출고는 2024년 09월 13일(금) 오후 1시 이후 주문건은 2024년 09월 19일(목)부터 순차배송됩니다.", "(택배사 물량에 따라 배송지연될 수 있는 점 양해부탁드립니다.)"], "imgs": [], "attach": [{"name": "2024추석휴무&배송안내.jpg", "url": "https://yene.co.kr/board/_data/basic_1/310/basic_1_310_0_1725928171.jpg"}]}, "309": {"title": "2024년도 하계휴가 휴무 및 택배/화물 배송안내", "date": "2024-07-22", "views": "443", "paras": ["2024년 예네 하계휴가 휴무 및 택배/화물 배송안내 (07.29.~08.02)", "귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "당사의 2024년 하계휴가 일정을 안내해 드립니다.", "- - 다 음 - -", "1) 2024년 07월 29일(월) ~ 2024년 08월 02일(금)", "2) 2024년 08월 05일(월)부터 정상 업무 합니다.", "휴가 전 7/26일(금) 오후 3시 이전 주문완료건까지 당일 출고 가능합니다.", "휴가 기간에 주문해주신 상품의 출고는 8월 5일(월)부터 가능합니다.", "무더운 여름 건강하고 즐겁게 보내시길 바랍니다.", "감사합니다."], "imgs": [], "attach": []}, "308": {"title": "2024년 창립제20주년 기념일 및 현충일 휴무 택배/화물 배송 안내", "date": "2024-06-03", "views": "505", "paras": [], "imgs": [], "attach": [], "note": "본 공지는 이미지로 작성된 게시글입니다.<br><a href=\"https://yene.co.kr/board/index.php?db=basic_1&no=308&mari_mode=view%40view\" target=\"_blank\" rel=\"noopener\">원본 게시글에서 이미지로 보기 →</a>"}, "307": {"title": "2023년 추석 휴무 및 배송 안내", "date": "2023-09-20", "views": "951", "paras": ["항상 변함없는 성원과 사랑에 깊이 감사드리며 추석을 맞이하여 가정에 항상 여유와 풍성함이 가득하시길 기원합니다.", "- - 다 음 - -", "(주)예네 본사는 2023년 09월 28일(목) - 10월 03일(화) 까지 추석 연휴로 휴무합니다.", "10월 04일(수)부터 정상업무 합니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "* 추석 연휴 화물/택배 배송안내 *", "대신화물/택배 : 2023년 09월 26일(화) 오후 3시이후 주문건은 2023년 10월 04일(수)부터 순차배송됩니다.", "(택배사 물량에 따라 배송지연될 수 있는 점 양해부탁드립니다.)"], "imgs": [], "attach": []}, "306": {"title": "2023년 하계휴가 휴무 및 택배/화물 배송안내", "date": "2023-07-17", "views": "905", "paras": ["귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "당사의 2023년 여름휴가 일정을 안내해 드립니다.", "- - 다 음 - -", "1) 2023년 07월 31일(월) ~ 2023년 08월 04일(금)", "2) 2023년 08월 07일(월)부터 정상 업무 합니다.", "휴가 전 7/28일 오후 3시 이전 주문완료건까지 당일 출고 가능합니다.", "휴가 기간에 주문해주신 상품의 출고는 8월 7일(월)부터 가능합니다.", "무더운 여름 건강하고 즐겁게 보내시길 바랍니다.", "감사합니다."], "imgs": [], "attach": []}, "304": {"title": "2023년 설연휴 휴무 및 배송 안내", "date": "2023-01-11", "views": "944", "paras": ["귀사의 무궁한 발전을 기원합니다.", "한해 동안 베풀어주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "2023년 계묘년 설을 맞이하여 사랑 가득하고 넉넉한 마음으로 즐거운 명절 보내시길 기원합니다.", "- - 다 음 - -", "(주)예네 본사는 2023년 01월 21일 ~ 2023년 01월 24일 까지 설 연휴로 휴무합니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "* 설 연휴 화물/택배 배송안내 *", "대신화물/택배 : 제품출고는 2023년 01월 19일(목) 오후 03:00 에 마감됩니다.", "2023년 01월 25일(수) 부터는 정상 출고됩니다."], "imgs": [], "attach": []}, "303": {"title": "2022년 추석 연휴 휴무 및 배송 안내", "date": "2022-09-02", "views": "1181", "paras": ["항상 변함없는 성원과 사랑에 깊이 감사드리며 추석을 맞이하여 가정에 항상 여유와 풍성함이 가득하시길 기원합니다.", "- - 다 음 - -", "(주)예네 본사는 2022년 9월 9일(금) - 9월 12일(월) 까지 추석 연휴로 휴무합니다.", "9월 13일(화)부터 정상업무 합니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "* 추석 연휴 화물/택배 배송안내 *", "대신화물/택배 : 2022년 09월 07일(수) 오후 3시이후 주문건은 2022년 09월 13일(화)부터 순차배송됩니다.", "(택배사 물량에 따라 배송지연될 수 있는 점 양해부탁드립니다.)"], "imgs": [], "attach": []}, "302": {"title": "2022년 하계휴가 휴무 및 택배/화물 배송안내", "date": "2022-07-25", "views": "611", "paras": ["귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "당사의 2022년 여름휴가 일정을 안내해 드립니다.", "- - 다 음 - -", "1) 2022년 08월 01일(월) ~ 2022년 08월 03일(수)", "2) 2022년 08월 04일(목)부터 정상 업무 합니다.", "휴가 전 7/29일 오후 3시 이전 주문완료건까지 당일 출고 가능합니다.", "휴가 기간에 주문해주신 상품의 출고는 8월 4일(목)부터 가능합니다.", "무더운 여름 건강하고 즐겁게 보내시길 바랍니다.", "감사합니다."], "imgs": [], "attach": []}, "301": {"title": "2022년 창립18주년 기념일 및 현충일 휴무 택배/화물 배송 안내", "date": "2022-05-31", "views": "600", "paras": ["귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "2022년 6월 3일(금요일)은 (주)예네 제18주년 창립기념일입니다.", "당일 휴무 및 현충일 휴무에 대해 알려드립니다.", "- - 다 음 - -", "1) 2022년 6월 3일(금) ~ 2022년 6월 6일(월) 현충일", "2) 2022년 6월 7일(화)부터 정상업무합니다.", "휴무 전 6월 2일(목) 오후 3시 택배/화물 배송마감, 이후 주문 건부터 6월 7일(화) 순차배송됩니다.", "각 업체담당자님께서는 업무에 참고하시기 바랍니다.", "감사합니다."], "imgs": [], "attach": []}, "300": {"title": "2021추석연휴 및 배송안내", "date": "2021-09-14", "views": "877", "paras": ["코로나로 힘든 시기 북적북적한 명절은 보내지 못하더라도 마음 만큼은 보름달처럼 넉넉하고 행복한 한가위 보내세요.", "당사의 2021년 추석연휴 배송일정을 안내해 드립니다. 업무에 참고하시길 바랍니다.", "- - 다 음 - -", "1) 2021년 9월 20일(월) ~ 2021년 9월 22일(수)", "2) 2021년 9월 23일(목)부터 정상 업무 합니다.", "각 업체담당자님께서는 업무에 참고하시기 바랍니다.", "감사합니다."], "imgs": [], "attach": []}, "299": {"title": "2021.08.16 배송안내", "date": "2021-08-16", "views": "733", "paras": ["귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "2021년 8월 16일 배송업체의 대체휴일로 인해 배송관련 안내해 드립니다.", "본사는 대체휴일 없이 주문 및 전화상담 모두 정상업무합니다.", "배송업체의 휴무로 배송은 17일부터 순차발송됩니다.", "각 업체담당자님께서는 업무에 참고하시기 바랍니다.", "감사합니다."], "imgs": [], "attach": []}, "298": {"title": "2021년 여름휴가 일정안내 (08.02-08.04)", "date": "2021-07-20", "views": "761", "paras": ["귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "당사의 2021년 여름휴가 일정을 안내해 드립니다. 업무에 참고하시길 바랍니다.", "- - 다 음 - -", "1) 2021년 08월 02일(월) ~ 2021년 08월 04일(수)", "2) 2021년 08월 05일(목)부터 정상 업무 합니다.", "각 업체담당자님께서는 업무에 참고하시기 바랍니다.", "감사합니다."], "imgs": [], "attach": []}, "297": {"title": "(주)예네 17주년 창립기념일 휴무안내", "date": "2021-05-28", "views": "857", "paras": ["2021년 (주)예네 17주년 창립기념일을 맞이하는 해입니다.", "고객님들의 관심과 사랑 덕분에 굳게 성장하며 시간을 보낼 수 있었습니다.", "항상 믿음과 신뢰로 더욱더 발전하는 기업이 되도록 노력하겠습니다. 감사드립니다.", "- - 다 음 - -", "(주)예네 본사는 2021년 06월 04일(금) 창립기념일 행사 관계로 휴무합니다.", "휴무일에는 제품 상담 및 배송이 중단되므로 미리 양해를 부탁드립니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "2021년 06월 07일(월)부터 정상 업무 합니다.", "감사합니다."], "imgs": [], "attach": []}, "266": {"title": "(주)예네 창립16주년 감사인사", "date": "2020-06-08", "views": "916", "paras": [], "imgs": ["https://yene.co.kr/_data/editor_attach/board_basic_1/basic_1_temp_1591585354/a0995402c802164c52feea87a8f7f666.jpg"], "attach": [{"name": "16주년팝업창.jpg", "url": "https://yene.co.kr/board/_data/basic_1/266/basic_1_266_0_1591585418.jpg"}]}, "264": {"title": "2020년 제 21대 국회의원선거 휴무안내", "date": "2020-04-09", "views": "783", "paras": ["(주)예네를 아껴주시고 응원해주시는 고객님!", "2020년 04월 15일(수요일)은 제21대 국회의원선거일입니다.", "2020년 04월 15일(수요일) 국회의원선거로 (주)예네 본사는 휴무합니다.", "(14일 오후 3시 30분 이후 주문건부터는 16일 순차적으로 발송됩니다.)", "각 업체담당자님께서는 업무에 참고하시기 바랍니다.", "감사합니다."], "imgs": [], "attach": []}, "245": {"title": "2019년 추석연휴 휴무 및 배송(화물/택배)안내 (9/10 택배마감)", "date": "2019-09-05", "views": "1180", "paras": ["귀사의 무궁한 발전을 기원합니다.", "항상 변함없는 성원과 사랑에 깊이 감사드리며 추석을 맞이하여 가정에 항상 여유와 풍성함이 가득하시길 기원합니다.", "- - 다 음 - -", "(주)예네 본사는 2019년 9월 12일(목) - 9월 15일(일) 까지 추석 연휴로 휴무합니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "* 추석 연휴 화물/택배 배송안내 *", "대신화물/택배 : 제품출고는 2019년 09월 10일(화) 오후 03:00 에 마감됩니다.", "2019년 09월 11일(수)는 정상 근무하지만 택배사 사정으로 09월 11일(수) 주문건은 연휴 이후 순차적으로 배송됩니다.", "2019년 09월 16일(월) 부터는 정상 출고됩니다."], "imgs": ["https://yene.co.kr/_data/editor_attach/board_basic_1/basic_1_245/3ca87fbb1e211a78daebedd82aeca686.jpg"], "attach": []}, "239": {"title": "2019년 여름휴가 일정안내 (07. 31-08. 02.)", "date": "2019-07-22", "views": "1103", "paras": ["귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "당사의 2019년 여름휴가 일정을 안내해 드립니다. 업무에 참고하시길 바랍니다.", "- - 다 음 - -", "1) 2019년 07월 31일(수) ~ 2019년 08월 02일(금)", "2) 2019년 08월 05일(월)부터 정상 업무 합니다.", "각 업체담당자님께서는 업무에 참고하시기 바랍니다.", "감사합니다."], "imgs": [], "attach": []}, "236": {"title": "2019년 예네 창립기념일 휴무 안내 (06. 07. 금요일)", "date": "2019-06-03", "views": "773", "paras": ["귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "2019년 6월 7일(금요일)은 당사의 창립 기념일 휴무로 업무를 진행하지 않습니다.", "- - 다 음 - -", "(주)예네 본사는 2019년 06월 07일(금) 창립기념일 행사 관계로 휴무합니다.", "휴무일에는 제품 상담 및 배송이 중단되므로 미리 양해를 부탁드립니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "2019년 06월 10일(월) 부터 정상 업무 합니다.", "감사합니다."], "imgs": [], "attach": []}, "235": {"title": "2019년 대체휴일 휴무 안내 (05. 06. 월요일)", "date": "2019-05-02", "views": "776", "paras": ["귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "2019년 5월 6일(월요일)은 대체공휴일로 업무를 진행하지 않습니다.", "- - 다 음 - -", "(주)예네 본사는 2019년 05월 06일(월) 대체공휴일 휴무입니다.", "휴무일에는 제품 상담 및 배송이 중단되므로 미리 양해를 부탁드립니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "2019년 05월 07일(화) 부터 정상 업무 합니다.", "감사합니다."], "imgs": [], "attach": []}, "234": {"title": "2019년 근로자의 날 휴무 안내 (05. 01. 수요일)", "date": "2019-04-30", "views": "451", "paras": ["귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "2019년 5월 1일(수요일)은 근로자의 날 휴무로 업무를 진행하지 않습니다.", "- - 다 음 - -", "(주)예네 본사는 2019년 05월 01일(수) 근로자의 날 휴무합니다.", "휴무일에는 제품 상담 및 배송이 중단되므로 미리 양해를 부탁드립니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "2019년 05월 02일(목) 부터 정상 업무 합니다.", "감사합니다."], "imgs": [], "attach": []}, "221": {"title": "2019년 설연휴 휴무 및 배송(택배/화물) 안내", "date": "2019-01-24", "views": "504", "paras": ["귀사의 무궁한 발전을 기원합니다.", "한해 동안 베풀어주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "2019년 기해년 설을 맞이하여 사랑 가득하고 넉넉한 마음으로 즐거운 명절 보내시길 기원합니다.", "- - 다 음 - -", "(주)예네 본사는 2019년 02월 02일 ~ 2019년 02월 06일 까지 설 연휴로 휴무합니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "* 설 연휴 화물/택배 배송안내 *", "대신화물/택배 : 제품출고는 2019년 02월 01일(금) 오후 03:00 에 마감됩니다.", "2019년 02월 07일(목) 부터는 정상 출고됩니다."], "imgs": ["https://yene.co.kr/_data/editor_attach/board_basic_1/basic_1_temp_1548288639/07c82b0ac0d2ec96f21050a9890e033a.jpg"], "attach": []}, "220": {"title": "2019년 새해인사말", "date": "2018-12-31", "views": "381", "paras": ["귀사의 무궁한 발전을 기원합니다.", "항상 변함없는 성원과 사랑에 깊이 감사드리며, 기해년 새해를 맞이하여 행복한 웃음이 가득하시길 바랍니다.", "지난 한 해 동안 예네에 보내주신 사랑에 감사드리며 2019년 기해년 새해에 건강과 행복이 가득하시길 바랍니다.", "행복하고 새로운 마음으로 출발선에 설 수 있도록 주식회사 예네는 끊임없이 노력하겠습니다.", "감사합니다."], "imgs": ["https://yene.co.kr/_data/editor_attach/board_basic_1/basic_1_temp_1546216619/96a43610b1fcf5e5addb60292e2a11c6.jpg"], "attach": []}, "219": {"title": "2018년 추석연휴 휴무 및 배송(화물/택배)안내", "date": "2018-09-17", "views": "535", "paras": ["귀사의 무궁한 발전을 기원합니다.", "항상 변함없는 성원과 사랑에 깊이 감사드리며 추석을 맞이하여 가정에 항상 여유와 풍성함이 가득하시길 기원합니다.", "- - 다 음 - -", "(주)예네 본사는 2018년 9월 22일(토) - 9월 26일(수) 까지 추석 연휴로 휴무합니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "* 추석 연휴 화물/택배 배송안내 *", "대신화물/택배 : 제품출고는 2018년 09월 21일(금) 오후 03:00 에 마감됩니다.", "2018년 09월 27일(목) 부터는 정상 출고됩니다."], "imgs": ["https://yene.co.kr/_data/editor_attach/board_basic_1/basic_1_219/4753e64399573b943846c453a32d4398.jpg"], "attach": []}, "218": {"title": "2018년 여름휴가 일정안내 (08. 01-08. 03.)", "date": "2018-07-18", "views": "440", "paras": ["귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "당사의 2018년 여름휴가 일정을 안내해 드립니다. 업무에 참고하시길 바랍니다.", "- - 다 음 - -", "1) 2018년 08월 01일(수) ~ 2018년 08월 03일(금)", "2) 2018년 08월 06일(월)부터 정상 업무 합니다.", "각 업체담당자님께서는 업무에 참고하시기 바랍니다.", "감사합니다."], "imgs": [], "attach": []}, "217": {"title": "2018년 제7 회 전국 동시 지방선거일 택배/화물 배송안내 (06. 13. 수요일)", "date": "2018-06-11", "views": "599", "paras": ["귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "2018년 6월 13일(수요일)은 제7회 전국 동시 지방 선거일입니다. 당일 업무 시간에 대해 알려드립니다.", "- - 다 음 - -", "2018년 06월 13일(수) 지방선거일 (주)예네 본사 업무시간은 오전 09:00 ~ 오후 4:00시까지입니다.", "(단, 택배/화물 배송마감 시간은 오전 11시 30분까지 이므로 오전 중으로 발주 완료 바랍니다.)", "각 업체담당자님께서는 업무에 참고하시기 바랍니다.", "감사합니다."], "imgs": [], "attach": []}, "215": {"title": "2018년 예네 창립기념일 휴무 안내 (06. 08. 금요일)", "date": "2018-05-31", "views": "454", "paras": ["귀사의 무궁한 발전을 기원합니다.", "베풀어 주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "2018년 6월 8일(금요일)은 당사의 창립 기념일 행사로 인한 휴무로 업무를 진행하지 않습니다.", "- - 다 음 - -", "(주)예네 본사는 2018년 06월 08일(금) 창립기념일 행사로 휴무합니다.", "휴무일에는 제품 상담 및 배송이 중단되므로 미리 양해를 부탁드립니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "2018년 06월 11일(월) 부터 정상 업무 합니다.", "감사합니다."], "imgs": [], "attach": []}, "206": {"title": "2018년 설연휴 휴무 및 배송(택배/화물) 안내", "date": "2018-02-08", "views": "671", "paras": ["귀사의 무궁한 발전을 기원합니다.", "한해 동안 베풀어주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "2018년 무술년 설을 맞이하여 사랑 가득하고 넉넉한 마음으로 즐거운 명절 보내시길 기원합니다.", "- - 다 음 - -", "(주)예네 본사는 2018년 02월 15일 ~ 2018년 02월 18일 까지 설 연휴로 휴무합니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "* 설 연휴 화물/택배 배송안내 *", "대신화물/택배 : 제품출고는 2018년 02월 13일(화) 오후 03:00 에 마감됩니다.", "(2018년 02월 14일(수)은 정상근무로 주문은 가능하나 발송 불가합니다.)", "2018년 02월 19일(월) 부터는 정상 출고됩니다."], "imgs": ["https://yene.co.kr/_data/editor_attach/board_basic_1/basic_1_temp_1518048110/a3c954af4514ae652b784be47ca7bb3d.jpg"], "attach": []}, "189": {"title": "2018년 새해인사말", "date": "2018-01-02", "views": "940", "paras": ["귀사의 무궁한 발전을 기원합니다.", "항상 변함없는 성원과 사랑에 깊이 감사드리며, 새해를 맞이하여 행복한 웃음이 가득하시길 바랍니다.", "지난 한 해 동안 예네에 보내주신 사랑에 감사드리며 2018년 무술년 새해에 건강과 행복이 가득하시길 바랍니다.", "행복하고 새로운 마음으로 출발선에 설 수 있도록 주식회사 예네는 끊임없이 노력하겠습니다.", "감사합니다."], "imgs": ["https://yene.co.kr/_data/editor_attach/board_basic_1/basic_1_temp_1514855942/ed851da91ac3ffe6c460ade19dcc0af0.jpg"], "attach": []}, "171": {"title": "2017년 추석연휴 휴무 및 배송(화물/택배)안내", "date": "2017-09-21", "views": "815", "paras": ["귀사의 무궁한 발전을 기원합니다.", "항상 변함없는 성원과 사랑에 깊이 감사드리며 추석을 맞이하여 가정에 항상 여유와 풍성함이 가득하시길 기원합니다.", "당사는 2017년 10월 03일(화) - 10월 9일(월)까지 추석연휴로 휴무합니다.", "각 업체담당자님께서는 업무에 참고하시기 바랍니다.", "감사합니다.", "* 추석연휴 화물/택배 배송안내 *", "대신화물/택배 : 제품 출고는 2017년 09월 29일 오후 15시 30분에 마감됩니다.", "(단, 2017년 10월 02일 주문은 가능하나 발송불가)", "2017년 10월 10일부터는 정상 출고됩니다."], "imgs": ["https://yene.co.kr/_data/editor_attach/board_basic_1/basic_1_171/4356ea21dad4d2cf345c55228f4a0190.jpg"], "attach": [{"name": "17추석배송안내.jpg", "url": "https://yene.co.kr/board/_data/basic_1/171/basic_1_171_0_1506038377.jpg"}]}, "164": {"title": "2017년 여름휴가 일정안내", "date": "2017-07-03", "views": "882", "paras": ["당사는 2017년 여름휴가 관계로 다음과 같이 안내드립니다. 업무에 참고하시길 바랍니다.", "- - 다 음 - -", "1) 2017년 08월 02일(수) - 2017년 8월 06일(일)", "2) 2017년 08월 07일(월)부터 정상업무합니다."], "imgs": [], "attach": []}, "158": {"title": "2017년 설연휴 휴무 및 배송(택배/화물) 안내", "date": "2017-01-24", "views": "754", "paras": ["귀사의 무궁한 발전을 기원합니다.", "한해 동안 베풀어주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "2017년 정유년의 새해 설을 맞이하여 사랑 가득하고 넉넉한 마음으로 즐거운 명절 보내시길 기원합니다.", "- - 다 음 - -", "(주)예네 본사는 2017년 01월 27일 ~ 2017년 01월 30일 까지 설 연휴로 휴무합니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "* 설 연휴 화물/택배 배송안내 *", "대신화물/택배 : 제품출고는 2017년 01월 25일 오후 03:00시에 마감됩니다.", "2017년 01월 25일 출고된 제품까지는 26일 정상 도착합니다.", "2017년 01월 31일부터는 정상배송 합니다."], "imgs": [], "attach": []}, "136": {"title": "2016년 추석연휴 휴무 및 배송(화물/택배)안내", "date": "2016-09-08", "views": "1044", "paras": ["귀사의 무궁한 발전을 기원합니다.", "항상 변함없는 성원과 사랑에 깊이 감사드리며 추석을 맞이하여 가정에 항상 여유와 풍성함이 가득하시길 기원합니다.", "당사는 2016년 09월 14일(수) - 09월 18일(일)까지 추석연휴로 휴무합니다.", "각 업체담당자님께서는 업무에 참고하시기 바랍니다.", "감사합니다.", "* 추석연휴 화물/택배 배송안내 *", "대신화물/택배 : 제품출고는 2016년 09월 12일 오후 15시 30분에 마감됩니다.", "(단, 2016년 09월 13일 주문은 가능하나 발송불가)", "2016년 09월 19일부터는 정상배송합니다."], "imgs": [], "attach": []}, "135": {"title": "2016년 여름휴가 일정안내", "date": "2016-07-27", "views": "844", "paras": ["당사는 여름휴가 관계로 다음과 같이 휴무하오니 업무에 참고하시길 바랍니다.", "- - 다 음 - -", "1) 2016년 08월 03일(수) - 2016년 8월 07일(일)", "2) 2016년 08월 08일(월) 정상업무합니다."], "imgs": [], "attach": []}, "125": {"title": "\"2016년 5월 6일 임시공휴일 지정에 따른 본사업무일정 안내\"", "date": "2016-05-02", "views": "1133", "paras": ["귀사의 무궁한 발전을 기원합니다.", "항상 당사 제품에 관심 가져주심을 감사하는 마음으로 최선을 다하는 (주)예네가 되겠습니다.", "2016년 5월 06일이 임시공휴일로 지정되어 본사 업무일정에 대한 안내말씀 드립니다.", "- - 다 음 - -", "2016년 5월 06일(금) 임시공휴일 지정으로 인해 (주)예네 본사 업무일정은 2016년 5월 05일 ~ 2016년 05월 08일까지 쉽니다.", "5월 09일부터는 정상업무 합니다.", "각 업체담당자님께서는 업무에 참고하시기 바랍니다.", "감사합니다."], "imgs": [], "attach": []}, "123": {"title": "\"2016 제20대 국회의원선거일\" 택배/화물 배송안내", "date": "2016-04-11", "views": "785", "paras": ["귀사의 무궁한 발전을 기원합니다.", "항상 변함없는 성원과 사랑에 깊이 감사드리며 2016년 04월 13일(수요일)은 \"2016 제20대 국회의원선거\"입니다.", "당일 업무시간에 대해 알려드립니다.", "- - 다 음 - -", "2016년 04월 13일(수) 국회의원선거로 인해 (주)예네 본사 업무시간은 오전 10:00 ~ 오후 6:00시 까지 업무 합니다.", "(단, 택배/화물 배송마감 시간은 1시까지 이므로 오전 중으로 발주 바랍니다.)", "각 업체담당자님께서는 업무에 참고하시기 바랍니다.", "감사합니다."], "imgs": [], "attach": []}, "119": {"title": "2016년 설연휴 휴무 및 배송(화물/택배) 안내", "date": "2016-02-03", "views": "1061", "paras": ["귀사의 무궁한 발전을 기원합니다.", "한해 동안 베풀어주신 여러분들의 애정과 성원에 깊이 감사드립니다.", "설을 맞이하여 사랑 가득하고 넉넉한 마음으로 즐거운 명절 보내시길 기원합니다.", "- - 다 음 - -", "(주)예네 본사는 2016년 02월 06일 ~ 2016년 02월 10일 까지 설 연휴로 휴무합니다.", "각 업체 담당자님께서는 업무에 참고하시기 바랍니다.", "* 설 연휴 화물/택배 배송안내 *", "대신화물/택배 : 제품출고는 2016년 02월 05일 오후 03:00시에 마감됩니다.", "단, 2016년 02월 05일 출고된 제품은 6일 정상 도착합니다.", "2016년 02월 11일부터는 정상배송 합니다."], "imgs": [], "attach": []}, "106": {"title": "\"신정연휴 휴무 및 택배/화물 배송안내\"", "date": "2015-12-29", "views": "1116", "paras": ["귀사의 무궁한 발전을 기원합니다.", "항상 변함없는 성원과 사랑에 깊이 감사드리며, 새해를 맞이하여 행복한 웃음이 가득하시길 바랍니다.", "신정연휴로 인한 택배/화물 배송안내 드립니다.", "(주)예네 본사 업무는 2015년 12월 31일(목) 까지 정상업무합니다.", "각 업체담당자님께서는 업무에 참고하시길 바랍니다.", "* 신정연휴 택배/화물 배송안내 *", "대신택배/화물 : 제품 출고는 2015년 12월 30일 오후 3:00에 마감됩니다.", "2015년 12월 31일은 제품 발송이 불가합니다.", "2016년 01월 04일 부터는 정상 업무/배송됩니다.", "연말연시 행복하고 새로운 마음으로 출발선에 설 수 있도록 주식회사 예네는 끊임없이 노력하겠습니다.", "감사합니다."], "imgs": [], "attach": []}, "105": {"title": "\"2016년 (주)예네 홈페이지를 새롭게 단장했습니다\"", "date": "2015-12-28", "views": "1579", "paras": ["안녕하십니까!", "주식회사 예네를 항상 믿고 찾아주시는 고객님들께 깊은 감사의 마음을 전하며 안내말씀 드립니다.", "(주)예네 기업 홈페이지를 2016년 1월부터 새롭게 이용하실 수 있습니다.", "고객님의 입장을 먼저 생각하는 기업으로 제품 구매의 편리함과 제품에 대한 이해도를 높일 수 있도록 하겠습니다.", "더욱더 노력하는 예네가 되겠습니다.", "많은 관심과 사랑 부탁드립니다.", "감사합니다."], "imgs": [], "attach": []}};
+      var ORDER = ["326", "317", "324", "321", "319", "315", "313", "312", "310", "309", "308", "307", "306", "304", "303", "302", "301", "300", "299", "298", "297", "266", "264", "245", "239", "236", "235", "234", "221", "220", "219", "218", "217", "215", "206", "189", "171", "164", "158", "136", "135", "125", "123", "119", "106", "105"];
+      var LIST = './customer-notice.html';
+      var no = new URLSearchParams(location.search).get('no');
+      var post = POSTS[no];
+      if (!post) { location.replace(LIST); return; }
+
+      document.title = post.title + ' | 공지사항 | Yene';
+      document.getElementById('bvTitle').textContent = post.title;
+      document.getElementById('bvDate').textContent = '작성일 ' + post.date;
+      document.getElementById('bvViews').textContent = post.views;
+
+      if (post.attach && post.attach.length) {
+        var box = document.getElementById('bvAttach');
+        box.style.display = 'flex';
+        box.innerHTML = post.attach.map(function (a) {
+          return '<a href="' + a.url + '" target="_blank" rel="noopener"><span class="material-symbols-rounded">attach_file</span>' + a.name + '</a>';
+        }).join('');
+      }
+
+      var html = '';
+      if (post.video) {
+        html += '<div class="bv-video"><iframe src="' + post.video + '" title="' + post.title +
+                '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
+      }
+      if (post.paras) {
+        html += post.paras.map(function (p) { return '<p>' + p + '</p>'; }).join('');
+      }
+      if (post.imgs) {
+        html += post.imgs.map(function (s) {
+          return '<img src="' + s + '" alt="' + post.title + '" loading="lazy" onerror="this.style.display=&quot;none&quot;">';
+        }).join('');
+      }
+      if (post.note) { html += '<div class="bv-empty">' + post.note + '</div>'; }
+      document.getElementById('bvBody').innerHTML = html;
+
+      var idx = ORDER.indexOf(no);
+      var nav = '';
+      if (idx > 0) {
+        var p = ORDER[idx - 1];
+        nav += '<a href="?no=' + p + '"><span class="lbl">이전글</span><span class="bv-nav-title">' + POSTS[p].title + '</span></a>';
+      }
+      if (idx !== -1 && idx < ORDER.length - 1) {
+        var n = ORDER[idx + 1];
+        nav += '<a href="?no=' + n + '"><span class="lbl">다음글</span><span class="bv-nav-title">' + POSTS[n].title + '</span></a>';
+      }
+      document.getElementById('bvNav').innerHTML = nav;
+    })();
+  </script>
+</body>
+</html>

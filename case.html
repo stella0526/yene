@@ -146,7 +146,7 @@
     .btn-case-more .material-symbols-rounded { font-size: 20px; }
 
     /* 카드 클릭 커서 */
-    .case-card { cursor: pointer; }
+    .case-card { cursor: pointer; display: block; color: inherit; text-decoration: none; }
   </style>
 </head>
 <body>
@@ -274,25 +274,6 @@
     </div>
   </main>
 
-  <!-- 모달 -->
-  <div class="case-modal-bg" id="caseModal" role="dialog" aria-modal="true" aria-label="시공사례 상세보기">
-    <div class="case-modal">
-      <button type="button" class="case-modal-nav case-modal-prev" id="modalPrev" aria-label="이전">‹</button>
-      <button type="button" class="case-modal-nav case-modal-next" id="modalNext" aria-label="다음">›</button>
-      <img class="case-modal-img" id="modalImg" src="" alt="">
-      <div class="case-modal-body">
-        <div class="case-modal-info">
-          <span class="case-modal-badge" id="modalBadge"></span>
-          <p class="case-modal-title" id="modalTitle"></p>
-          <p class="case-modal-date" id="modalDate"></p>
-        </div>
-        <button type="button" class="case-modal-close" id="modalClose" aria-label="닫기">
-          <span class="material-symbols-rounded">close</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
   <footer class="site-footer">
     <div class="container footer-top">
       <a class="footer-brand" href="./index.html">
@@ -319,6 +300,7 @@
   </footer>
 
   <script src="./js/main.js"></script>
+  <script src="./js/cart.js"></script>
   <script>
   // ── 시공사례 데이터 (yene.co.kr gallery_3 전체 크롤링 - 8페이지 153건) ──
   const CASES = [
@@ -494,17 +476,11 @@
   CASES.forEach(c => { caseCounter[c.cat]++; if (!c.title) c.title = BADGE_LABEL[c.cat] + ' 시공사례'; });
 
   let currentFilter = 'all';
-  let modalIdx = 0;          // index in filteredCases
   let filteredCases = [...CASES];
   let visibleAll = false;    // 더보기 눌렸는지
 
   const grid      = document.getElementById('caseGrid');
   const moreWrap  = document.getElementById('moreWrap');
-  const modal     = document.getElementById('caseModal');
-  const modalImg  = document.getElementById('modalImg');
-  const modalBadge = document.getElementById('modalBadge');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalDate  = document.getElementById('modalDate');
 
   function imgUrl(c) {
     return IMG_BASE + c.id + '//' + c.img;
@@ -518,24 +494,18 @@
     const toShow = visibleAll ? filteredCases : filteredCases.slice(0, PAGE_SIZE);
     const hasMore = filteredCases.length > PAGE_SIZE && !visibleAll;
 
-    grid.innerHTML = toShow.map((c, i) => `
-      <div class="case-card" data-idx="${i}" tabindex="0" role="button" aria-label="${c.title} 시공사례 보기">
+    grid.innerHTML = toShow.map(c => `
+      <a class="case-card" href="./case-view.html?no=${c.id}" aria-label="${c.title} 시공사례 상세보기">
         <div class="case-card-img">
           <img src="${imgUrl(c)}" alt="${c.title}" loading="lazy">
           <span class="case-card-badge">${BADGE_LABEL[c.cat]}</span>
         </div>
         <p class="case-card-title">${c.title}</p>
         <p class="case-card-date">${c.date}</p>
-      </div>
+      </a>
     `).join('');
 
     moreWrap.style.display = hasMore ? 'block' : 'none';
-
-    // 카드 클릭
-    grid.querySelectorAll('.case-card').forEach(el => {
-      el.addEventListener('click', () => openModal(Number(el.dataset.idx)));
-      el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openModal(Number(el.dataset.idx)); });
-    });
   }
 
   // 탭/사이드바 필터
@@ -560,44 +530,6 @@
   document.getElementById('btnMore').addEventListener('click', () => {
     visibleAll = true;
     renderGrid();
-  });
-
-  // ── 모달 ──
-  function openModal(idx) {
-    modalIdx = idx;
-    updateModal();
-    modal.classList.add('is-open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    modal.classList.remove('is-open');
-    document.body.style.overflow = '';
-  }
-
-  function updateModal() {
-    const c = filteredCases[modalIdx];
-    if (!c) return;
-    modalImg.src   = imgUrl(c);
-    modalImg.alt   = c.title;
-    modalBadge.textContent = BADGE_LABEL[c.cat];
-    modalTitle.textContent = c.title;
-    modalDate.textContent  = c.date;
-    document.getElementById('modalPrev').disabled = modalIdx === 0;
-    document.getElementById('modalNext').disabled = modalIdx === filteredCases.length - 1;
-  }
-
-  document.getElementById('modalClose').addEventListener('click', closeModal);
-  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-  document.getElementById('modalPrev').addEventListener('click', () => { if (modalIdx > 0) { modalIdx--; updateModal(); } });
-  document.getElementById('modalNext').addEventListener('click', () => { if (modalIdx < filteredCases.length - 1) { modalIdx++; updateModal(); } });
-
-  // 키보드
-  document.addEventListener('keydown', e => {
-    if (!modal.classList.contains('is-open')) return;
-    if (e.key === 'Escape') closeModal();
-    if (e.key === 'ArrowLeft')  { if (modalIdx > 0) { modalIdx--; updateModal(); } }
-    if (e.key === 'ArrowRight') { if (modalIdx < filteredCases.length - 1) { modalIdx++; updateModal(); } }
   });
 
   // 최초 렌더

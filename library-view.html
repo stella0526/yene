@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자료실 | Yene</title>
+  <link rel="preload" href="./font/Paperlogy-4Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="./font/Paperlogy-7Bold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/pages.css">
+  <style>
+    .board-view { border-top: 2px solid var(--navy); }
+    .bv-head { padding: 24px 20px; border-bottom: 1px solid var(--line); }
+    .bv-head h3 { margin: 0; font-size: 20px; color: var(--navy); font-weight: 700; line-height: 1.5; }
+    .bv-meta { margin-top: 10px; font-size: 13px; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; }
+    .bv-sep { color: var(--line); }
+    .bv-attach { padding: 14px 20px; background: var(--soft); border-bottom: 1px solid var(--line); font-size: 13px; flex-direction: column; gap: 6px; }
+    .bv-attach a { display: inline-flex; align-items: center; gap: 6px; color: var(--text); text-decoration: none; word-break: break-all; }
+    .bv-attach a:hover { color: var(--blue); text-decoration: underline; }
+    .bv-attach .material-symbols-rounded { font-size: 16px; color: var(--blue); flex-shrink: 0; }
+    .bv-body { padding: 36px 20px; font-size: 14px; line-height: 1.9; color: var(--text); border-bottom: 1px solid var(--line); min-height: 160px; }
+    .bv-body p { margin: 0 0 14px; }
+    .bv-body img { max-width: 100%; height: auto; margin: 8px 0; }
+    .bv-video { position: relative; padding-top: 56.25%; margin: 8px 0 20px; background: #000; }
+    .bv-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .bv-empty { padding: 24px; background: var(--soft); border-radius: 6px; font-size: 13px; color: var(--muted); text-align: center; line-height: 1.8; }
+    .bv-empty a { color: var(--blue); }
+    .bv-nav a { display: flex; gap: 16px; padding: 14px 20px; font-size: 13px; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .bv-nav a:hover .bv-nav-title { color: var(--blue); }
+    .bv-nav .lbl { color: var(--muted); flex-shrink: 0; width: 48px; }
+    .bv-nav .bv-nav-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .bv-btns { display: flex; justify-content: center; margin: 28px 0 8px; }
+    .bv-btn-list { padding: 12px 44px; background: var(--navy); color: #fff; border-radius: 4px; font-size: 14px; text-decoration: none; }
+    .bv-btn-list:hover { opacity: .9; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="brand">
+        <a href="./index.html" aria-label="Yene 홈">
+          <img src="./image/logo.png" alt="Yene">
+          <span>(주)예네</span>
+        </a>
+      </h1>
+      <nav class="gnb" aria-label="주요 메뉴">
+        <ul>
+          <li class="has-submenu">
+            <a href="./company-greeting.html">회사소개</a>
+            <ul class="sub-menu">
+              <li><a href="./company-greeting.html">인삿말</a></li>
+              <li><a href="./company-org.html">조직도</a></li>
+              <li><a href="./company-patent.html">특허 및 증서</a></li>
+              <li><a href="./company-location.html">오시는 길</a></li>
+              <li><a href="./company-dealer.html">대리점 현황</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu"><a href="#">제품소개</a>
+            <ul class="sub-menu">
+              <li><a href="./product-ceiling.html">천장형 전기온풍기</a></li>
+              <li><a href="./product-heater.html">히터</a></li>
+              <li><a href="./product-slim.html">슬림형 전기온풍기</a></li>
+              <li><a href="./product-general.html">일반전기용품</a></li>
+            </ul>
+          </li>
+          <li><a href="./case.html">시공사례</a></li>
+          <li class="has-submenu">
+            <a href="./customer-notice.html" class="is-active">고객센터</a>
+            <ul class="sub-menu">
+              <li><a href="./customer-notice.html">공지사항</a></li>
+              <li><a href="./customer-library.html">자료실</a></li>
+              <li><a href="./customer-video.html">동영상 갤러리</a></li>
+              <li><a href="./customer-faq.html">자주묻는 질문</a></li>
+              <li><a href="./customer-press.html">보도자료</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="mobile-member-menu">
+          <a href="./login.html"><span class="material-symbols-rounded">login</span>로그인</a>
+          <a href="./signup.html"><span class="material-symbols-rounded">person_add</span>회원가입</a>
+          <a href="./cart.html"><span class="material-symbols-rounded">shopping_bag</span>장바구니</a>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <a href="./login.html" class="icon-button" aria-label="로그인"><img src="./image/header_SignIn.png" alt=""></a>
+        <a href="./signup.html" class="icon-button" aria-label="회원가입"><img src="./image/header_User.png" alt=""></a>
+        <a href="./cart.html" class="icon-button" aria-label="장바구니"><img src="./image/header_Basket.png" alt=""></a>
+        <button type="button" class="menu-toggle" aria-label="메뉴 열기" aria-expanded="false">
+          <span class="material-symbols-rounded">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page-top">
+    <div class="cs-hero" aria-label="고객센터 배너">
+      <div class="cs-hero-bg"></div>
+      <div class="cs-hero-inner">
+        <p class="cs-hero-kicker">Customer Center</p>
+        <h1>고객의 믿음이 자라는 공간</h1>
+        <p class="cs-hero-sub">Yene 고객센터는 언제나 고객 곁에서 함께합니다.</p>
+      </div>
+    </div>
+
+    <nav class="breadcrumb" aria-label="경로">
+      <div class="breadcrumb-inner">
+        <a href="./index.html" class="bc-home" aria-label="홈"><span class="material-symbols-rounded" style="font-size:18px">home</span></a>
+        <span class="bc-sep">›</span>
+        <a href="./customer-notice.html">고객센터</a>
+        <span class="bc-sep">›</span>
+        <a href="./customer-library.html">자료실</a>
+        <span class="bc-sep">›</span>
+        <span class="bc-active">상세보기</span>
+      </div>
+    </nav>
+
+    <div class="inner-content">
+      <div class="inner-layout">
+        <aside class="cs-sidebar page-sidebar" aria-label="고객센터 메뉴">
+          <h2 class="cs-sidebar-title">고객센터</h2>
+          <ul class="cs-sidebar-nav">
+            <li><a href="./customer-notice.html">공지사항 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./customer-library.html" class="is-active">자료실 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./customer-video.html">동영상 갤러리 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./customer-faq.html">자주 묻는 질문 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./customer-press.html">보도자료 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./company-service.html">서비스센터 <span class="nav-arrow">›</span></a></li>
+          </ul>
+        </aside>
+
+        <section aria-labelledby="view-title">
+          <h2 class="content-title" id="view-title">자료실</h2>
+
+          <article class="board-view">
+            <div class="bv-head">
+              <h3 id="bvTitle">게시글을 불러오는 중...</h3>
+              <div class="bv-meta">
+                <span>작성자 관리자</span><span class="bv-sep">|</span>
+                <span id="bvDate"></span><span class="bv-sep">|</span>
+                <span>조회 <span id="bvViews"></span></span>
+              </div>
+            </div>
+            <div class="bv-attach" id="bvAttach" style="display:none"></div>
+            <div class="bv-body" id="bvBody"></div>
+            <nav class="bv-nav" id="bvNav" aria-label="이전글 다음글"></nav>
+            <div class="bv-btns"><a href="./customer-library.html" class="bv-btn-list">목록으로</a></div>
+          </article>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <a class="footer-brand" href="./index.html"><img src="./image/logo.png" alt="Yene"><strong>(주) 예네</strong></a>
+      <nav aria-label="하단 메뉴">
+        <ul>
+          <li><a href="./company-greeting.html">회사소개</a></li>
+          <li><a href="./customer-guide.html">이용안내</a></li>
+          <li><a href="./customer-terms.html">이용약관</a></li>
+          <li><a href="./customer-privacy.html">개인정보처리방침</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <address>
+        상호: 주식회사 예네  |  대표: 양순식  |  이메일: yene-3@live.co.kr  |  전화: 031-767-2266<br>
+        주소: 경기도 광주시 초월읍 도곡말길 59-18번길  |  사업자등록번호: 215-66-50868<br>
+        COPYRIGHT(c) 2015 Yene. All right reserved.
+      </address>
+      <img class="footer-marks" src="./image/footer_1.png" alt="인증 및 제휴 마크">
+    </div>
+  </footer>
+
+  <script src="./js/main.js"></script>
+  <script src="./js/cart.js"></script>
+  <script>
+    (function () {
+      var POSTS = {"328": {"title": "시국세 06월 카탈로그", "date": "2026-05-26", "views": "17", "paras": [], "imgs": [], "attach": [{"name": "시국세06월.pdf", "url": "https://yene.co.kr/board/_data/basic_3/328/basic_3_328_0_1779755428.pdf"}]}, "305": {"title": "[홍보자료] 예네 천장형전기온풍기 카탈로그", "date": "2023-02-10", "views": "784", "paras": [], "imgs": [], "attach": [{"name": "예네-8P카탈로그2022년.pdf", "url": "https://yene.co.kr/board/_data/basic_3/305/basic_3_305_0_1676248972.pdf"}]}, "243": {"title": "승인서류, 사용설명서 (천장형전기온풍기 YH-PS / PN)", "date": "2019-08-13", "views": "4144", "paras": [], "imgs": [], "attach": [{"name": "[예네]PS-PN모델 승인서류(안전인증서,시방서,효율관리기자재신고확인서)_원본대조필.pdf", "url": "https://yene.co.kr/board/_data/basic_3/243/basic_3_243_0_1565679263.pdf"}, {"name": "PS-PN모델 사용설명서.pdf", "url": "https://yene.co.kr/board/_data/basic_3/243/basic_3_243_1_1673944291.pdf"}]}, "242": {"title": "승인서류, 사용설명서 (천장형전기온풍기 YH-PS 중대형)", "date": "2019-08-13", "views": "880", "paras": [], "imgs": [], "attach": [{"name": "[예네]PS중대형모델 승인서류(안전인증서,시방서,효율관리기자재신고확인서)_원본대조필.pdf", "url": "https://yene.co.kr/board/_data/basic_3/242/basic_3_242_0_1565677912.pdf"}, {"name": "PS-PN모델 사용설명서.pdf", "url": "https://yene.co.kr/board/_data/basic_3/242/basic_3_242_1_1673944383.pdf"}]}, "240": {"title": "승인서류, 사용설명서 (천장형전기온풍기 YH-V)", "date": "2019-07-30", "views": "595", "paras": [], "imgs": [], "attach": [{"name": "[예네]V모델 승인서류(안전인증서,시방서,효율관리기자재신고서)_원본대조필.pdf", "url": "https://yene.co.kr/board/_data/basic_3/240/basic_3_240_0_1565684943.pdf"}, {"name": "예네 SS-V-VV 사용설명서.pdf", "url": "https://yene.co.kr/board/_data/basic_3/240/basic_3_240_1_1674010418.pdf"}]}, "237": {"title": "승인서류, 사용설명서 (천장형전기온풍기 YH-VV)", "date": "2019-07-19", "views": "475", "paras": [], "imgs": [], "attach": [{"name": "[예네]VV모델 승인서류(안전인증서,시방서,효율관리기자재신고확인서)_원본대조필.pdf", "url": "https://yene.co.kr/board/_data/basic_3/237/basic_3_237_0_1564475130.pdf"}, {"name": "예네 SS-V-VV 사용설명서.pdf", "url": "https://yene.co.kr/board/_data/basic_3/237/basic_3_237_1_1674010438.pdf"}]}, "150": {"title": "(주)예네 사업자사본, 공장등록증", "date": "2016-12-28", "views": "1588", "paras": [], "imgs": [], "attach": [{"name": "사업자등록증.pdf", "url": "https://yene.co.kr/board/_data/basic_3/150/basic_3_150_0_1652252104.pdf"}, {"name": "공장등록증.pdf", "url": "https://yene.co.kr/board/_data/basic_3/150/basic_3_150_1_1776213166.pdf"}]}, "251": {"title": "2019년 485중앙통신 통합프로그램 다운로드", "date": "2019-10-29", "views": "311", "paras": ["2019년 485중앙통신 통합프로그램", "PV, SS, V, VV, R 모델 통합중앙통신 프로그램 입니다."], "imgs": [], "attach": [{"name": "Setup_YENE2019model_control.exe", "url": "https://yene.co.kr/board/_data/basic_3/251/basic_3_251_0_1572337689.exe"}, {"name": "Setup_20190730V5.exe", "url": "https://yene.co.kr/board/_data/basic_3/251/basic_3_251_1_1572338193.exe"}]}, "246": {"title": "[홍보자료] 예네 2019년-2020년 카탈로그/지명원", "date": "2019-09-23", "views": "817", "paras": [], "imgs": [], "attach": [{"name": "예네-8P카탈로그.pdf", "url": "https://yene.co.kr/board/_data/basic_3/246/basic_3_246_0_1569199776.pdf"}, {"name": "예네-30P지명원.pdf", "url": "https://yene.co.kr/board/_data/basic_3/246/basic_3_246_1_1569199776.pdf"}]}, "199": {"title": "[사용설명] 천장형온풍기 모델별 필터청소법", "date": "2018-01-26", "views": "3730", "paras": ["예네온풍기의 필터청소를 알리는 알림 문구는 F1CL과 E1이 있습니다.", "이 문구는 제품의 고장이 아닌 필터청소를 해달라는 제품의 알람 기능이니 필터청소를 해주시면 다시 원활하게 제품을 사용하실 수 있답니다.", "필터청소를 하지 않고 방치하는 경우 공기 송풍이 원활하게 이뤄지지 않아 온풍기 성능이 저하될 수 있고 과열방지를 위한 안전장치가 작동할 수 있기 때문에 주기적인 청소를 해주시는 것이 좋습니다.", "필터청소의 권장주기는 30일 정도에 한번씩이며 온풍기 사용빈도가 본격적으로 늘어나는 10~11월, 온풍기 사용이 끝나는 2~3월 경에는 꼭 필터청소를 해주시기 바랍니다.", "■ 필터 청소 전에 차단기를 내려주세요! ■", "필터청소를 하고 차단기를 다시 올려주시면 제품이 리셋되며 정상작동합니다."], "imgs": [], "attach": [{"name": "필터청소법.jpg", "url": "https://yene.co.kr/board/_data/basic_3/199/basic_3_199_0_1516938804.jpg"}]}, "232": {"title": "승인서류, 사용설명서 (천장형전기온풍기 YH-R)", "date": "2019-04-24", "views": "528", "paras": [], "imgs": [], "attach": [{"name": "예네온풍기 안전인증서 및 시방서(완전매립형 R모델) 승인서류.pdf", "url": "https://yene.co.kr/board/_data/basic_3/232/basic_3_232_0_1559638250.pdf"}, {"name": "R모델 사용설명서.pdf", "url": "https://yene.co.kr/board/_data/basic_3/232/basic_3_232_1_1674011085.pdf"}]}, "230": {"title": "승인서류, 사용설명서 (천장형전기온풍기 YH-SS)", "date": "2019-03-22", "views": "1111", "paras": [], "imgs": [], "attach": [{"name": "[예네]SS모델 승인서류(안전인증서,시방서,효율관리기자재신고확인서)_원본대조필.pdf", "url": "https://yene.co.kr/board/_data/basic_3/230/basic_3_230_0_1563438419.pdf"}, {"name": "예네 SS-V-VV 사용설명서.pdf", "url": "https://yene.co.kr/board/_data/basic_3/230/basic_3_230_1_1674010456.pdf"}]}, "175": {"title": "사용설명서 (천장형 전기온풍기 룸콘-공용)", "date": "2017-11-22", "views": "1508", "paras": ["예네 천장형 전기온풍기 룸콘(유선리모컨) — 별도판매 옵션 제품의 사용설명서입니다.", "PS(E), PN(E), SS(E), V(E), VV(E) 모델 룸콘 사용설명서", "P(E), N(E), S(E), LV 모델 룸콘 사용설명서"], "imgs": [], "attach": [{"name": "룸콘 사용설명서 (PS·PN·SS·V).pdf", "url": "https://yene.co.kr/board/_data/basic_3/175/basic_3_175_0_1555463170.pdf"}, {"name": "룸콘 사용설명서 (P·N·S·LV).pdf", "url": "https://yene.co.kr/board/_data/basic_3/175/basic_3_175_1_1555463170.pdf"}]}, "174": {"title": "사용설명서 (천장형 전기온풍기 YH-PV모델)", "date": "2017-11-22", "views": "1382", "paras": [], "imgs": [], "attach": [{"name": "PV 사용설명서.pdf", "url": "https://yene.co.kr/board/_data/basic_3/174/basic_3_174_0_1511331340.pdf"}]}, "148": {"title": "사용설명서 (천장형 전기온풍기 YH-P모델 / YH-P,S모델 공용)", "date": "2016-12-28", "views": "2436", "paras": [], "imgs": [], "attach": [{"name": "P모델 사용설명서.pdf", "url": "https://yene.co.kr/board/_data/basic_3/148/basic_3_148_0_1525834276.pdf"}, {"name": "P·S모델 공용 사용설명서.pdf", "url": "https://yene.co.kr/board/_data/basic_3/148/basic_3_148_1_1530260965.pdf"}]}, "147": {"title": "사용설명서 (천장형 전기온풍기 YH-N / LV모델)", "date": "2016-12-28", "views": "2023", "paras": [], "imgs": [], "attach": [{"name": "N모델 사용설명서.pdf", "url": "https://yene.co.kr/board/_data/basic_3/147/basic_3_147_0_1719366907.pdf"}, {"name": "LV·S모델 사용설명서.pdf", "url": "https://yene.co.kr/board/_data/basic_3/147/basic_3_147_1_1525841060.pdf"}]}, "146": {"title": "승인서류 (천장형 전기온풍기 YH-S)", "date": "2016-12-28", "views": "973", "paras": [], "imgs": [], "attach": [{"name": "예네온풍기 안전인증 및 시방서(방수형 S모델).pdf", "url": "https://yene.co.kr/board/_data/basic_3/146/basic_3_146_0_1512630260.pdf"}]}, "96": {"title": "승인서류 (천장형 전기온풍기 YH-PV / LV)", "date": "2015-12-17", "views": "1396", "paras": [], "imgs": [], "attach": [{"name": "예네온풍기 안전인증 및 시방서(환기겸용 PV모델).pdf", "url": "https://yene.co.kr/board/_data/basic_3/96/basic_3_96_0_1512630314.pdf"}, {"name": "예네온풍기 안전인증 및 시방서(다기능 LV모델).pdf", "url": "https://yene.co.kr/board/_data/basic_3/96/basic_3_96_1_1512630314.pdf"}]}, "95": {"title": "승인서류 (천장형전기온풍기 YH-N / NH / P)", "date": "2015-12-17", "views": "2169", "paras": [], "imgs": [], "attach": [{"name": "N·NH모델 승인서류.pdf", "url": "https://yene.co.kr/board/_data/basic_3/95/basic_3_95_0_1508380783.pdf"}, {"name": "예네온풍기 안전인증 및 시방서(일반형 P모델).pdf", "url": "https://yene.co.kr/board/_data/basic_3/95/basic_3_95_1_1512630412.pdf"}]}, "71": {"title": "새로운 상표 : Zipfan(집팬)", "date": "2015-12-11", "views": "1142", "paras": ["예네의 새로운 상표 Zipfan(집팬)을 소개합니다.", "많이 사랑해 주세요.", "감사합니다."], "imgs": ["https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_71/c26ab913d3d76ec6e525b4e06d1d8732.jpg"], "attach": []}, "225": {"title": "[홍보자료]예네 2019년 카탈로그", "date": "2019-02-28", "views": "371", "paras": [], "imgs": [], "attach": [{"name": "2019 예네 카탈로그 8P.pdf", "url": "https://yene.co.kr/board/_data/basic_3/225/basic_3_225_0_1551337836.pdf"}]}, "188": {"title": "[홍보자료]예네 2018년 회사지명원", "date": "2017-12-28", "views": "564", "paras": [], "imgs": [], "attach": [{"name": "예네 지명원 (2018ver).pdf", "url": "https://yene.co.kr/board/_data/basic_3/188/basic_3_188_0_1514438417.pdf"}]}, "163": {"title": "[기술자료]PV모델 환기실험데이터 자료", "date": "2017-05-18", "views": "218", "paras": [], "imgs": [], "attach": [{"name": "PV 환기실험데이터.jpg", "url": "https://yene.co.kr/board/_data/basic_3/163/basic_3_163_0_1495081266.jpg"}]}, "149": {"title": "[홍보자료]예네 2017년 카탈로그", "date": "2016-12-28", "views": "608", "paras": [], "imgs": [], "attach": [{"name": "2017년 브로셔.pdf", "url": "https://yene.co.kr/board/_data/basic_3/149/basic_3_149_0_1482903587.pdf"}]}, "132": {"title": "[홍보자료]예네 2016 회사지명원", "date": "2016-06-15", "views": "751", "paras": [], "imgs": [], "attach": [{"name": "지명원.pdf", "url": "https://yene.co.kr/board/_data/basic_3/132/basic_3_132_0_1465976738.pdf"}]}, "131": {"title": "[홍보자료]예네 2016년 카탈로그", "date": "2016-06-15", "views": "586", "paras": [], "imgs": [], "attach": [{"name": "2016 브로셔.pdf", "url": "https://yene.co.kr/board/_data/basic_3/131/basic_3_131_0_1465974087.pdf"}]}, "122": {"title": "[인증자료]안전확인신고 증명서(온수매트)", "date": "2016-03-04", "views": "221", "paras": [], "imgs": [], "attach": [{"name": "안전확인 전기온수매트.pdf", "url": "https://yene.co.kr/board/_data/basic_3/122/basic_3_122_0_1457077432.pdf"}]}, "118": {"title": "[홍보자료]예네 2015 종합 카탈로그", "date": "2016-01-19", "views": "584", "paras": [], "imgs": [], "attach": [{"name": "카탈로그 2015.pdf", "url": "https://yene.co.kr/board/_data/basic_3/118/basic_3_118_0_1525760464.pdf"}]}, "109": {"title": "[인증자료]에너지효율관리기자재 신고확인서(라인형 NH모델)", "date": "2016-01-07", "views": "292", "paras": [], "imgs": [], "attach": [{"name": "NH모델 에너지효율관리기자재.pdf", "url": "https://yene.co.kr/board/_data/basic_3/109/basic_3_109_0_1452132016.pdf"}]}, "108": {"title": "[인증자료]에너지효율관리기자재 신고확인서(방수형 S모델)", "date": "2016-01-07", "views": "264", "paras": [], "imgs": [], "attach": [{"name": "S모델 에너지효율.pdf", "url": "https://yene.co.kr/board/_data/basic_3/108/basic_3_108_0_1452131904.pdf"}]}, "107": {"title": "[인증자료]에너지효율관리기자재 신고확인서(일반형 N모델, P모델)", "date": "2016-01-07", "views": "707", "paras": [], "imgs": [], "attach": [{"name": "N모델 에너지효율관리기자재.pdf", "url": "https://yene.co.kr/board/_data/basic_3/107/basic_3_107_0_1452131805.pdf"}, {"name": "P모델 에너지효율기자재.pdf", "url": "https://yene.co.kr/board/_data/basic_3/107/basic_3_107_1_1452131805.pdf"}]}, "99": {"title": "[설치]485중앙통신-Program Download", "date": "2015-12-18", "views": "650", "paras": ["예네 천장형 전기온풍기 485통신 중앙관제 시스템 프로그램 설치파일입니다.", "온풍기 중앙통신 프로그램 설치 및 사용설명서가 함께 첨부되어 있습니다.", "문의사항은 수신자 부담 전화 080-088-1472로 해 주시기 바랍니다.", "감사합니다."], "imgs": [], "attach": [{"name": "Yene-Heater_Setup.exe", "url": "https://yene.co.kr/board/_data/basic_3/99/basic_3_99_0_1450397791.exe"}, {"name": "예네 중앙관제통신 매뉴얼(485통신 사용설명).pdf", "url": "https://yene.co.kr/board/_data/basic_3/99/basic_3_99_1_1525833097.pdf"}]}, "94": {"title": "[설치]설치요령 및 주의사항", "date": "2015-12-17", "views": "745", "paras": ["천장형 전기온풍기 설치요령 및 주의사항 안내 이미지입니다."], "imgs": ["https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/fb4927817ad9118f8352433822832cc6.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/f3ac4748e0764fe4baad4ae34a0f1af5.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/c3869d5138f5879f5c8693c230761dd5.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/c2cd94dc3f7447c007ea42e8d35eb1f9.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/885f297a4e7b548118d3ed8f28122d75.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/660f4bb09ddc7336eb06d09d2ea55db3.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/bb336cfe610a277eab21925a9361e7f9.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/def413c13b9c4d20b5493c0507f16a01.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/031c5f55d2fd091b3b3eab690845e5a2.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/7e26308b325a5016db31d7264bde8a5e.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/f25ac730ee6c56190c89cece15b7a089.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/65010128e8674ef4f90d237d877acb09.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/0a3791751ca6603e959b942d9361c30b.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/5bbf560d40966b4b54fb44b442c57ac3.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/877714b34bf38be139e877d4e3637e73.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/e14c453beea5028cdbd4645b7b33acb2.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450320009/ba5dcebb2c02f0342bf5b5369c673f39.jpg"], "attach": []}, "93": {"title": "[설치]천장형전기온풍기 모델별 \"설치도면\"", "date": "2015-12-17", "views": "1189", "paras": ["천장형 전기온풍기 모델별 설치도면입니다."], "imgs": ["https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450319809/135b633531bdb5f62cdbd162a9779955.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450319809/36c5ab39567735193a38ee8f0a044fad.jpg", "https://yene.co.kr/_data/editor_attach/board_basic_3/basic_3_temp_1450319809/a71094d4b21a45a9b90724b428945a22.jpg"], "attach": []}, "92": {"title": "[설치]온풍기중앙통신설치설명서", "date": "2015-12-17", "views": "415", "paras": [], "imgs": [], "attach": [{"name": "예네 중앙관제통신 매뉴얼(485통신 사용설명).pdf", "url": "https://yene.co.kr/board/_data/basic_3/92/basic_3_92_0_1525767507.pdf"}]}, "70": {"title": "[홍보자료]조달청 다수공급자계약 체결 안내(물품식별번호 첨부)", "date": "2015-12-11", "views": "794", "paras": ["(주)예네가 조달청과 제3자 구매계약이 체결되었습니다.", "- 품명 : 천장형 전기온풍기 일반P형 5기종(YH-PE) — YH-010PE(1.0㎾), YH-015PE(1.5㎾), YH-020PE(2.0㎾), YH-025PE(2.5㎾), YH-030PE(3.0㎾)", "- 품명 : 천장형 전기온풍기 일반N형 기종(YH-NE) — YH-035NE(3.5㎾), YH-045NE(4.5㎾), YH-055NE(5.5㎾), YH-065NE(6.5㎾)", "- 품명 : 천장형 전기온풍기 방수형 4기종(YH-SE) — YH-008SE(0.87㎾), YH-013SE(1.3㎾), YH-017SE(1.7㎾), YH-025SE(2.5㎾)", "자세한 물품식별번호는 나라장터 종합쇼핑몰에서 확인하실 수 있습니다.", "감사합니다. (주)예네"], "imgs": [], "attach": []}, "69": {"title": "[홍보자료]예네온풍기 동파방지 기능과 제품의 특징 설명", "date": "2015-12-11", "views": "1320", "paras": ["기존의 타사 온풍기는 겨울철 추위가 돌아오기 전에 미리 온풍기를 조작하여 일정온도를 설정하고 타임기능 등 난방기를 켜 동작을 시켜두어야 동파방지기능이 작동하게 되어 있습니다.", "그래서 사용자가 불편함이 있었으며, 실수로 켜지 못했을 경우 날씨가 추워져 상수도나 하수도가 얼어 동파방지기능의 효율성을 알지 못하고 불편함을 호소하는 일들이 종종 있었습니다.", "하지만 예네가 개발한 천장형 전기온풍기는 항상 미세한 전류로 온도를 감지하고 있으며, 온도가 영상 6℃ 이하가 되면 난방기 디스플레이가 자동으로 작동하여 비상난방을 동작할 수 있습니다.", "기본적으로 온도를 6℃~10℃로 유지하고 동파에서 안전하게 해주는 기능이 내장되어 있습니다.", "또한 실온을 정확히 감지하기 위한 온도검색기능과 영하의 강추위에도 목적을 충분히 달성할 수 있도록 하는 온도보상기능이 있어 실내온도를 최적의 온도로 유지하는 중요한 기능이 설정되어 있습니다.", "당사의 제품은 천장에 매입설치 하도록 설계되어 있어 설치가 용이하고 특히 공간활용도가 높습니다. 동파가 쉽게 될 수 있는 실외 공동화장실, 욕실 등 상수도와 하수도가 있는 곳에 설치하는 제품으로 매우 적합합니다.", "이 모든 기능들은 (주)예네에서 특허권이 있어 타사에서는 사용할 수 없는 기능들입니다.", "스마트한 기능은 물론 안전과 제품 성능을 우선으로 개발하는 기업, 주식회사 예네입니다.", "감사합니다."], "imgs": [], "attach": []}, "65": {"title": "난방기 종류별 전반적인 설명(전기난방기, 기름난방기, 가스난방기)", "date": "2015-12-11", "views": "1891", "paras": ["- 난방기 종류별 전반적인 설명 -", "* 난방기 사용연료별 종류 : 난방기는 열원을 얻는 방식에 따라 기름, 가스, 전기 방식이 있으며 최근 오일(기름)값이 많이 상승함에 따라 상대적으로 전기 비용이 저렴하여 전기난방 방식을 많이 사용하고 있습니다. 그중에서도 히터펌프방식(열교환방식)과 히터가열방식 2개의 방식을 주로 사용하며, 1개 방식 또는 2개 방식을 병행하여 사용하는 경우도 있습니다.", "* 히터펌프 방식의 장단점 : 히터펌프방식(열교환방식)은 전기료가 적게 소비되는 반면 날씨가 영하로 내려가면 실외가 차가워짐에 따라 성능이 저하되어 영하 5~20도가 되면 설치장소 또는 제품에 따라 차이는 있으나 난방을 멈추게 되는 단점이 있습니다.", "* 히터가열 방식의 장단점 : 히터가열방식은 전기로 히터를 가열하여 열원을 얻는 방식으로 전기가 상대적으로 많이 소비되는 반면 날씨가 추워져도 일정한 난방열량이 변함없이 공급되므로 추운 지방 또는 동파방지용으로 많이 사용됩니다.", "* 히터의 종류와 특징 : 전기난방기의 발열체인 히터는 주로 PTC 방식과 시즈(SHEATH HEATER) 방식이 사용됩니다. PTC 방식은 작은 열선소자 여러 가닥을 벌집모양으로 병렬 연결하여 가열하는 방법으로, 열이 일정한 온도에 도달하면 더 이상 발열되지 않는 특징과 가격이 저렴하여 소형 벽걸이형 등의 난방기에 많이 사용됩니다. 시즈 방식은 스테인리스 또는 EGI 등의 파이프 속에 절연체와 함께 열선을 넣어 봉입하는 방식으로 고열을 얻을 수 있고 수명이 길어 대형난방기 등에 많이 사용됩니다.", "* 강제송풍 방식과 자연대류 방식 : 가열된 열을 송풍기로 바람을 불어 공급하는 강제송풍방식과, 가열된 열을 자연 그대로 발산되게 하여 열과 공기의 이동을 통해 전달하는 자연대류 방식이 있습니다."], "imgs": [], "attach": []}, "64": {"title": "전선 굵기(mmSQ)는 사용 전력에 따라 결정.", "date": "2015-12-11", "views": "883", "paras": ["전기 사용량에 따라 인입전선이 약하면 전선가열로 인한 열손실, 화재, 제품고장 및 성능 저하 등이 발생할 수 있습니다.", "전선 1mmSQ가 흘릴 수 있는 표준전류는 4.5A(암페어)로 봅니다.", "\"공식\" : I(A)=P(W)/E(V), E(V)=P(W)/I(A), P(W)=E(V)×I(A)", "\"예\" 5.5mmSQ일 경우 사용할 수 있는 표준전력:", "1) 220V 단상일 경우 5.5×4.5=24.75A × 220V = 5.45kW (2P)", "2) 220V 삼상일 경우 5.5×4.5=24.75A × 220V × 1.732 = 9.43kW (3~4P)", "3) 380V 삼상일 경우 5.5×4.5=24.75A × 380V × 1.732 = 16.94kW (3~4P)"], "imgs": [], "attach": []}, "63": {"title": "전압, 전류, 전력 및 전력량의 관계", "date": "2015-12-11", "views": "1240", "paras": ["전압, 전류, 전력 등의 용어는 전기의 기초단위입니다.", "전압이란 수돗물의 수압과 같이 전기를 흐르게 하는 힘을 말하는 것으로 높이의 개념이며, 전류란 전기가 전선을 통하여 흐르는 전기(전하)의 흐름으로 양의 개념이고, 전력이란 전압×전류로서 전기가 하는 일을 말하며, 전력량이란 전력×시간으로 일정기간에 전기가 한 일의 양을 의미합니다.", "기본단위는 전압 V(Volt), 전류 A(Ampere), 전력 W(Watt), 전력량 Wh(Watt hour)로 표시하며, 배수단위로 K(kilo)=1,000, M(Mega)=1,000,000, G(Giga)=1,000,000,000 등의 접두어를 사용합니다.", "전력(W) = 전압(V) × 전류(A), V = W/A, A = W/V", "예) 전압 220V × 전류 10A = 소비전력 2,200W (2.2kW)"], "imgs": [], "attach": []}};
+      var ORDER = ["328", "305", "243", "242", "240", "237", "232", "230", "175", "174", "150", "148", "147", "146", "96", "95", "71", "251", "246", "225", "199", "188", "163", "149", "132", "131", "122", "118", "109", "108", "107", "99", "94", "93", "92", "70", "69", "65", "64", "63"];
+      var LIST = './customer-library.html';
+      var no = new URLSearchParams(location.search).get('no');
+      var post = POSTS[no];
+      if (!post) { location.replace(LIST); return; }
+
+      document.title = post.title + ' | 자료실 | Yene';
+      document.getElementById('bvTitle').textContent = post.title;
+      document.getElementById('bvDate').textContent = '작성일 ' + post.date;
+      document.getElementById('bvViews').textContent = post.views;
+
+      if (post.attach && post.attach.length) {
+        var box = document.getElementById('bvAttach');
+        box.style.display = 'flex';
+        box.innerHTML = post.attach.map(function (a) {
+          return '<a href="' + a.url + '" target="_blank" rel="noopener"><span class="material-symbols-rounded">attach_file</span>' + a.name + '</a>';
+        }).join('');
+      }
+
+      var html = '';
+      if (post.video) {
+        html += '<div class="bv-video"><iframe src="' + post.video + '" title="' + post.title +
+                '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
+      }
+      if (post.paras) {
+        html += post.paras.map(function (p) { return '<p>' + p + '</p>'; }).join('');
+      }
+      if (post.imgs) {
+        html += post.imgs.map(function (s) {
+          return '<img src="' + s + '" alt="' + post.title + '" loading="lazy" onerror="this.style.display=&quot;none&quot;">';
+        }).join('');
+      }
+      if (post.note) { html += '<div class="bv-empty">' + post.note + '</div>'; }
+      document.getElementById('bvBody').innerHTML = html;
+
+      var idx = ORDER.indexOf(no);
+      var nav = '';
+      if (idx > 0) {
+        var p = ORDER[idx - 1];
+        nav += '<a href="?no=' + p + '"><span class="lbl">이전글</span><span class="bv-nav-title">' + POSTS[p].title + '</span></a>';
+      }
+      if (idx !== -1 && idx < ORDER.length - 1) {
+        var n = ORDER[idx + 1];
+        nav += '<a href="?no=' + n + '"><span class="lbl">다음글</span><span class="bv-nav-title">' + POSTS[n].title + '</span></a>';
+      }
+      document.getElementById('bvNav').innerHTML = nav;
+    })();
+  </script>
+</body>
+</html>

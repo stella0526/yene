@@ -571,8 +571,9 @@
 .qty-btn:hover { background: var(--soft); }
 
 .qty-val {
-  width: 40px;
+  width: 34px;
   height: 32px;
+  padding: 0;
   border: none;
   border-left: 1px solid var(--line);
   border-right: 1px solid var(--line);
@@ -2430,6 +2431,20 @@
    RESPONSIVE
    ======================================== */
 
+@media (max-width: 760px) {
+  /* 760px 이하에서 헤더가 62px로 줄어드므로 전체 페이지 offset 동기화 */
+  .auth-wrap {
+    margin-top: 62px;
+    min-height: calc(100vh - 62px);
+  }
+  .page-top {
+    padding-top: 62px;
+  }
+  .cart-page {
+    padding-top: 62px;
+  }
+}
+
 @media (max-width: 960px) {
   .auth-wrap { grid-template-columns: 1fr; }
   .auth-image-col { display: none; }
@@ -2571,16 +2586,16 @@
   color: var(--navy);
   margin: 36px 0 4px;
   padding-bottom: 10px;
-  border-bottom: 2px solid var(--navy);
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  border-bottom: 2px solid var(
+/* 수량 입력 — 브라우저 기본 스피너(화살표) 제거 (+/- 버튼과 중복) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  margin: 0;
+  display: none;
 }
-.product-subcat-title:first-of-type { margin-top: 0; }
-
-@media (max-width: 900px) {
-  .product-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 560px) {
-  .product-grid { grid-template-columns: 1fr; }
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }

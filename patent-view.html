@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>특허 및 증서 | Yene</title>
+  <link rel="preload" href="./font/Paperlogy-4Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="./font/Paperlogy-7Bold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/pages.css">
+  <style>
+    .pv-view { border-top: 2px solid var(--navy); }
+    .pv-head { padding: 24px 20px; border-bottom: 1px solid var(--line); }
+    .pv-head h3 { margin: 0; font-size: 20px; color: var(--navy); font-weight: 700; line-height: 1.5; }
+    .pv-meta { margin-top: 10px; font-size: 13px; color: var(--muted); }
+    .pv-body { padding: 36px 20px; border-bottom: 1px solid var(--line); text-align: center; }
+    .pv-body img { max-width: 100%; height: auto; margin: 0 auto 28px; display: block; border: 1px solid var(--line); border-radius: 4px; box-shadow: 0 4px 16px rgba(15,34,61,.06); }
+    .pv-body img:last-child { margin-bottom: 0; }
+    .pv-count { font-size: 12px; color: var(--muted); text-align: right; padding: 10px 20px; border-bottom: 1px solid var(--line); background: var(--soft); }
+    .pv-nav a { display: flex; gap: 16px; padding: 14px 20px; font-size: 13px; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .pv-nav a:hover .pv-nav-title { color: var(--blue); }
+    .pv-nav .lbl { color: var(--muted); flex-shrink: 0; width: 48px; }
+    .pv-nav .pv-nav-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .pv-btns { display: flex; justify-content: center; margin: 28px 0 8px; }
+    .pv-btn-list { padding: 12px 44px; background: var(--navy); color: #fff; border-radius: 4px; font-size: 14px; text-decoration: none; }
+    .pv-btn-list:hover { opacity: .9; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="brand">
+        <a href="./index.html" aria-label="Yene 홈">
+          <img src="./image/logo.png" alt="Yene">
+          <span>(주)예네</span>
+        </a>
+      </h1>
+      <nav class="gnb" aria-label="주요 메뉴">
+        <ul>
+          <li class="has-submenu">
+            <a href="./company-greeting.html" class="is-active">회사소개</a>
+            <ul class="sub-menu">
+              <li><a href="./company-greeting.html">인삿말</a></li>
+              <li><a href="./company-org.html">조직도</a></li>
+              <li><a href="./company-patent.html">특허 및 증서</a></li>
+              <li><a href="./company-location.html">오시는 길</a></li>
+              <li><a href="./company-dealer.html">대리점 현황</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="#">제품소개</a>
+            <ul class="sub-menu">
+              <li><a href="./product-ceiling.html">천장형 전기온풍기</a></li>
+              <li><a href="./product-heater.html">히터</a></li>
+              <li><a href="./product-slim.html">슬림형 전기온풍기</a></li>
+              <li><a href="./product-general.html">일반전기용품</a></li>
+            </ul>
+          </li>
+          <li><a href="./case.html">시공사례</a></li>
+          <li class="has-submenu">
+            <a href="#">고객센터</a>
+            <ul class="sub-menu">
+              <li><a href="./customer-notice.html">공지사항</a></li>
+              <li><a href="./customer-library.html">자료실</a></li>
+              <li><a href="./customer-video.html">동영상 갤러리</a></li>
+              <li><a href="./customer-faq.html">자주묻는 질문</a></li>
+              <li><a href="./customer-press.html">보도자료</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="mobile-member-menu">
+          <a href="./login.html"><span class="material-symbols-rounded">login</span>로그인</a>
+          <a href="./signup.html"><span class="material-symbols-rounded">person_add</span>회원가입</a>
+          <a href="./cart.html"><span class="material-symbols-rounded">shopping_bag</span>장바구니</a>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <a href="./login.html" class="icon-button" aria-label="로그인"><img src="./image/header_SignIn.png" alt=""></a>
+        <a href="./signup.html" class="icon-button" aria-label="회원가입"><img src="./image/header_User.png" alt=""></a>
+        <a href="./cart.html" class="icon-button" aria-label="장바구니"><img src="./image/header_Basket.png" alt=""></a>
+        <button type="button" class="menu-toggle" aria-label="메뉴 열기" aria-expanded="false">
+          <span class="material-symbols-rounded">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page-top">
+    <!-- Page hero -->
+    <div class="page-hero" aria-label="회사소개 배너">
+      <div class="page-hero-inner">
+        <div class="page-hero-text">
+          <p class="page-hero-kicker">Company</p>
+          <h1>회사소개</h1>
+          <p>Yene의 기술과 신뢰를 소개합니다.</p>
+        </div>
+      </div>
+      <div class="page-hero-img" aria-hidden="true">
+        <img src="./image/sec04_2.png" alt="">
+      </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="경로">
+      <div class="breadcrumb-inner">
+        <a href="./index.html" class="bc-home" aria-label="홈">
+          <span class="material-symbols-rounded" style="font-size:18px">home</span>
+        </a>
+        <span class="bc-sep">›</span>
+        <a href="./company-greeting.html">회사소개</a>
+        <span class="bc-sep">›</span>
+        <a href="./company-patent.html">특허 및 증서</a>
+        <span class="bc-sep">›</span>
+        <span class="bc-active">상세보기</span>
+      </div>
+    </nav>
+
+    <!-- Inner content -->
+    <div class="inner-content">
+      <div class="inner-layout">
+        <!-- Sidebar -->
+        <aside class="page-sidebar" aria-label="회사소개 메뉴">
+          <h2 class="sidebar-title">회사소개</h2>
+          <ul class="sidebar-nav">
+            <li><a href="./company-greeting.html">인삿말 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./company-org.html">조직도 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./company-patent.html" class="is-active">특허 및 증서 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./company-location.html">오시는 길 <span class="nav-arrow">›</span></a></li>
+            <li><a href="./company-dealer.html">대리점 현황 <span class="nav-arrow">›</span></a></li>
+          </ul>
+        </aside>
+
+        <!-- Main content -->
+        <section aria-labelledby="patent-view-title">
+          <h2 class="content-title" id="patent-view-title">특허 및 증서</h2>
+
+          <article class="pv-view">
+            <div class="pv-head">
+              <h3 id="pvTitle">불러오는 중...</h3>
+              <div class="pv-meta">작성자 관리자 <span style="color:var(--line)">|</span> <span id="pvDate"></span></div>
+            </div>
+            <div class="pv-count" id="pvCount"></div>
+            <div class="pv-body" id="pvBody"></div>
+            <nav class="pv-nav" id="pvNav" aria-label="이전 다음"></nav>
+            <div class="pv-btns"><a href="./company-patent.html" class="pv-btn-list">목록으로</a></div>
+          </article>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <a class="footer-brand" href="./index.html">
+        <img src="./image/logo.png" alt="Yene">
+        <strong>(주) 예네</strong>
+      </a>
+      <nav aria-label="하단 메뉴">
+        <ul>
+          <li><a href="./company-greeting.html">회사소개</a></li>
+          <li><a href="./customer-guide.html">이용안내</a></li>
+          <li><a href="./customer-terms.html">이용약관</a></li>
+          <li><a href="./customer-privacy.html">개인정보처리방침</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <address>
+        상호: 주식회사 예네  |  대표: 양순식  |  이메일: yene-3@live.co.kr  |  전화: 031-767-2266<br>
+        주소: 경기도 광주시 초월읍 도곡말길 59-18번길  |  사업자등록번호: 215-66-50868<br>
+        COPYRIGHT(c) 2015 Yene. All right reserved.
+      </address>
+      <img class="footer-marks" src="./image/footer_1.png" alt="인증 및 제휴 마크">
+    </div>
+  </footer>
+
+  <script src="./js/main.js"></script>
+  <script src="./js/cart.js"></script>
+  <script>
+    (function () {
+      var POSTS = {"267": {"title": "여성기업확인서", "date": "2020-07-13", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1594607848/4604dd35c9dc173cd77d024e3ed541e9.jpg"]}, "252": {"title": "통신판매업신고증", "date": "2020-02-25", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_252/cd62de2ac2bb6378bf73c2a9bcb3282d.jpg"]}, "226": {"title": "기술역량 우수기업 인증서", "date": "2019-03-06", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_226/7108ef70f3ef6dc0ea41b075cebb154d.jpg"]}, "170": {"title": "고효율 왕복동식 피스톤 전자펌프", "date": "2017-08-14", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1502694564/49de92802018881044d4928e3c693ed2.jpg"]}, "156": {"title": "미국 디자인등록증", "date": "2017-01-10", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1484024077/e82fe136066068d431b9c8cdea22f7f2.jpg"]}, "155": {"title": "중국특허등록증", "date": "2017-01-10", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1484024024/f66afc047a6642957f4e739ccdd370b9.jpg", "https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1484024024/78ed3f39b8d8d192dfeb6aa256d59c24.jpg"]}, "154": {"title": "중국상표등록증", "date": "2017-01-10", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1483670654/2e171b48568f65910ac69b53a0e5c9b4.jpg"]}, "152": {"title": "기술평가우수기업인증서", "date": "2017-01-06", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1483670654/088b69698aa7eeec80c635b4009e5e5c.jpg"]}, "121": {"title": "온수 매트용 보일러 디자인등록증", "date": "2016-03-02", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1456904066/6df2a9c90a310ae2ce06226cf6af9e1c.jpg"]}, "120": {"title": "온수매트 디자인등록증", "date": "2016-03-02", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1456903684/ad49f1f8d3cf5b682ca323c5754266d8.jpg"]}, "114": {"title": "ISO품질경영시스템인증서(한글, 영문)", "date": "2016-01-07", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_114/6fe740d6e66bac5bce97c449cff5dfbd.jpg", "https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_114/96e07e575e629790e2f65f22cbfb3fb1.jpg"]}, "112": {"title": "이노비즈확인서", "date": "2016-01-07", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_112/753505137f8fc4394e48fd70a94df00f.jpg"]}, "111": {"title": "벤처기업확인서", "date": "2016-01-07", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_111/d2f919ea0fbe64b5a516ef314f479590.jpg"]}, "110": {"title": "연구개발전담부서 인정서", "date": "2016-01-07", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_110/472d8dc9d13fd836fec62b70fd8c5a30.jpg"]}, "81": {"title": "천장형 전기 온풍난방기 의장등록", "date": "2015-12-11", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1449809615/764af90e10091c171e531e3a6fce9483.gif"]}, "80": {"title": "천장형 전기 온풍난방기 디자인 등록", "date": "2015-12-11", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1449809591/c9646545110b27701f13f7103fcbb046.gif"]}, "79": {"title": "천장형 전기 온풍난방기 디자인 등록", "date": "2015-12-11", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1449809573/1528bda630ce4d48b0e5aba970d7052c.gif"]}, "78": {"title": "천장형 욕실용 온풍난방기 디자인 등록", "date": "2015-12-11", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1449809528/f48fb9fe98b59417d8de46d8fb0147e9.gif"]}, "77": {"title": "천장 매립형 전기온풍난방기 디자인등록", "date": "2015-12-11", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1449809471/23fc39bd27b870f287ebbb33cdf87f97.gif"]}, "76": {"title": "실용특허_전기온풍기 안전장치", "date": "2015-12-11", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1449809056/2d25c7fd70397390556ee3877e90e171.jpg"]}, "75": {"title": "특허_천장형 냉난방기용 고정장치", "date": "2015-12-11", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_temp_1449808974/26420e954ff2fd244cf06187549b91ee.gif"]}, "7": {"title": "특허_동파방지용 절전형 온풍장치", "date": "2015-11-27", "imgs": ["https://yene.co.kr/_data/editor_attach/board_gallery_1/gallery_1_7/370e3a66b7a0d552f96be7475901e13e.jpg"]}};
+      var ORDER = ["267", "252", "226", "170", "156", "155", "154", "152", "121", "120", "114", "112", "111", "110", "81", "80", "79", "78", "77", "76", "75", "7"];
+      var no = new URLSearchParams(location.search).get('no');
+      var post = POSTS[no];
+      if (!post) { location.replace('./company-patent.html'); return; }
+
+      document.title = post.title + ' | 특허 및 증서 | Yene';
+      document.getElementById('pvTitle').textContent = post.title;
+      document.getElementById('pvDate').textContent = '작성일 ' + post.date;
+      document.getElementById('pvCount').textContent = '이미지 ' + post.imgs.length + '장';
+      document.getElementById('pvBody').innerHTML = post.imgs.map(function (s, i) {
+        return '<img src="' + s + '" alt="' + post.title + (post.imgs.length > 1 ? ' (' + (i + 1) + '/' + post.imgs.length + ')' : '') + '" loading="lazy">';
+      }).join('');
+
+      var idx = ORDER.indexOf(no);
+      var nav = '';
+      if (idx > 0) {
+        var p = ORDER[idx - 1];
+        nav += '<a href="?no=' + p + '"><span class="lbl">이전</span><span class="pv-nav-title">' + POSTS[p].title + '</span></a>';
+      }
+      if (idx !== -1 && idx < ORDER.length - 1) {
+        var n = ORDER[idx + 1];
+        nav += '<a href="?no=' + n + '"><span class="lbl">다음</span><span class="pv-nav-title">' + POSTS[n].title + '</span></a>';
+      }
+      document.getElementById('pvNav').innerHTML = nav;
+    })();
+  </script>
+</body>
+</html>

@@ -28,17 +28,28 @@ navLinks.forEach((link) => {
     const submenuItem = link.closest(".has-submenu");
 
     if (submenuItem && link.parentElement === submenuItem) {
-      event.preventDefault();
+      // 모바일: 탭 시 서브메뉴 토글 (페이지 이동 막음)
+      if (mobileMenuQuery.matches) {
+        event.preventDefault();
 
-      navSubmenuItems.forEach((item) => {
-        if (item !== submenuItem) {
-          item.classList.remove("is-submenu-open");
-          item.querySelector(":scope > a")?.setAttribute("aria-expanded", "false");
-        }
-      });
+        navSubmenuItems.forEach((item) => {
+          if (item !== submenuItem) {
+            item.classList.remove("is-submenu-open");
+            item.querySelector(":scope > a")?.setAttribute("aria-expanded", "false");
+          }
+        });
 
-      const isOpen = submenuItem.classList.toggle("is-submenu-open");
-      link.setAttribute("aria-expanded", String(isOpen));
+        const isOpen = submenuItem.classList.toggle("is-submenu-open");
+        link.setAttribute("aria-expanded", String(isOpen));
+        return;
+      }
+
+      // 데스크탑: 클릭 시 페이지 이동 (href="#"이면 첫 번째 서브메뉴로 이동)
+      if (link.getAttribute("href") === "#") {
+        event.preventDefault();
+        const firstSub = submenuItem.querySelector(".sub-menu a");
+        if (firstSub) window.location.href = firstSub.getAttribute("href");
+      }
       return;
     }
 
@@ -253,21 +264,4 @@ if (caseSection) {
 
   caseThumbWrap?.addEventListener("click", (event) => {
     const thumb = event.target.closest(".case-thumb");
-    if (!thumb) return;
-
-    const thumbIndex = Number(thumb.dataset.case || 0);
-    const targetIndex = caseItems.findIndex((item) => item.index === thumbIndex);
-    updateCaseVisual(targetIndex >= 0 ? targetIndex : thumbIndex + caseBaseCount);
-    startCaseRolling();
-  });
-
-  window.YeneCaseGallery = {
-    refresh: () => setCaseItems(),
-    setItems: setCaseItems,
-    goTo: updateCaseVisual,
-    start: startCaseRolling,
-    stop: () => window.clearInterval(caseRollingTimer)
-  };
-
-  setCaseItems();
-}
+    if (!thumb) retur

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가입 완료 | 회원가입 | Yene</title>
+  <link rel="preload" href="./font/Paperlogy-4Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="./font/Paperlogy-7Bold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/pages.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="brand">
+        <a href="./index.html" aria-label="Yene 홈">
+          <img src="./image/logo.png" alt="Yene">
+          <span>(주)예네</span>
+        </a>
+      </h1>
+      <nav class="gnb" aria-label="주요 메뉴">
+        <ul>
+          <li class="has-submenu">
+            <a href="./company-greeting.html">회사소개</a>
+            <ul class="sub-menu">
+              <li><a href="./company-greeting.html">인삿말</a></li>
+              <li><a href="./company-org.html">조직도</a></li>
+              <li><a href="./company-patent.html">특허 및 증서</a></li>
+              <li><a href="./company-location.html">오시는 길</a></li>
+              <li><a href="./company-dealer.html">대리점 현황</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="#">제품소개</a>
+            <ul class="sub-menu">
+              <li><a href="./product-ceiling.html">천장형 전기온풍기</a></li>
+              <li><a href="./product-heater.html">히터</a></li>
+              <li><a href="./product-slim.html">슬림형 전기온풍기</a></li>
+              <li><a href="./product-general.html">일반전기용품</a></li>
+            </ul>
+          </li>
+          <li><a href="./case.html">시공사례</a></li>
+          <li class="has-submenu">
+            <a href="#">고객센터</a>
+            <ul class="sub-menu">
+              <li><a href="./customer-notice.html">공지사항</a></li>
+              <li><a href="./customer-library.html">자료실</a></li>
+              <li><a href="./customer-video.html">동영상 갤러리</a></li>
+              <li><a href="./customer-faq.html">자주묻는 질문</a></li>
+              <li><a href="./customer-press.html">보도자료</a></li>
+              <li><a href="./company-service.html">서비스센터</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="mobile-member-menu">
+          <a href="./login.html"><span class="material-symbols-rounded">login</span>로그인</a>
+          <a href="./signup.html"><span class="material-symbols-rounded">person_add</span>회원가입</a>
+          <a href="./cart.html"><span class="material-symbols-rounded">shopping_bag</span>장바구니</a>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <a href="./login.html" class="icon-button" aria-label="로그인">
+          <img src="./image/header_SignIn.png" alt="">
+        </a>
+        <a href="./signup.html" class="icon-button" aria-label="회원가입">
+          <img src="./image/header_User.png" alt="">
+        </a>
+        <a href="./cart.html" class="icon-button" aria-label="장바구니">
+          <img src="./image/header_Basket.png" alt="">
+        </a>
+        <button type="button" class="menu-toggle" aria-label="메뉴 열기" aria-expanded="false">
+          <span class="material-symbols-rounded">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <style>
+    .complete-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px 0 40px;
+    }
+    .complete-icon {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: #e8f3ff;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+    }
+    .complete-icon .material-symbols-rounded {
+      font-size: 44px; color: var(--blue);
+    }
+    .complete-title {
+      font-size: 24px; font-weight: 700; color: var(--navy);
+      margin: 0 0 12px;
+    }
+    .complete-desc {
+      font-size: 14px; color: var(--muted);
+      line-height: 1.7; margin: 0 0 32px;
+    }
+    .complete-desc strong { color: var(--navy); }
+    .complete-btns {
+      display: flex; gap: 12px; width: 100%;
+    }
+    .complete-btns a {
+      flex: 1; height: 52px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 4px; font-size: 15px; font-weight: 600;
+      text-decoration: none; transition: background .2s, color .2s, border-color .2s;
+      font-family: var(--font-main);
+    }
+    .btn-complete-login {
+      background: var(--navy); color: var(--white);
+      border: 1px solid var(--navy);
+    }
+    .btn-complete-login:hover { background: var(--blue); border-color: var(--blue); color: var(--white); }
+    .btn-complete-home {
+      background: var(--white); color: var(--text);
+      border: 1px solid var(--line);
+    }
+    .btn-complete-home:hover { border-color: var(--navy); color: var(--navy); }
+
+    /* 완료 스텝 스타일 */
+    .step-item.is-done .step-num,
+    .step-item.is-active .step-num {
+      background: var(--blue); color: var(--white);
+    }
+    .step-item.is-done .step-num {
+      background: var(--navy);
+    }
+  </style>
+
+  <main id="main">
+    <div class="auth-wrap">
+      <div class="auth-form-col">
+        <div class="auth-form-inner">
+          <h1>회원가입</h1>
+          <p class="auth-desc">Yene 회원이 되시면 다양한 서비스와 혜택을 받으실 수 있습니다.</p>
+
+          <div class="step-indicator" aria-label="가입 단계">
+            <div class="step-item is-done">
+              <span class="material-symbols-rounded" style="font-size:16px">check</span>
+              <span>정보 입력</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-item is-done">
+              <span class="material-symbols-rounded" style="font-size:16px">check</span>
+              <span>약관 동의</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-item is-active">
+              <span class="step-num">3</span>
+              <span>가입 완료</span>
+            </div>
+          </div>
+
+          <div class="complete-wrap" style="margin-top:36px">
+            <div class="complete-icon">
+              <span class="material-symbols-rounded">check_circle</span>
+            </div>
+            <h2 class="complete-title">회원가입이 완료되었습니다!</h2>
+            <p class="complete-desc">
+              <strong>예네</strong>의 회원이 되신 것을 환영합니다.<br>
+              로그인 후 다양한 서비스와 혜택을 이용해 보세요.
+            </p>
+            <div class="complete-btns">
+              <a href="./login.html" class="btn-complete-login">로그인하기</a>
+              <a href="./index.html" class="btn-complete-home">홈으로</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="auth-image-col" aria-hidden="true">
+        <img src="./image/login_hero.png" alt="">
+      </div>
+    </div>
+  </main>
+
+<footer class="site-footer">
+    <div class="container footer-top">
+      <a class="footer-brand" href="./index.html">
+        <img src="./image/logo.png" alt="Yene">
+        <strong>(주) 예네</strong>
+      </a>
+      <nav aria-label="하단 메뉴">
+        <ul>
+          <li><a href="./company-greeting.html">회사소개</a></li>
+          <li><a href="./customer-guide.html">이용안내</a></li>
+          <li><a href="./customer-terms.html">이용약관</a></li>
+          <li><a href="./customer-privacy.html">개인정보처리방침</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <address>
+        상호: 주식회사 예네  |  대표: 양순식  |  이메일: yene-3@live.co.kr  |  전화: 031-767-2266<br>
+        주소: 경기도 성남시 오포읍 양벌리 105-6  |  사업자등록번호: 215-66-50868<br>
+        COPYRIGHT(c) 2015 Yene. All right reserved.
+      </address>
+      <img class="footer-marks" src="./image/footer_1.png" alt="인증 및 제휴 마크">
+    </div>
+  </footer>
+
+  <script src="./js/main.js"></script>
+  <script src="./js/cart.js"></script>
+  <script>
+    document.querySelectorAll('.pw-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const input = btn.previousElementSibling;
+        const icon = btn.querySelector('.material-symbols-rounded');
+        if (input.type === 'password') {
+          input.type = 'text';
+          icon.textContent = 'visibility';
+        } else {
+          input.type = 'password';
+          icon.textContent = 'visibility_off';
+        }
+      });
+    });
+  </script>
+</body>
+</htm
+  <script src="./js/main.js"></script>
+  <script src="./js/cart.js"></script>
+</body>
+</html>

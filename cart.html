@@ -11,26 +11,6 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/pages.css">
-  <style>
-    /* 장바구니 헤더 아이콘 배지 */
-    .cart-badge-wrap { position: relative; display: inline-flex; }
-    .cart-badge {
-      position: absolute;
-      top: -4px;
-      right: -4px;
-      width: 17px;
-      height: 17px;
-      border-radius: 50%;
-      background: var(--blue);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1;
-    }
-  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">본문 바로가기</a>
@@ -90,7 +70,7 @@
         <a href="./signup.html" class="icon-button" aria-label="회원가입">
           <img src="./image/header_User.png" alt="">
         </a>
-        <a href="./cart.html" class="icon-button cart-badge-wrap" aria-label="장바구니 (3개)">
+        <a href="./cart.html" class="icon-button" aria-label="장바구니 (3개)">
           <img src="./image/header_Basket.png" alt="">
           <span class="cart-badge" aria-hidden="true">3</span>
         </a>
@@ -111,7 +91,7 @@
           <!-- Table head -->
           <div class="cart-table-head">
             <label>
-              <input type="checkbox" id="checkAll" checked> 전체선택 (3/3)
+              <input type="checkbox" id="checkAll"> <span id="checkAllLabel">전체선택 (0/0)</span>
             </label>
             <button type="button" class="btn-delete-sel">선택 삭제</button>
           </div>
@@ -126,73 +106,14 @@
             <div></div>
           </div>
 
-          <!-- Item 1 -->
-          <div class="cart-item">
-            <input type="checkbox" checked aria-label="천장형 전기 온풍기 선택">
-            <div class="cart-item-info">
-              <img class="cart-item-thumb" src="./image/sec01_1.png" alt="천장형 전기 온풍기">
-              <div>
-                <p class="cart-item-name">천장형 전기 온풍기</p>
-                <p class="cart-item-model">YCH-2000</p>
-              </div>
-            </div>
-            <div class="qty-ctrl">
-              <div class="qty-btns">
-                <button type="button" class="qty-btn" aria-label="수량 감소">−</button>
-                <input class="qty-val" type="number" value="1" min="1" aria-label="수량">
-                <button type="button" class="qty-btn" aria-label="수량 증가">+</button>
-              </div>
-              <button type="button" class="btn-qty-change">수량 변경</button>
-            </div>
-            <div class="cart-price">298,000원</div>
-            <div class="cart-total">298,000원</div>
-            <button type="button" class="btn-cart-remove" aria-label="상품 삭제">×</button>
-          </div>
+          <!-- 동적 아이템 컨테이너 -->
+          <div id="cartItemsWrap"></div>
 
-          <!-- Item 2 -->
-          <div class="cart-item">
-            <input type="checkbox" checked aria-label="업소용 히터 선택">
-            <div class="cart-item-info">
-              <img class="cart-item-thumb" src="./image/sec01_2.png" alt="업소용 히터">
-              <div>
-                <p class="cart-item-name">업소용 히터</p>
-                <p class="cart-item-model">YH-5000</p>
-              </div>
-            </div>
-            <div class="qty-ctrl">
-              <div class="qty-btns">
-                <button type="button" class="qty-btn" aria-label="수량 감소">−</button>
-                <input class="qty-val" type="number" value="1" min="1" aria-label="수량">
-                <button type="button" class="qty-btn" aria-label="수량 증가">+</button>
-              </div>
-              <button type="button" class="btn-qty-change">수량 변경</button>
-            </div>
-            <div class="cart-price">550,000원</div>
-            <div class="cart-total">550,000원</div>
-            <button type="button" class="btn-cart-remove" aria-label="상품 삭제">×</button>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="cart-item">
-            <input type="checkbox" checked aria-label="슬림형 전기온풍기 선택">
-            <div class="cart-item-info">
-              <img class="cart-item-thumb" src="./image/sec01_3.png" alt="슬림형 전기온풍기">
-              <div>
-                <p class="cart-item-name">슬림형 전기온풍기</p>
-                <p class="cart-item-model">YSH-1800</p>
-              </div>
-            </div>
-            <div class="qty-ctrl">
-              <div class="qty-btns">
-                <button type="button" class="qty-btn" aria-label="수량 감소">−</button>
-                <input class="qty-val" type="number" value="1" min="1" aria-label="수량">
-                <button type="button" class="qty-btn" aria-label="수량 증가">+</button>
-              </div>
-              <button type="button" class="btn-qty-change">수량 변경</button>
-            </div>
-            <div class="cart-price">350,000원</div>
-            <div class="cart-total">350,000원</div>
-            <button type="button" class="btn-cart-remove" aria-label="상품 삭제">×</button>
+          <!-- 빈 장바구니 -->
+          <div id="emptyCart" style="display:none;padding:60px 0;text-align:center;color:var(--muted);">
+            <span class="material-symbols-rounded" style="font-size:56px;display:block;margin-bottom:16px;opacity:.4">shopping_bag</span>
+            <p style="font-size:16px;margin:0 0 24px">장바구니가 비어있습니다.</p>
+            <a href="./product-ceiling.html" style="display:inline-block;padding:12px 28px;background:var(--navy);color:#fff;border-radius:4px;font-size:14px;text-decoration:none;">제품 보러가기</a>
           </div>
 
           <!-- Bottom actions -->
@@ -218,7 +139,7 @@
               배송비
               <span class="order-row-question" title="5만원 이상 구매 시 무료배송">?</span>
             </span>
-            <span class="val">0원</span>
+            <span class="val" id="shipping">0원</span>
           </div>
           <div class="order-total">
             <span>총 결제금액</span>
@@ -257,60 +178,147 @@
   </footer>
 
   <script src="./js/main.js"></script>
+  <script src="./js/cart.js"></script>
   <script>
-    // 전체선택 토글
-    const checkAll = document.getElementById('checkAll');
-    const itemChecks = document.querySelectorAll('.cart-item input[type="checkbox"]');
+    /* ── 장바구니 페이지 렌더링 ── */
+    function fmt(n) { return n.toLocaleString('ko-KR') + '원'; }
 
-    checkAll.addEventListener('change', () => {
-      itemChecks.forEach(cb => cb.checked = checkAll.checked);
-      updateTotal();
-    });
+    function renderCart() {
+      var cart = window.YeneCart.get();
+      var wrap = document.getElementById('cartItemsWrap');
+      var empty = document.getElementById('emptyCart');
+      var cols = document.querySelector('.cart-cols');
 
-    itemChecks.forEach(cb => cb.addEventListener('change', updateTotal));
+      if (cart.length === 0) {
+        wrap.innerHTML = '';
+        empty.style.display = 'block';
+        if (cols) cols.style.display = 'none';
+        updateSummary();
+        syncCheckAll();
+        return;
+      }
+      empty.style.display = 'none';
+      if (cols) cols.style.display = '';
 
-    // 수량 증감
-    const prices = [298000, 550000, 350000];
-    document.querySelectorAll('.qty-btns').forEach((wrap, i) => {
-      const input = wrap.querySelector('.qty-val');
-      wrap.querySelector('[aria-label="수량 감소"]').addEventListener('click', () => {
-        if (input.value > 1) { input.value--; updateRow(i); }
-      });
-      wrap.querySelector('[aria-label="수량 증가"]').addEventListener('click', () => {
-        input.value++; updateRow(i);
-      });
-      input.addEventListener('change', () => updateRow(i));
-    });
+      wrap.innerHTML = cart.map(function (item) {
+        var total = fmt(item.price * item.qty);
+        var price = fmt(item.price);
+        var page  = (item.pid || String(item.id).split('::')[0]) + '.html';
+        var opts  = item.opts ? '<p class="cart-item-opts" style="margin:4px 0 0;font-size:12px;color:var(--blue);">옵션: ' + item.opts + '</p>' : '';
+        return '<div class="cart-item" data-id="' + item.id + '">' +
+          '<input type="checkbox" checked aria-label="' + item.name + ' 선택">' +
+          '<a class="cart-item-info" href="./' + page + '" style="text-decoration:none;color:inherit;">' +
+            '<img class="cart-item-thumb" src="' + (item.img || '') + '" alt="' + item.name + '" onerror="this.onerror=null;this.src=\'./image/sec01_1.png\'">' +
+            '<div>' +
+              '<p class="cart-item-name">' + item.name + '</p>' +
+              '<p class="cart-item-model">' + (item.model || '') + '</p>' +
+              opts +
+            '</div>' +
+          '</a>' +
+          '<div class="qty-ctrl">' +
+            '<div class="qty-btns">' +
+              '<button type="button" class="qty-btn" aria-label="수량 감소">−</button>' +
+              '<input class="qty-val" type="number" value="' + item.qty + '" min="1" aria-label="수량">' +
+              '<button type="button" class="qty-btn" aria-label="수량 증가">+</button>' +
+            '</div>' +
+            '<button type="button" class="btn-qty-change">수량 변경</button>' +
+          '</div>' +
+          '<div class="cart-price">' + price + '</div>' +
+          '<div class="cart-total">' + total + '</div>' +
+          '<button type="button" class="btn-cart-remove" aria-label="상품 삭제">×</button>' +
+        '</div>';
+      }).join('');
 
-    function updateRow(i) {
-      const rows = document.querySelectorAll('.cart-item');
-      const qty = parseInt(rows[i].querySelector('.qty-val').value) || 1;
-      const total = (prices[i] * qty).toLocaleString('ko-KR') + '원';
-      rows[i].querySelector('.cart-total').textContent = total;
-      updateTotal();
+      bindRowEvents();
+      syncCheckAll();
+      updateSummary();
     }
 
-    function updateTotal() {
-      const rows = document.querySelectorAll('.cart-item');
-      let sum = 0;
-      rows.forEach((row, i) => {
+    function updateSummary() {
+      var rows = document.querySelectorAll('.cart-item');
+      var sum = 0;
+      rows.forEach(function (row) {
         if (row.querySelector('input[type="checkbox"]').checked) {
-          const qty = parseInt(row.querySelector('.qty-val').value) || 1;
-          sum += prices[i] * qty;
+          var price = parseInt((row.querySelector('.cart-price').textContent || '0').replace(/[^0-9]/g, '')) || 0;
+          var qty   = parseInt(row.querySelector('.qty-val').value) || 1;
+          sum += price * qty;
         }
       });
-      const fmt = sum.toLocaleString('ko-KR') + '원';
-      document.getElementById('subtotal').textContent = fmt;
-      document.getElementById('total').textContent = fmt;
+      var shipping = sum > 0 && sum < 50000 ? 5500 : 0;
+      document.getElementById('subtotal').textContent = fmt(sum);
+      document.getElementById('shipping').textContent = shipping === 0 ? '0원' : fmt(shipping);
+      document.getElementById('total').textContent = fmt(sum + shipping);
     }
 
-    // 삭제
-    document.querySelectorAll('.btn-cart-remove').forEach((btn, i) => {
-      btn.addEventListener('click', () => {
-        btn.closest('.cart-item').remove();
-        updateTotal();
+    function syncCheckAll() {
+      var rows    = document.querySelectorAll('.cart-item');
+      var checked = document.querySelectorAll('.cart-item input[type="checkbox"]:checked');
+      var ca = document.getElementById('checkAll');
+      var lb = document.getElementById('checkAllLabel');
+      if (ca) {
+        ca.checked = rows.length > 0 && checked.length === rows.length;
+        ca.indeterminate = checked.length > 0 && checked.length < rows.length;
+      }
+      if (lb) lb.textContent = '전체선택 (' + checked.length + '/' + rows.length + ')';
+    }
+
+    function saveRowToStorage(row) {
+      // 저장된 항목의 다른 필드(옵션 등)를 유지한 채 수량만 갱신
+      var qty = parseInt(row.querySelector('.qty-val').value) || 1;
+      window.YeneCart.setQty(row.dataset.id, qty);
+    }
+
+    function bindRowEvents() {
+      document.querySelectorAll('.cart-item').forEach(function (row) {
+        if (row.dataset.bound) return;
+        row.dataset.bound = '1';
+
+        row.querySelector('[aria-label="수량 감소"]').addEventListener('click', function () {
+          var inp = row.querySelector('.qty-val');
+          if (+inp.value > 1) { inp.value = +inp.value - 1; updateRow(row); }
+        });
+        row.querySelector('[aria-label="수량 증가"]').addEventListener('click', function () {
+          var inp = row.querySelector('.qty-val');
+          inp.value = +inp.value + 1; updateRow(row);
+        });
+        row.querySelector('.qty-val').addEventListener('change', function () { updateRow(row); });
+        row.querySelector('.btn-cart-remove').addEventListener('click', function () {
+          window.YeneCart.remove(row.dataset.id);
+          renderCart();
+        });
+        row.querySelector('input[type="checkbox"]').addEventListener('change', function () {
+          syncCheckAll(); updateSummary();
+        });
       });
+    }
+
+    function updateRow(row) {
+      var price = parseInt((row.querySelector('.cart-price').textContent || '0').replace(/[^0-9]/g, '')) || 0;
+      var qty   = parseInt(row.querySelector('.qty-val').value) || 1;
+      row.querySelector('.cart-total').textContent = fmt(price * qty);
+      saveRowToStorage(row);
+      updateSummary();
+    }
+
+    function deleteSelected() {
+      var checked = document.querySelectorAll('.cart-item input[type="checkbox"]:checked');
+      if (checked.length === 0) { alert('삭제할 상품을 선택해 주세요.'); return; }
+      checked.forEach(function (cb) {
+        var id = cb.closest('.cart-item').dataset.id;
+        window.YeneCart.remove(id);
+      });
+      renderCart();
+    }
+
+    // 전체선택
+    document.getElementById('checkAll').addEventListener('change', function () {
+      document.querySelectorAll('.cart-item input[type="checkbox"]').forEach(function (cb) { cb.checked = this.checked; }.bind(this));
+      syncCheckAll(); updateSummary();
     });
-  </script>
-</body>
-</html>
+
+    // 선택 삭제 버튼 (상단 + 하단)
+    document.querySelectorAll('.btn-delete-sel, .btn-cart-danger').forEach(function (btn) {
+      btn.addEventListener('click', deleteSelected);
+    });
+
+    // 주문하기 / 견적서 요청 — 선택된 상품을 가지�
