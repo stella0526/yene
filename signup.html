@@ -217,4 +217,77 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       btn.addEventListener('click', function () {
         var input = btn.previousElementSibling;
         var icon = btn.querySelector('.material-symbols-rounded');
-  
+        if (input.type === 'password') {
+          input.type = 'text';
+          icon.textContent = 'visibility';
+        } else {
+          input.type = 'password';
+          icon.textContent = 'visibility_off';
+        }
+      });
+    });
+
+    /* ── 아이디 중복확인 ── */
+    var dupChecked = false;
+    var RESERVED_IDS = ['admin', 'administrator', 'yene', 'test', 'manager', 'root'];
+
+    function getUsers() {
+      try { return JSON.parse(localStorage.getItem('yene_users')) || []; }
+      catch { return []; }
+    }
+
+    function showDupMsg(text, ok) {
+      var msg = document.getElementById('dupMsg');
+      msg.textContent = text;
+      msg.style.color = ok ? '#1a7f37' : '#d93025';
+      msg.style.display = 'block';
+    }
+
+    function checkDuplicate() {
+      var id = document.getElementById('signupId').value.trim();
+      if (!id) { showDupMsg('아이디를 입력해 주세요.', false); return; }
+      if (!/^[a-zA-Z0-9_]{4,16}$/.test(id)) {
+        showDupMsg('아이디는 4~16자의 영문, 숫자, 밑줄(_)만 사용할 수 있습니다.', false);
+        return;
+      }
+      var taken = RESERVED_IDS.indexOf(id.toLowerCase()) !== -1 ||
+                  getUsers().some(function (u) { return (u.id || '').toLowerCase() === id.toLowerCase(); });
+      if (taken) {
+        dupChecked = false;
+        showDupMsg('이미 사용 중인 아이디입니다. 다른 아이디를 입력해 주세요.', false);
+      } else {
+        dupChecked = true;
+        showDupMsg('사용 가능한 아이디입니다.', true);
+      }
+    }
+
+    function resetDupCheck() {
+      dupChecked = false;
+      document.getElementById('dupMsg').style.display = 'none';
+    }
+
+    /* ── 가입하기: 입력 검증 후 다음 단계로 ── */
+    document.querySelector('.btn-auth-primary').onclick = function () {
+      var name  = document.getElementById('userName').value.trim();
+      var id    = document.getElementById('signupId').value.trim();
+      var pw    = document.getElementById('signupPw').value;
+      var pw2   = document.getElementById('signupPwConfirm').value;
+      var email = document.getElementById('signupEmail').value.trim();
+
+      if (!name) { alert('이름을 입력해 주세요.'); return; }
+      if (!id)   { alert('아이디를 입력해 주세요.'); return; }
+      if (!dupChecked) { alert('아이디 중복확인을 해주세요.'); return; }
+      if (!pw)   { alert('비밀번호를 입력해 주세요.'); return; }
+      if (pw !== pw2) { alert('비밀번호가 일치하지 않습니다.'); return; }
+      if (!email) { alert('이메일을 입력해 주세요.'); return; }
+
+      // 가입 정보를 임시 저장 → 약관 동의 페이지에서 최종 등록
+      sessionStorage.setItem('yene_signup_pending', JSON.stringify({
+        name: name, id: id, pw: pw, email: email,
+        phone: document.getElementById('signupPhone').value.trim()
+      }));
+      location.href = './signup-terms.html';
+    };
+  </script>
+</body>
+</html>

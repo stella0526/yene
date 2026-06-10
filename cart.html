@@ -330,4 +330,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       btn.addEventListener('click', deleteSelected);
     });
 
-    // 주문하기 / 견적서 요청 — 선택된 상품을 가지�
+    // 주문하기 / 견적서 요청 — 선택된 상품을 가지고 이동
+    function goCheckout(url) {
+      if (window.YeneCart.count() === 0) { alert('장바구니가 비어있습니다.'); return; }
+      var checked = Array.from(document.querySelectorAll('.cart-item'))
+        .filter(function (row) { return row.querySelector('input[type="checkbox"]').checked; })
+        .map(function (row) { return row.dataset.id; });
+      if (checked.length === 0) { alert('주문할 상품을 선택해 주세요.'); return; }
+      sessionStorage.setItem('yene_checkout', JSON.stringify(checked));
+      location.href = url;
+    }
+    document.querySelector('.btn-order').addEventListener('click', function () { goCheckout('./order.html'); });
+    document.querySelector('.btn-quote').addEventListener('click', function () { goCheckout('./quote.html'); });
+
+    // 초기 렌더링
+    renderCart();
+  </script>
+</body>
+</html>

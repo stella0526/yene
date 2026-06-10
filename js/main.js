@@ -264,4 +264,21 @@ if (caseSection) {
 
   caseThumbWrap?.addEventListener("click", (event) => {
     const thumb = event.target.closest(".case-thumb");
-    if (!thumb) retur
+    if (!thumb) return;
+
+    const thumbIndex = Number(thumb.dataset.case || 0);
+    const targetIndex = caseItems.findIndex((item) => item.index === thumbIndex);
+    updateCaseVisual(targetIndex >= 0 ? targetIndex : thumbIndex + caseBaseCount);
+    startCaseRolling();
+  });
+
+  window.YeneCaseGallery = {
+    refresh: () => setCaseItems(),
+    setItems: setCaseItems,
+    goTo: updateCaseVisual,
+    start: startCaseRolling,
+    stop: () => window.clearInterval(caseRollingTimer)
+  };
+
+  setCaseItems();
+}
