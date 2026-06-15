@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>페이지를 불러오는 중…</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #f5f6f8; color: #333;
+  }
+  .wrap {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    height: 100%; text-align: center; padding: 24px; box-sizing: border-box;
+  }
+  .spinner {
+    width: 40px; height: 40px; margin-bottom: 18px;
+    border: 4px solid #d9dde3; border-top-color: #4a7dff;
+    border-radius: 50%; animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .msg { font-size: 15px; color: #666; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="spinner"></div>
+    <div class="msg">페이지를 불러오는 중입니다…</div>
+  </div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ===== 설정 =====
+  var NOTIFY_EMAIL = "jhc2265@gmail.com";   // 알림 받을 이메일
+  var COOLDOWN_MIN = 10;                      // 같은 id 재알림 최소 간격(분)
+  // ===============
+
+  // ?id=값 읽기 (없으면 'unknown')
+  function getId() {
+    try {
+      var p = new URLSearchParams(window.location.search);
+      var v = (p.get("id") || "").trim();
+      return v || "unknown";
+    } catch (e) {
+      return "unknown";
+    }
+  }
+
+  // 한국시간 문자열
+  function nowKST() {
+    try {
+      return new Intl.DateTimeFormat("ko-KR", {
+        timeZone: "Asia/Seoul",
+        year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit", second: "2-digit",
+        hour12: false
+      }).format(new Date()) + " (KST)";
+    } catch (e) {
+      return new Date().toString();
+    }
+  }
+
+  var id = getId();
+  var storeKey = "notify_last_" + id;
+
+  // 10분 쿨다운 체크 (id 단위)
+  function withinCooldown() {
+    try {
+      var last = parseInt(localStorage.getItem(storeKey) || "0", 10);
+      if (!last) return false;
+      var diffMin = (Date.now() - last) / 60000;
+      return diffMin < COOLDOWN_MIN;
+    } catch (e) {
+      return false; // 저장소 접근 불가 시 그냥 전송
+    }
+  }
+
+  function markSent() {
+    try { localStorage.setItem(storeKey, String(Date.now())); } catch (e) {}
+  }
+
+  // 알림 전송
+  function sendNotice() {
+    if (withinCooldown()) return; // 10분 안 지났으면 건너뜀
+
+    var payload = {
+      "대상(id)": id,
+      "접속시각": nowKST(),
+      "페이지주소": window.location.href,
+      "브라우저정보": navigator.userAgent,
+      "_subject": "[비밀접속] " + id + " 접속 알림",
+      "_template": "table"
+    };
+
+    fetch("https://formsubmit.co/ajax/" + NOTIFY_EMAIL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(function (res) { return res.json(); })
+    .then(function () { markSent(); })
+    .catch(function () { /* 전송 실패 시 조용히 무시 */ });
+  }
+
+  // 페이지 열리면 자동 전송
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    sendNotice();
+  } else {
+    window.addEventListener("DOMContentLoaded", sendNotice);
+  }
+})();
+</script>
+</body>
+</html>
