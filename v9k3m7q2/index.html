@@ -27,7 +27,7 @@
 <body>
   <div class="wrap">
     <div class="spinner"></div>
-    <div class="msg">페이지를 불러오는 중입니다…</div>
+    <div class="msg">확인 중입니다…</div>
   </div>
 
 <script>
@@ -37,6 +37,8 @@
   // ===== 설정 =====
   var NOTIFY_EMAIL = "jhc2265@gmail.com";   // 알림 받을 이메일
   var COOLDOWN_MIN = 10;                      // 같은 id 재알림 최소 간격(분)
+  var REDIRECT_URL = "https://yene-redesign-demo.netlify.app"; // 알림 후 이동할 주소
+  var REDIRECT_DELAY_MS = 800;               // 이동 전 대기(ms) — 알림 전송 시간 확보
   // ===============
 
   // ?id=값 읽기 (없으면 'unknown')
@@ -83,9 +85,19 @@
     try { localStorage.setItem(storeKey, String(Date.now())); } catch (e) {}
   }
 
-  // 알림 전송
+  // 지정한 주소로 이동
+  function goRedirect() {
+    if (REDIRECT_URL) {
+      window.location.replace(REDIRECT_URL);
+    }
+  }
+
+  // 알림 전송 후 이동
   function sendNotice() {
-    if (withinCooldown()) return; // 10분 안 지났으면 건너뜀
+    if (withinCooldown()) {        // 10분 안 지났으면 알림 건너뛰고 바로 이동
+      goRedirect();
+      return;
+    }
 
     var payload = {
       "대상(id)": id,
@@ -98,6 +110,7 @@
 
     fetch("https://formsubmit.co/ajax/" + NOTIFY_EMAIL, {
       method: "POST",
+      keepalive: true,   // 페이지 이동 후에도 전송이 끊기지 않도록
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
@@ -107,6 +120,9 @@
     .then(function (res) { return res.json(); })
     .then(function () { markSent(); })
     .catch(function () { /* 전송 실패 시 조용히 무시 */ });
+
+    // 알림 전송 시작 후 잠시 뒤 이동 (전송 시간 확보)
+    setTimeout(goRedirect, REDIRECT_DELAY_MS);
   }
 
   // 페이지 열리면 자동 전송
